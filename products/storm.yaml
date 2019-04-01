@@ -1,0 +1,44 @@
+--- # StoRM release
+product: StoRM
+technology_provider: INFN
+tp_short: INFN
+contact: enrico.vianello@cnaf.infn.it
+desc:
+  StoRM provides a flexible, configurable, scalable and high performance SRM 
+  solution. It supports standard Grid access protocols as well as direct access
+  (native POSIX I/O call) on data, fostering the integration of non Grid aware
+  application providing local access on shared storage. Another important
+  characteristic of StoRM is the capability to identify the physical location
+  of a requested data without querying any database service but evaluating a
+  configuration file, an XML schema that describes the storage namespace and
+  input parameters as the logical identifier and SRM attributes. StoRM relies
+  on the underlying file system structure to identify the physical data
+  position.
+
+docs: http://italiangrid.github.io/storm/documentation.html
+releasenotes: http://italiangrid.github.io/storm/release-notes/StoRM-v1.11.15.html
+changelog: 
+  storm-backend-server-1.11.15
+  storm-frontend-server-1.8.12
+  storm-frontend-server-debuginfo-1.8.12
+  storm-dynamic-info-provider-1.8.1
+  storm-webdav-1.1.0
+  yaim-storm-4.3.12
+isodate: 20140123
+incremental: false
+emergency: false
+version: 1.11.15
+
+capabilities: [File Access, File Transfer, Storage Management]
+
+packages:
+  - os: sl6
+    arch: x86_64
+    gpgkey: http://repository.egi.eu/sw/production/umd/UMD-RPM-PGP-KEY
+    rpms: 
+      - https://repo.cloud.cnaf.infn.it/repository/storm/stable/el6/x86_64/storm-backend-server-1.11.15-1.el6.centos.noarch.rpm
+      - https://repo.cloud.cnaf.infn.it/repository/storm/stable/el6/x86_64/storm-frontend-server-1.8.12-1.el6.centos.x86_64.rpm
+      - https://repo.cloud.cnaf.infn.it/repository/storm/stable/el6/x86_64/storm-frontend-server-debuginfo-1.8.12-1.el6.centos.x86_64.rpm
+      - https://repo.cloud.cnaf.infn.it/repository/storm/stable/el6/x86_64/storm-dynamic-info-provider-1.8.1-1.el6.centos.noarch.rpm
+      - https://repo.cloud.cnaf.infn.it/repository/storm/stable/el6/x86_64/storm-webdav-1.1.0-1.el6.centos.noarch.rpm
+      - https://repo.cloud.cnaf.infn.it/repository/storm/stable/el6/x86_64/yaim-storm-4.3.12-1.el6.centos.noarch.rpm
