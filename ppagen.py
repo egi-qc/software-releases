@@ -2,10 +2,27 @@ import datetime
 import argparse
 import os
 import re
+import requests
 import urlparse
 import xml.etree.ElementTree as ET
 import xml.dom.minidom as minidom
 import yaml
+
+# VALIDATION
+MANDATORY_FIELDS = [
+    'version',
+    'docs',
+    'releasenotes',
+    'changelog',
+    'packages',
+]
+SUPPORTED_OS = [
+    'sl6',
+    'centos7',
+]
+SUPPORTED_ARCH = [
+    'x86_64',
+]
 
 # NAMES OF THE XML ELEMENTS
 REL_REL = 'release:release'
@@ -51,6 +68,47 @@ REPO_ROOT = {
     'deb': 'repository:debRepository',
     'yum': 'repository:yumRepository',
 }
+
+
+def validate_release(release):
+    def _get_url(v):
+        if isinstance(v, str) and v.startswith('http'):
+            response = requests.get(v)
+            return response.status_code
+        else:
+            return False
+
+    #1 Mandatory fields keys are present
+    assert all(item in release.keys() for item in MANDATORY_FIELDS), (
+           'Not all the mandatory fields exist! (%s)' % MANDATORY_FIELDS)
+    #2 URLs exist
+    for k,v in release.items():
+        _url_status_code = _get_url(v)
+        if _url_status_code:
+            assert _url_status_code == 200, (
+                    "Cannot open URL '%s' for field '%s' (response: %s)" % (
+                        v,
+                        k,
+                        _url_status_code))
+    #3 Version format
+    assert re.search('[v]{0,1}([0-9]\.+)', release.get('version'))
+    #4 Packages
+    for os_pkgs in release.get('packages'):
+        _os = os_pkgs.get('os')
+        assert _os in SUPPORTED_OS, (
+                "Operating system not supported: '%s' (%s)" % (_os,
+                                                               SUPPORTED_OS))
+        _arch = os_pkgs.get('arch')
+        assert _arch in SUPPORTED_ARCH, (
+                "Architecture not supported: '%s' (%s)" % (_arch,
+                                                           SUPPORTED_ARCH))
+        _pkgs = os_pkgs.get('rpms')
+        for _pkg in _pkgs:
+            _url_status_code = _get_url(_pkg)
+            assert _url_status_code == 200, (
+                   "Cannot fetch package '%s' (response: %s)" % (
+                        _pkg,
+                        _url_status_code))
 
 
 def get_repo_type(os):
@@ -228,6 +286,7 @@ parser.add_argument('release', metavar='<RELEASE YAML>',
 args = parser.parse_args()
 
 release = yaml.load(open(args.release))
+validate_release(release)
 for pkg in release.get('packages'):
     xml, ppa_name = create_release_xml(release, pkg)
     file_name = '%s.xml' % ppa_name
