@@ -283,6 +283,8 @@ def create_release_xml(release, pkgs):
 parser = argparse.ArgumentParser(description='Produce release xml')
 parser.add_argument('release', metavar='<RELEASE YAML>',
                     help='YAML file containing the release info')
+parser.add_argument('--get-ppa-file', action='store_true',
+                    help='Retrieve XML filename of the current PPA')
 args = parser.parse_args()
 
 release = yaml.load(open(args.release))
@@ -290,6 +292,9 @@ validate_release(release)
 for pkg in release.get('packages'):
     xml, ppa_name = create_release_xml(release, pkg)
     file_name = '%s.xml' % ppa_name
+    if args.get_ppa_file:
+        print(file_name)
+        break
     with open(file_name, 'w+') as f:
         f.write(prettify(xml))
         print "Wrote %s" % file_name
