@@ -289,7 +289,7 @@ parser.add_argument('--do-not-validate', action='store_true',
                     help='Do not trigger validation of YAML release file')
 args = parser.parse_args()
 
-release = yaml.load(open(args.release))
+release = yaml.safe_load(open(args.release))
 if not args.do_not_validate:
     validate_release(release)
 for pkg in release.get('packages'):
