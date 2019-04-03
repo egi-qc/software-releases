@@ -11,12 +11,19 @@ pipeline {
     }
     stages {
         stage('Fetch code') {
+            when {
+                branch 'master'
+            }
             steps {
                 checkout scm
+                sh('pip install -r requirements.txt')
             }
         }
         
         stage('Identify release changes') {
+            when {
+                branch 'master'
+            }
             steps {
                 script {
                     last_commit = sh(
@@ -41,15 +48,17 @@ pipeline {
                 }
             }
         }
-        stage('Validate YAML release file') {
+
+        stage('Create new release on RT') {
             when {
-                expression {
-                    yaml_release_file
+                allOf {
+                    branch 'master'
+                    expression {
+                        yaml_release_file
+                    }
                 }
             }
             steps {
-                println(yaml_release_file)
-                sh('pip install -r requirements.txt')
                 sh("python ppagen.py ${yaml_release_file}")
             }
             post {
