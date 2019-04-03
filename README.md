@@ -11,13 +11,13 @@ validated by the EGI QC team.
 2. Find the YAML release template under for your software component under the
 `products` directory. If not there, create one.
 3. Add/edit the relevant information including the following mandatory fields:
- - Version of the software
- - Software package URLs for each distribution being supported
- - Release notes URL
- - Changelog
+   - Version of the software
+   - Software package URLs for each distribution being supported
+   - Release notes URL
+   - Changelog
 4. (single) Commit changes and submit the pull request
 
-_Note:
+##### Additional notes
  * The pull request validation will trigger PPA validation. It consists on the
    following checks:
     1. Mandatory fields keys are present.
@@ -28,7 +28,7 @@ _Note:
  * Once the pull request is accepted, [Jenkins](https://jenkins.egi.ifca.es)
    will carry out the software validation process. Only the last commit (from
    HEAD) is considered, so please be sure to include in the last commit the
-   changes to the YAML file._
+   changes to the YAML file.
 
 ### Instructions for EGI QC team
 
@@ -42,5 +42,8 @@ be enforced:
  - Changelog
 2. Last commit contains changes to the relevant YAML product file.
 
-_Only approve the pull request whenever the two former requirements are
-satisfied. Otherwise request changes to the submitter (software provider)_
+##### Additional notes
+ * _Only approve the pull request whenever the two former requirements are
+    satisfied_. Otherwise request changes to the submitter (software provider)
+ * Jenkins will search tickets with the same `ReleaseMetadata` value before
+   creating a new ticket. Check Jenkins logs for any unexpected behaviour.
