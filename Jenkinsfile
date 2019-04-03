@@ -73,18 +73,36 @@ pipeline {
     }
 }
 
+String doHttpRequest(
+        String http_op,
+        String query) {
+    httpRequest authentication: 'egi-rt-creds',
+                customHeaders: [[maskValue: false, name: 'Content-type', value: 'text/plain; charset=utf-8']], 
+                httpMode: http_op,
+                responseHandle: 'NONE',
+                url: "https://rt.egi.eu/rt/REST/1.0/${query}",
+                consoleLogResponseBody: true
+}
+
 void submitToRT(
         String release_metadata_filename,
         String distribution_type,
         String release_no) {
-    def python_cmd = "python -c 'import urllib2 ; print urllib2.quote(\"\"\"id: ticket/new\\nQueue: sw-rel\\nSubject: dummy-test\\nCF.{Distribution Type}: ${distribution_type}\\nCF.{UMDRelease}: ${release_no}\\nCF.{ReleaseMetadataURL}: ${env.BUILD_URL}/artifact/${release_metadata_filename}\"\"\")'"
-    def content = sh returnStdout: true, script: "${python_cmd}"
-    println("URL ENCODED: ${content}")
-    def response = httpRequest authentication: 'egi-rt-creds',
-                               customHeaders: [[maskValue: false, name: 'Content-type', value: 'text/plain; charset=utf-8']], 
-                               httpMode: 'POST',
-                               responseHandle: 'NONE',
-                               //url: "https://rt.egi.eu/rt/REST/1.0/ticket/new?content=id%3A+ticket%2Fnew%0AQueue%3A+sw-rel"
-                               url: "https://rt.egi.eu/rt/REST/1.0/ticket/new?content=${content}",
-                               consoleLogResponseBody: true
+    // #1 Search in RT if already there
+    search_filter = "Queue='sw-rel' AND 'CF.{ReleaseMetadata}'='${release_metadata_filename}'"
+    search_filter = URLEncoder.encode(search_filter, "UTF-8")
+    search_query = "search/ticket?query=${search_filter}"
+    response = doHttpRequest('GET', search_query)
+    if (!response.getContent().contains('No matching results')) {
+        println("Ticket/s with the same XML metadata file found. Cannot submit new ticket (${response})")
+        return response
+    }
+    
+    // #2 Submit ticket
+    subject = release_metadata_filename.take(release_metadata_filename.lastIndexOf('.')).toLowerCase()
+    submit_filter = "id: ticket/new\nQueue: sw-rel\nSubject: ${subject}\nCF.{Distribution Type}: ${distribution_type}\nCF.{UMDRelease}: ${release_no}\nCF.{ReleaseMetadataURL}: ${env.BUILD_URL}/artifact/${release_metadata_filename}"
+    submit_filter = URLEncoder.encode(submit_filter, "UTF-8")
+    submit_query = "ticket/new?content=${submit_filter}"
+    def content = submit_query
+    response = doHttpRequest('POST', submit_query)
 }
