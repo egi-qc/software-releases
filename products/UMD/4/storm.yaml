@@ -14,7 +14,6 @@ desc:
   input parameters as the logical identifier and SRM attributes. StoRM relies
   on the underlying file system structure to identify the physical data
   position.
-
 docs: http://italiangrid.github.io/storm/documentation.html
 releasenotes: http://italiangrid.github.io/storm/release-notes/StoRM-v1.11.15.html
 changelog: 
@@ -30,7 +29,6 @@ emergency: false
 version: 1.11.15
 
 capabilities: [File Access, File Transfer, Storage Management]
-
 packages:
   - os: sl6
     arch: x86_64
