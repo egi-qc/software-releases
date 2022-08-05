@@ -2,4 +2,4 @@ FROM python
 MAINTAINER Pablo Orviz <orviz@ifca.unican.es>
 
 RUN apt-get update \
-    && apt-get install openjdk-11-jdk-headless
+    && apt-get install -y openjdk-11-jdk-headless
