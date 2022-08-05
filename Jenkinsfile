@@ -7,7 +7,9 @@ def yaml_release_file = ''
 
 pipeline {
     agent {
-        label 'python'
+        dockerfile {
+            filename 'Dockerfile.build'
+        }
     }
     stages {
         stage('Fetch code') {
@@ -19,7 +21,7 @@ pipeline {
                 sh('pip install -r requirements.txt')
             }
         }
-        
+
         stage('Identify release changes') {
             when {
                 branch 'master'
@@ -86,7 +88,7 @@ String doHttpRequest(
         String http_op,
         String query) {
     httpRequest authentication: 'egi-rt-creds',
-                customHeaders: [[maskValue: false, name: 'Content-type', value: 'text/plain; charset=utf-8']], 
+                customHeaders: [[maskValue: false, name: 'Content-type', value: 'text/plain; charset=utf-8']],
                 httpMode: http_op,
                 responseHandle: 'NONE',
                 url: "https://rt.egi.eu/rt/REST/1.0/${query}",
@@ -106,7 +108,7 @@ void submitToRT(
         println("Ticket/s with the same XML metadata file found. Cannot submit new ticket (${response})")
         return response
     }
-    
+
     // #2 Submit ticket
     subject = release_metadata_filename.take(release_metadata_filename.lastIndexOf('.')).toLowerCase()
     submit_filter = "id: ticket/new\nQueue: sw-rel\nSubject: ${subject}\nCF.{Distribution Type}: ${distribution_type}\nCF.{UMDRelease}: ${release_no}\nCF.{ReleaseMetadataURL}: ${env.BUILD_URL}/artifact/${release_metadata_filename}"
