@@ -11,7 +11,9 @@ pipeline {
     stages {
          stage('Install dependencies') {
              steps {
-                 sh 'pip install -r requirements.txt'
+                 withPythonEnv('python') {
+                    sh 'pip install -r requirements.txt'
+                 }
              }
          }
 
@@ -51,8 +53,9 @@ pipeline {
             }
             steps {
                 dir('scripts') {
-                    sh 'cp repo.conf ~/repo.conf' // FIXME: avoid this prerequisite
-                    sh 'python json_parser.py htcondor-9.0.1'
+                    withPythonEnv('python') {
+                        sh 'python json_parser.py htcondor-9.0.1'
+                    }
                 }
             }
         }
