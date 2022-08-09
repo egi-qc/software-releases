@@ -38,5 +38,14 @@ pipeline {
                 }
             }
         }
+
+        stage('Collect the list of packages') {
+            when {
+                expression {return json_release_file}
+            }
+            steps {
+                println('Run script that gets the list of packages')
+            }
+        }
     }
 }
