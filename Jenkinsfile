@@ -9,7 +9,7 @@ pipeline {
         }
     }
     stages {
-        stage('Identify release changes') {
+        stage('Detect release changes') {
             when {
                 branch 'master'
             }
