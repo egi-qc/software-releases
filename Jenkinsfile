@@ -28,7 +28,8 @@ pipeline {
                         println('No changes detected to any JSON release file')
                     }
                     else if (json_files_changed.size() > 1) {
-                        println('More than one modified JSON release file found. Please commit one JSON at a time')
+                        currentBuild.result = 'ABORTED'
+                        error('More than one modified JSON release file found. Please commit one JSON at a time')
                     }
                     else {
                         println("Changes to ${json_files_changed[0]} found. Processing file..")
