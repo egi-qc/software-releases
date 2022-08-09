@@ -18,7 +18,7 @@ def get_conf(prod_name):
     :returns dictionary with configuration options
     """
     parser = configparser.ConfigParser(allow_no_value=True)
-    conf_file = os.path.expanduser("~") + "/repo.conf"
+    conf_file = "repo.conf"
     parser.read(conf_file)
     ev = {}
     ev['repo_uri'] = parser.get('DEFAULT', 'repo_uri')
