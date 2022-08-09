@@ -44,7 +44,10 @@ pipeline {
                 expression {return json_release_file}
             }
             steps {
-                println('Run script that gets the list of packages')
+                dir('scripts') {
+                    sh 'cp repo.conf ~/repo.conf' // FIXME: avoid this prerequisite
+                    sh 'python json_parser.py htcondor-9.0.1'
+                }
             }
         }
     }
