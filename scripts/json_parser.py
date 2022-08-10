@@ -17,10 +17,14 @@ import utils
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
-        print('Usage:', sys.argv[0], '<package_name_version> (without extension .json)')
+        print('Usage:', sys.argv[0], '<package_metadata_file> (relative path from root repo)')
         sys.exit(1)
 
-    prod_name = sys.argv[1]
+    package_metadata_file = sys.argv[1]
+    prod_name = os.path.splitext(
+        os.path.basename(package_metadata_file)
+    )[0]
+
     ev = utils.get_conf(prod_name)
 
     # Directory containing the json files
