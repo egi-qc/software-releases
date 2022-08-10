@@ -54,7 +54,12 @@ pipeline {
             steps {
                 dir('scripts') {
                     withPythonEnv('python') {
-                        sh "python json_parser.py ${json_release_file}"
+                        script {
+                            pkg_list = sh(
+                                returnStdout: true,
+                                script: "python json_parser.py ${json_release_file}"
+                            ).trim()
+                        }
                     }
                 }
             }
