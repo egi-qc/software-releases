@@ -10,6 +10,7 @@
 """json parser of a UMD or CMD release, and download packages
 """
 
+import os
 import sys
 import utils
 
@@ -21,10 +22,10 @@ if __name__ == '__main__':
         print('1 - downloads from the EGI UMD/CMD repository, item 6 in pipeline')
         sys.exit(1)
 
-    prod_name = sys.argv[1]
+    product_metadata_file = sys.argv[1]
     umd_download = sys.argv[2]
 
-    ev = utils.get_conf(prod_name)
+    ev = utils.get_conf(product_metadata_file)
     pkg_dict = utils.create_dict_pkg(ev['json_file'])
     download_dir = ev['tmp_dir']
     if umd_download == '1':
