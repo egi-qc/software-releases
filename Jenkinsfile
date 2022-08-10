@@ -54,7 +54,7 @@ pipeline {
             steps {
                 dir('scripts') {
                     withPythonEnv('python') {
-                        sh 'python json_parser.py htcondor-9.0.1'
+                        sh "python json_parser.py ${json_release_file}"
                     }
                 }
             }
