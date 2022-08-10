@@ -64,5 +64,23 @@ pipeline {
                 }
             }
         }
+
+        stage('Download the packages to a temporary directory') {
+            when {
+                expression {return pkg_list}
+            }
+            steps {
+                dir('scripts') {
+                    withPythonEnv('python') {
+                        script {
+                            download_output = sh(
+                                returnStdout: true,
+                                script: "python download_pkgs.py ${json_release_file} 0"
+                            ).trim()
+                        }
+                    }
+                }
+            }
+        }
     }
 }
