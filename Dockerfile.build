@@ -1,4 +1,4 @@
-FROM python
+FROM registry.access.redhat.com/ubi8/python-39
 MAINTAINER Pablo Orviz <orviz@ifca.unican.es>
 
 RUN apt-get update \
