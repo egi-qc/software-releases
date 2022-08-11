@@ -1,8 +1,9 @@
 FROM registry.access.redhat.com/ubi8/python-39
 MAINTAINER Pablo Orviz <orviz@ifca.unican.es>
 
-RUN apt-get update \
-    && apt-get install -y openjdk-11-jdk-headless
+USER root
+
+RUN yum install -y java-11-openjdk-headless
 
 # Hack to use the same user/group ID in the container
 # and in Jenkins (otherwise we get random perms issues)
