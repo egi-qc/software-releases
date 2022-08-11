@@ -4,6 +4,7 @@ MAINTAINER Pablo Orviz <orviz@ifca.unican.es>
 USER root
 
 RUN yum makecache fast && yum -y install \
+        git \
 	java-11-openjdk-headless \  
 	python3 python3-pip
 
