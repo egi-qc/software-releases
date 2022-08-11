@@ -11,8 +11,8 @@ pipeline {
     stages {
          stage('Install dependencies') {
              steps {
-                 withPythonEnv('python') {
-                    sh 'pip install -r requirements.txt'
+                 withPythonEnv('python3') {
+                    sh 'pip3 install -r requirements.txt'
                  }
              }
          }
@@ -53,11 +53,11 @@ pipeline {
             }
             steps {
                 dir('scripts') {
-                    withPythonEnv('python') {
+                    withPythonEnv('python3') {
                         script {
                             pkg_list = sh(
                                 returnStdout: true,
-                                script: "python json_parser.py ${json_release_file}"
+                                script: "python3 json_parser.py ${json_release_file}"
                             ).trim()
                         }
                     }
@@ -71,11 +71,11 @@ pipeline {
             }
             steps {
                 dir('scripts') {
-                    withPythonEnv('python') {
+                    withPythonEnv('python3') {
                         script {
                             download_output = sh(
                                 returnStdout: true,
-                                script: "python download_pkgs.py ${json_release_file} 0"
+                                script: "python3 download_pkgs.py ${json_release_file} 0"
                             ).trim()
                         }
                     }
