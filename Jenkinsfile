@@ -1,9 +1,6 @@
 #!/usr/bin/groovy
 
-@Library(['github.com/indigo-dc/jenkins-pipeline-library']) _
-
-
-def yaml_release_file = ''
+def json_release_file = ''
 
 pipeline {
     agent {
@@ -12,17 +9,15 @@ pipeline {
         }
     }
     stages {
-        stage('Fetch code') {
-            when {
-                branch 'master'
-            }
-            steps {
-                checkout scm
-                sh('pip install -r requirements.txt')
-            }
-        }
+         stage('Install dependencies') {
+             steps {
+                 withPythonEnv('python3') {
+                    sh 'pip3 install --user -r requirements.txt'
+                 }
+             }
+         }
 
-        stage('Identify release changes') {
+        stage('Detect release changes') {
             when {
                 branch 'master'
             }
@@ -31,89 +26,61 @@ pipeline {
                     last_commit = sh(
                         returnStdout: true,
                         script: 'git diff-tree --name-only --no-commit-id -r HEAD').trim()
-                    yaml_files_changed = []
+                    json_files_changed = []
                     last_commit.split('\n').each {
-                        if (it.contains('.yaml')) {
-                            yaml_files_changed.add(it)
+                        if (it.contains('.json')) {
+                            json_files_changed.add(it)
                         }
                     }
-                    if (yaml_files_changed.size() == 0) {
-                        println('No changes detected to any YAML release files')
+                    if (json_files_changed.size() == 0) {
+                        println('No changes detected to any JSON release file')
                     }
-                    else if (yaml_files_changed.size() > 1) {
-                        println('More than one modified YAML release file found. Please commit one YAML at a time')
+                    else if (json_files_changed.size() > 1) {
+                        currentBuild.result = 'ABORTED'
+                        error('More than one modified JSON release file found. Please commit one JSON at a time')
                     }
                     else {
-                        println("Changes to ${yaml_files_changed[0]} found. Processing file..")
-                        yaml_release_file = yaml_files_changed[0]
+                        println("Changes to ${json_files_changed[0]} found. Processing file..")
+                        json_release_file = json_files_changed[0]
                     }
                 }
             }
         }
 
-        stage('Create new release on RT') {
+        stage('Collect the list of packages') {
             when {
-                allOf {
-                    branch 'master'
-                    expression {
-                        yaml_release_file
-                    }
-                }
+                expression {return json_release_file}
             }
             steps {
-                sh("python ppagen.py ${yaml_release_file}")
+                dir('scripts') {
+                    withPythonEnv('python3') {
+                        script {
+                            pkg_list = sh(
+                                returnStdout: true,
+                                script: "python3 json_parser.py ${json_release_file}"
+                            ).trim()
+                        }
+                    }
+                }
             }
-            post {
-                success {
-                    archiveArtifacts '*.xml'
-					script {
-                        xml_metadata_file = sh(
-                            returnStdout: true,
-                            script: "python ppagen.py --get-ppa-file --do-not-validate ${yaml_release_file}")
-                        path_tokens = yaml_release_file.tokenize('/')
-                        distribution_type = path_tokens[1]
-                        release_no = path_tokens[2]
-                        submitToRT(
-                            xml_metadata_file,
-                            distribution_type,
-                            release_no)
+        }
+
+        stage('Download the packages to a temporary directory') {
+            when {
+                expression {return pkg_list}
+            }
+            steps {
+                dir('scripts') {
+                    withPythonEnv('python3') {
+                        script {
+                            download_output = sh(
+                                returnStdout: true,
+                                script: "python3 download_pkgs.py ${json_release_file} 0"
+                            ).trim()
+                        }
                     }
                 }
             }
         }
     }
-}
-
-String doHttpRequest(
-        String http_op,
-        String query) {
-    httpRequest authentication: 'egi-rt-creds',
-                customHeaders: [[maskValue: false, name: 'Content-type', value: 'text/plain; charset=utf-8']],
-                httpMode: http_op,
-                responseHandle: 'NONE',
-                url: "https://rt.egi.eu/rt/REST/1.0/${query}",
-                consoleLogResponseBody: true
-}
-
-void submitToRT(
-        String release_metadata_filename,
-        String distribution_type,
-        String release_no) {
-    // #1 Search in RT if already there
-    search_filter = "Queue='sw-rel' AND 'CF.{ReleaseMetadata}'='${release_metadata_filename}'"
-    search_filter = URLEncoder.encode(search_filter, "UTF-8")
-    search_query = "search/ticket?query=${search_filter}"
-    response = doHttpRequest('GET', search_query)
-    if (!response.getContent().contains('No matching results')) {
-        println("Ticket/s with the same XML metadata file found. Cannot submit new ticket (${response})")
-        return response
-    }
-
-    // #2 Submit ticket
-    subject = release_metadata_filename.take(release_metadata_filename.lastIndexOf('.')).toLowerCase()
-    submit_filter = "id: ticket/new\nQueue: sw-rel\nSubject: ${subject}\nCF.{Distribution Type}: ${distribution_type}\nCF.{UMDRelease}: ${release_no}\nCF.{ReleaseMetadataURL}: ${env.BUILD_URL}/artifact/${release_metadata_filename}"
-    submit_filter = URLEncoder.encode(submit_filter, "UTF-8")
-    submit_query = "ticket/new?content=${submit_filter}"
-    def content = submit_query
-    response = doHttpRequest('POST', submit_query)
 }

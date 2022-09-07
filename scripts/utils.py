@@ -13,12 +13,16 @@ import json
 import requests
 import configparser
 
-def get_conf(prod_name):
+def get_conf(product_metadata_file):
     """Get configuration options
     :returns dictionary with configuration options
     """
+    product_name = os.path.splitext(
+        os.path.basename(product_metadata_file)
+    )[0]
+
     parser = configparser.ConfigParser(allow_no_value=True)
-    conf_file = os.path.expanduser("~") + "/repo.conf"
+    conf_file = "repo.conf"
     parser.read(conf_file)
     ev = {}
     ev['repo_uri'] = parser.get('DEFAULT', 'repo_uri')
@@ -29,10 +33,10 @@ def get_conf(prod_name):
     ev['api_uri'] = ev['repo_uri'] + '/service/rest/v1'
     ev['repo_uri_download'] = ev['repo_uri'] + '/repository/umd'
     ev['json_dir'] = '../json'
-    ev['json_file'] = ev['json_dir'] + '/' + prod_name + '.json'
-    ev['tmp_dir'] = ev['tmp_base_dir'] + '/' + prod_name
+    ev['json_file'] = ev['json_dir'] + '/' + product_name + '.json'
+    ev['tmp_dir'] = ev['tmp_base_dir'] + '/' + product_name
     ev['download_dir'] = ev['tmp_base_dir'] + '/umdrepo_download'
-    ev['file_list'] = ev['tmp_base_dir'] + '/' + prod_name + '.lst'
+    ev['file_list'] = ev['tmp_base_dir'] + '/' + product_name + '.lst'
 
     return ev
 
@@ -66,10 +70,10 @@ def download_pkg(pkg_dict, tmp_dir):
         with open(out_file, 'wb') as file:
             file.write(req_get.content)
 
-def upload_pkg(prod_name):
+def upload_pkg(product_name):
     '''Upload all packages to nexus oss repo
     '''
-    ev = get_conf(prod_name)
+    ev = get_conf(product_name)
     with open(ev['file_list'], 'r') as f:
         for line in f:
             rpm_file = line.rstrip('\n')
