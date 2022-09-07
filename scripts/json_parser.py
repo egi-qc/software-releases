@@ -20,7 +20,8 @@ if __name__ == '__main__':
         print('Usage:', sys.argv[0], '<product_metadata_file> (relative path from root repo)')
         sys.exit(1)
 
-    ev = Config.getconf(sys.argv[1])
+    print(f'Get product metadata file: {sys.argv[1]}')
+    ev = Config().getconf(sys.argv[1])
 
     # Directory containing the json files
     if not os.path.exists(ev['tmp_dir']):
