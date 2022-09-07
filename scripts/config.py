@@ -57,10 +57,12 @@ class Config:
         Config.conf['fe_user'] = os.getenv("UMD_FE_USER", Config.conf['fe_user'])
         Config.conf['fe_json_dir'] = os.getenv("UMD_FE_JSON_DIR", Config.conf['fe_json_dir'])
 
-    def getconf(self, product_name):
+    def getconf(self, product_metadata_file):
         """Return all configuration variables"""
+        product_name = os.path.splitext(os.path.basename(product_metadata_file))[0]
         Config.conf['json_file'] = Config.conf['json_dir'] + '/' + product_name + '.json'
         Config.conf['tmp_dir'] = Config.conf['tmp_base_dir'] + '/' + product_name
         Config.conf['file_list'] = Config.conf['tmp_base_dir'] + '/' + product_name + '.lst'
-        self._file_override() # Override with variables in conf file
+        self._file_override()         # Override with variables in conf file
         self._env_override()          # Override with variables in environment
+        return Config.conf

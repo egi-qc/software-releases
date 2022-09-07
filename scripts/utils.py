@@ -11,32 +11,33 @@
 import os
 import json
 import requests
-import configparser
+from config import Config
 
-def get_conf(product_metadata_file):
-    """Get configuration options
-    :returns dictionary with configuration options
-    """
-    product_name = os.path.splitext(os.path.basename(product_metadata_file))[0]
-    parser = configparser.ConfigParser(allow_no_value=True)
-    conf_file = "repo.conf"
-    parser.read(conf_file)
+# import configparser
 
-    ev = {}
-    ev['repo_uri'] = parser.get('DEFAULT', 'repo_uri')
-    ev['repo_admin'] = parser.get('DEFAULT', 'repo_admin')
-    ev['repo_pass'] = parser.get('DEFAULT', 'repo_pass')
-    ev['tmp_base_dir'] = parser.get('DEFAULT', 'tmp_base_dir')
+# def get_conf(product_metadata_file):
+#     """Get configuration options
+#     :returns dictionary with configuration options
+#     """
+#     product_name = os.path.splitext(os.path.basename(product_metadata_file))[0]
+#     parser = configparser.ConfigParser(allow_no_value=True)
+#     conf_file = "repo.conf"
+#     parser.read(conf_file)
 
-    ev['api_uri'] = ev['repo_uri'] + '/service/rest/v1'
-    ev['repo_uri_download'] = ev['repo_uri'] + '/repository/umd'
-    ev['json_dir'] = '../json'
-    ev['json_file'] = ev['json_dir'] + '/' + product_name + '.json'
-    ev['tmp_dir'] = ev['tmp_base_dir'] + '/' + product_name
-    ev['download_dir'] = ev['tmp_base_dir'] + '/umdrepo_download'
-    ev['file_list'] = ev['tmp_base_dir'] + '/' + product_name + '.lst'
+#     ev = {}
+#     ev['repo_uri'] = parser.get('DEFAULT', 'repo_uri')
+#     ev['repo_admin'] = parser.get('DEFAULT', 'repo_admin')
+#     ev['repo_pass'] = parser.get('DEFAULT', 'repo_pass')
+#     ev['tmp_base_dir'] = parser.get('DEFAULT', 'tmp_base_dir')
 
-    return ev
+#     ev['api_uri'] = ev['repo_uri'] + '/service/rest/v1'
+#     ev['repo_uri_download'] = ev['repo_uri'] + '/repository/umd'
+#     ev['json_dir'] = '../json'
+#     ev['json_file'] = ev['json_dir'] + '/' + product_name + '.json'
+#     ev['tmp_dir'] = ev['tmp_base_dir'] + '/' + product_name
+#     ev['download_dir'] = ev['tmp_base_dir'] + '/umdrepo_download'
+#     ev['file_list'] = ev['tmp_base_dir'] + '/' + product_name + '.lst'
+#     return ev
 
 def create_dict_pkg(json_file):
     '''Create a dictionary with package and respective URL
@@ -68,10 +69,10 @@ def download_pkg(pkg_dict, tmp_dir):
         with open(out_file, 'wb') as file:
             file.write(req_get.content)
 
-def upload_pkg(product_name):
+def upload_pkg(product_metadata_file):
     '''Upload all packages to nexus oss repo
     '''
-    ev = get_conf(product_name)
+    ev = Config().getconf(product_metadata_file)
     with open(ev['file_list'], 'r') as f:
         for line in f:
             rpm_file = line.rstrip('\n')

@@ -13,7 +13,7 @@
 import os
 import sys
 import utils
-
+from config import Config
 
 if __name__ == '__main__':
     if len(sys.argv) != 3:
@@ -25,7 +25,7 @@ if __name__ == '__main__':
     product_metadata_file = sys.argv[1]
     umd_download = sys.argv[2]
 
-    ev = utils.get_conf(product_metadata_file)
+    ev = Config().getconf(product_metadata_file)
     pkg_dict = utils.create_dict_pkg(ev['json_file'])
     download_dir = ev['tmp_dir']
     if umd_download == '1':

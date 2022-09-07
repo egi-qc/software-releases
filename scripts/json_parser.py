@@ -13,14 +13,14 @@
 import os
 import sys
 import utils
-
+from config import Config
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
         print('Usage:', sys.argv[0], '<product_metadata_file> (relative path from root repo)')
         sys.exit(1)
 
-    ev = utils.get_conf(sys.argv[1])
+    ev = Config.getconf(sys.argv[1])
 
     # Directory containing the json files
     if not os.path.exists(ev['tmp_dir']):
