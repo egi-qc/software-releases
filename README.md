@@ -78,16 +78,16 @@ variables:
 
 The script `json-parser.py` implements item **1** from the pipeline:
 
-If the json file is `json/htcondor-9.0.1.json`, the script should be executed as follows:
+If the json file is `~/software-releases/json/htcondor.json`, the script should be executed as follows:
 
 ```bash
 cd scripts
-python3 json_parser.py htcondor-9.0.1
+python3 json_parser.py ~/software-releases/json/htcondor.json
 ```
 
-1. Read json file with product information: `json/htcondor-9.0.1.json`
+1. Read json file with product information: `json/htcondor.json`
 2. Create a dictionary with packages: URLs: variable `pkg_dict`
-3. Write a list of packages to a file: `/tmp/umdcmd/htcondor-9.0.1.lst`
+3. Write a list of packages to a file: `/tmp/umdcmd/htcondor.lst`
 
 ## Script: download_pkgs.py (option 0)
 
@@ -97,10 +97,10 @@ If the json file is `json/htcondor-9.0.1.json`, the script should be executed as
 
 ```bash
 cd scripts
-python3 download_pkgs.py htcondor-9.0.1 0
+python3 download_pkgs.py ~/software-releases/json/htcondor.json 0
 ```
 
-1. Download packages to temporary directory: `/tmp/umdcmd/htcondor-9.0.1`, the option `0` means
+1. Download packages to temporary directory: `/tmp/umdcmd/htcondor`, the option `0` means
 the download is from the external source. Below the same script is run to download from the UMD/CMD
 repository with option `1`.
 
@@ -135,7 +135,7 @@ cat .rpmmacros
 Execute this script as follows:
 
 ```bash
-./rpm_sign.sh htcondor-9.0.1 0
+./rpm_sign.sh htcondor 0
 ```
 
 ## Script: upload_pkgs.py
