@@ -59,6 +59,21 @@ vim authorized_keys
 ## Put id_rsa.pub ssh key created in the backend host
 ```
 
+### Configuration options and Environment variables
+
+The file `repo.conf` contains configuration options. These options can also be set by environment
+variables:
+
+| `repo.conf`    | `ENV_VARIABLE`     | Comment                                             |
+| ---------------| ------------------ | --------------------------------------------------- |
+| `repo_uri`     | `UMD_REPO_URI`     | Nexus repository URI                                |
+| `repo_admin`   | `UMD_REPO_ADMIN`   | Nexus admin user able to upload packages            |
+| `repo_pass`    | `UMD_REPO_PASS`    | Nexus admin password                                |
+| `tmp_base_dir` | `UMD_TMP_BASE_DIR` | tmp directory to host the packages under validation |
+| `fe_ip`        | `UMD_FE_IP`        | Frontend IP of repository                           |
+| `fe_user`      | `UMD_FE_USER`      | Frontend user allowed to copy json files            |
+| `fe_json_dir`  | `UMD_FE_JSON_DIR`  | Frontend directory for the json files               |
+
 ## Script: json_parser.py
 
 The script `json-parser.py` implements item **1** from the pipeline:

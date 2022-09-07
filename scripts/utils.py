@@ -17,13 +17,11 @@ def get_conf(product_metadata_file):
     """Get configuration options
     :returns dictionary with configuration options
     """
-    product_name = os.path.splitext(
-        os.path.basename(product_metadata_file)
-    )[0]
-
+    product_name = os.path.splitext(os.path.basename(product_metadata_file))[0]
     parser = configparser.ConfigParser(allow_no_value=True)
     conf_file = "repo.conf"
     parser.read(conf_file)
+
     ev = {}
     ev['repo_uri'] = parser.get('DEFAULT', 'repo_uri')
     ev['repo_admin'] = parser.get('DEFAULT', 'repo_admin')
