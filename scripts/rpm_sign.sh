@@ -45,8 +45,11 @@ then
     sign_pkgs ${rpm_dir}
     verify_sign ${rpm_dir}
 elif [ $2 -eq "1" ]
+then
     rpm_dir="/tmp/umdcmd/umdrepo_download/"
     verify_sign ${rpm_dir}
+else
+    exit 1
 fi
 
 exit 0

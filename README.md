@@ -59,20 +59,35 @@ vim authorized_keys
 ## Put id_rsa.pub ssh key created in the backend host
 ```
 
+### Configuration options and Environment variables
+
+The file `repo.conf` contains configuration options. These options can also be set by environment
+variables:
+
+| `repo.conf`    | `ENV_VARIABLE`     | Comment                                             |
+| ---------------| ------------------ | --------------------------------------------------- |
+| `repo_uri`     | `UMD_REPO_URI`     | Nexus repository URI                                |
+| `repo_admin`   | `UMD_REPO_ADMIN`   | Nexus admin user able to upload packages            |
+| `repo_pass`    | `UMD_REPO_PASS`    | Nexus admin password                                |
+| `tmp_base_dir` | `UMD_TMP_BASE_DIR` | tmp directory to host the packages under validation |
+| `fe_ip`        | `UMD_FE_IP`        | Frontend IP of repository                           |
+| `fe_user`      | `UMD_FE_USER`      | Frontend user allowed to copy json files            |
+| `fe_json_dir`  | `UMD_FE_JSON_DIR`  | Frontend directory for the json files               |
+
 ## Script: json_parser.py
 
 The script `json-parser.py` implements item **1** from the pipeline:
 
-If the json file is `json/htcondor-9.0.1.json`, the script should be executed as follows:
+If the json file is `~/software-releases/json/htcondor.json`, the script should be executed as follows:
 
 ```bash
 cd scripts
-python3 json_parser.py htcondor-9.0.1
+python3 json_parser.py ~/software-releases/json/htcondor.json
 ```
 
-1. Read json file with product information: `json/htcondor-9.0.1.json`
+1. Read json file with product information: `json/htcondor.json`
 2. Create a dictionary with packages: URLs: variable `pkg_dict`
-3. Write a list of packages to a file: `/tmp/umdcmd/htcondor-9.0.1.lst`
+3. Write a list of packages to a file: `/tmp/umdcmd/htcondor.lst`
 
 ## Script: download_pkgs.py (option 0)
 
@@ -82,10 +97,10 @@ If the json file is `json/htcondor-9.0.1.json`, the script should be executed as
 
 ```bash
 cd scripts
-python3 download_pkgs.py htcondor-9.0.1 0
+python3 download_pkgs.py ~/software-releases/json/htcondor.json 0
 ```
 
-1. Download packages to temporary directory: `/tmp/umdcmd/htcondor-9.0.1`, the option `0` means
+1. Download packages to temporary directory: `/tmp/umdcmd/htcondor`, the option `0` means
 the download is from the external source. Below the same script is run to download from the UMD/CMD
 repository with option `1`.
 
@@ -120,7 +135,7 @@ cat .rpmmacros
 Execute this script as follows:
 
 ```bash
-./rpm_sign.sh htcondor-9.0.1 0
+./rpm_sign.sh htcondor 0
 ```
 
 ## Script: upload_pkgs.py
