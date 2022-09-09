@@ -1,6 +1,7 @@
 #!/usr/bin/groovy
 
 def json_release_file = ''
+def String[] pkg_list = []
 
 pipeline {
     agent {
