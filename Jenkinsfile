@@ -26,7 +26,10 @@ pipeline {
                 // sh 'cat  ~/private-key.pem'
                 sh "gpg --import --batch --yes $GPG_PRIVATE_KEY"
                 sh 'gpg --list-keys'
-                sh 'cat .rpmmacros'
+                sh 'pwd'
+                sh 'pwd'
+                sh 'ls -la'
+                sh "cat $HOME/.rpmmacros"
             }
         }
 	/*
