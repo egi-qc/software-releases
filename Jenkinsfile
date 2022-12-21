@@ -4,20 +4,25 @@ def json_release_file = ''
 def String[] pkg_list = []
 
 pipeline {
+    environment {
+        GPG_PRIVATE_KEY = credentials('6e2f2e3c-9368-4aae-b017-a5bae4591ce4')
+    }
+
     agent {
         dockerfile {
             filename 'Dockerfile.build'
+            args '-e GPG_PRIVATE_KEY'
         }
     }
     stages {
-         stage('Install dependencies') {
-             steps {
-                 withPythonEnv('python3') {
-                    sh 'pip3 install --user -r requirements.txt'
-                 }
-             }
-         }
-
+        stage('Install dependencies') {
+            steps {
+                withPythonEnv('python3') {
+                   sh 'pip3 install --user -r requirements.txt'
+                }
+            }
+        }
+	/*
         stage('Detect release changes') {
             when {
                 branch 'master'
@@ -83,5 +88,6 @@ pipeline {
                 }
             }
         }
+        */
     }
 }
