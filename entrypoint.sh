@@ -11,20 +11,21 @@ die() { echo "ERROR: $@" >&2; exit 1; }
 #     fi
 # done
 
-if [[ -z $GPG_PRIVATE_KEY ]]; then
-    die "You must specify your private key via GPG_PRIVATE_KEY"
+if [[ -z "$GPG_PRIVATE_KEY" ]]; then
+    # die "You must specify your private key via GPG_PRIVATE_KEY"
+    exit 1
 fi
 
-# if [[ -z $GPG_PASSPHRASE ]]; then
-#     die "You must specify your passphrase via GPG_PASSPHRASE"
+# # if [[ -z $GPG_PASSPHRASE ]]; then
+# #     die "You must specify your passphrase via GPG_PASSPHRASE"
+# # fi
+# 
+# echo Importing private key:
+# # import private key
+# echo "$GPG_PRIVATE_KEY" > ~/private-key.pem
+# if ! gpg --import --batch --yes ~/private-key.pem; then
+#     die "Unable to import private key into GPG"
 # fi
-
-echo Importing private key:
-# import private key
-echo "$GPG_PRIVATE_KEY" > ~/private-key.pem
-if ! gpg --import --batch --yes ~/private-key.pem; then
-    die "Unable to import private key into GPG"
-fi
 
 # Run CMD
 exec "$@"

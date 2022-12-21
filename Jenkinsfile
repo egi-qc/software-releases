@@ -11,14 +11,22 @@ pipeline {
     agent {
         dockerfile {
             filename 'Dockerfile.build'
-            args '-e GPG_PRIVATE_KEY'
+            // args '-e GPG_PRIVATE_KEY'
         }
     }
     stages {
-        stage('List GPG keys'){
+        stage('Print env'){
             steps {
-                sh 'gpg --list-keys'
+                sh 'env'
             } 
+        }
+        stage('Add UMD GPG key'){
+            steps {
+                // sh 'echo "$GPG_PRIVATE_KEY" > ~/private-key.pem'
+                // sh 'cat  ~/private-key.pem'
+                sh "gpg --import --batch --yes $GPG_PRIVATE_KEY"
+                sh 'gpg --list-keys'
+            }
         }
 	/*
         stage('Install dependencies') {

@@ -17,7 +17,4 @@ RUN chown jenkins:jenkins /home/jenkins
 USER jenkins
 WORKDIR /home/jenkins
 
-COPY entrypoint.sh /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
 CMD ["/bin/bash"]
