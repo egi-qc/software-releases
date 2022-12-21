@@ -24,7 +24,7 @@ pipeline {
         }
         stage('Detect release changes') {
             when {
-                branch 'master'
+                branch 'feature/gpg'
             }
             steps {
                 script {
