@@ -15,24 +15,6 @@ pipeline {
         }
     }
     stages {
-        stage('Print env'){
-            steps {
-                sh 'env'
-            } 
-        }
-        stage('Add UMD GPG key'){
-            steps {
-                // sh 'echo "$GPG_PRIVATE_KEY" > ~/private-key.pem'
-                // sh 'cat  ~/private-key.pem'
-                sh "gpg --import --batch --yes $GPG_PRIVATE_KEY"
-                sh 'gpg --list-keys'
-                sh 'pwd'
-                sh 'pwd'
-                sh 'ls -la'
-                sh "cat $HOME/.rpmmacros"
-            }
-        }
-	/*
         stage('Install dependencies') {
             steps {
                 withPythonEnv('python3') {
@@ -105,6 +87,22 @@ pipeline {
                 }
             }
         }
-        */
+
+        stage('Add UMD GPG key'){
+            steps {
+                sh "gpg --import --batch --yes $GPG_PRIVATE_KEY"
+                sh 'gpg --list-keys'
+                dir('scripts') {
+                    withPythonEnv('python3') {
+                        script {
+                            download_output = sh(
+                                returnStdout: true,
+                                script: "python3 rpm_sign.py ${json_release_file} 0"
+                            ).trim()
+                        }
+                    }
+                }
+            }
+        }
     }
 }
