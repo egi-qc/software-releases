@@ -89,17 +89,18 @@ pipeline {
         }
 
         stage('Add UMD GPG key'){
+            when {
+                expression {return download_output}
+            }
             steps {
                 sh "gpg --import --batch --yes $GPG_PRIVATE_KEY"
                 sh 'gpg --list-keys'
                 dir('scripts') {
-                    withPythonEnv('python3') {
-                        script {
-                            download_output = sh(
-                                returnStdout: true,
-                                script: "python3 rpm_sign.py ${json_release_file} 0"
-                            ).trim()
-                        }
+                    script {
+                        pkgs_signed = sh(
+                            returnStdout: true,
+                            script: "./rpm_sign.sh ${json_release_file} 0"
+                        ).trim()
                     }
                 }
             }
