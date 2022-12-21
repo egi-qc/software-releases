@@ -25,3 +25,6 @@ echo "$GPG_PRIVATE_KEY" > ~/private-key.pem
 if ! gpg --import --batch --yes ~/private-key.pem; then
     die "Unable to import private key into GPG"
 fi
+
+# Run CMD
+exec "$@"
