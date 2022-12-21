@@ -15,6 +15,12 @@ pipeline {
         }
     }
     stages {
+        stage('List GPG keys'){
+            steps {
+                sh 'gpg --list-keys'
+            } 
+        }
+	/*
         stage('Install dependencies') {
             steps {
                 withPythonEnv('python3') {
@@ -22,7 +28,6 @@ pipeline {
                 }
             }
         }
-	/*
         stage('Detect release changes') {
             when {
                 branch 'master'
