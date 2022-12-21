@@ -2,6 +2,7 @@
 
 def json_release_file = ''
 def String[] pkg_list = []
+def download_output = ''
 
 pipeline {
     environment {
@@ -82,6 +83,7 @@ pipeline {
                                 returnStdout: true,
                                 script: "python3 download_pkgs.py ${json_release_file} 0"
                             ).trim()
+                            println(download_output)
                         }
                     }
                 }
