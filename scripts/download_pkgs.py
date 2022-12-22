@@ -41,4 +41,4 @@ if __name__ == '__main__':
     product_metadata_file = sys.argv[1]
     umd_download = sys.argv[2]
     
-    main()
+    print(main())
