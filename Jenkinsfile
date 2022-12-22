@@ -99,10 +99,9 @@ pipeline {
                 sh 'gpg --list-keys'
                 dir('scripts') {
                     script {
-                        println(json_release_file)
                         pkgs_signed = sh(
                             returnStdout: true,
-                            script: "./rpm_sign.sh ${json_release_file} 0"
+                            script: "./rpm_sign.sh ${download_dir} 0"
                         ).trim()
                     }
                 }
