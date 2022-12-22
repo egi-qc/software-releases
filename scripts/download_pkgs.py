@@ -25,7 +25,6 @@ def main():
         for (pkg, url) in pkg_dict.items():
             pkg_dict[pkg] = ev['repo_uri_download'] + '/' + pkg
 
-    # print(pkg_dict)
     utils.download_pkg(pkg_dict, download_dir)
 
     return download_dir

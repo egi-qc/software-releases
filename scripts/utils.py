@@ -49,9 +49,9 @@ def create_dict_pkg(json_file):
 
     # Get all packages
     for package in json_data["target"]:
-        print(package["platform"], package["arch"])
+        # print(package["platform"], package["arch"])
         for url_file in package["rpms"]:
-            print(url_file)
+            # print(url_file)
             pkg = url_file.split('/')[-1]
             pkg_dict[pkg] = url_file
 
@@ -65,7 +65,7 @@ def download_pkg(pkg_dict, tmp_dir):
     for (pkg, url) in pkg_dict.items():
         req_get = requests.get(url, allow_redirects=True)
         out_file = tmp_dir  + '/' + pkg
-        print('Downloading', url, 'to', out_file)
+        # print('Downloading', url, 'to', out_file)
         with open(out_file, 'wb') as file:
             file.write(req_get.content)
 
