@@ -35,4 +35,5 @@ if __name__ == '__main__':
 
     print(pkg_dict)
     utils.download_pkg(pkg_dict, download_dir)
-    sys.exit(0)
+
+    return download_dir
