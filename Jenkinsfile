@@ -2,7 +2,7 @@
 
 def json_release_file = ''
 def String[] pkg_list = []
-def download_output = ''
+def download_dir = ''
 
 pipeline {
     environment {
@@ -79,11 +79,11 @@ pipeline {
                 dir('scripts') {
                     withPythonEnv('python3') {
                         script {
-                            download_output = sh(
+                            download_dir = sh(
                                 returnStdout: true,
                                 script: "python3 download_pkgs.py ${json_release_file} 0"
                             ).trim()
-                            println(download_output)
+                            println(download_dir)
                         }
                     }
                 }
@@ -92,7 +92,7 @@ pipeline {
 
         stage('Add UMD GPG key'){
             when {
-                expression {return download_output}
+                expression {return download_dir}
             }
             steps {
                 sh "gpg --import --batch --yes $GPG_PRIVATE_KEY"
