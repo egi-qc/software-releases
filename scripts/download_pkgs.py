@@ -25,7 +25,7 @@ def main():
         for (pkg, url) in pkg_dict.items():
             pkg_dict[pkg] = ev['repo_uri_download'] + '/' + pkg
 
-    print(pkg_dict)
+    # print(pkg_dict)
     utils.download_pkg(pkg_dict, download_dir)
 
     return download_dir
@@ -40,5 +40,5 @@ if __name__ == '__main__':
 
     product_metadata_file = sys.argv[1]
     umd_download = sys.argv[2]
-    
+
     print(main())

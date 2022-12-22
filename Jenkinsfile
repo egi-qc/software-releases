@@ -83,7 +83,9 @@ pipeline {
                                 returnStdout: true,
                                 script: "python3 download_pkgs.py ${json_release_file} 0"
                             ).trim()
+			    println('$$$$$$$$$')
                             println(download_dir)
+			    println('$$$$$$$$$')
                         }
                     }
                 }
@@ -99,7 +101,9 @@ pipeline {
                 sh 'gpg --list-keys'
                 dir('scripts') {
                     script {
+			println('$$$$$$$$$')
                     	println(download_dir)
+			println('$$$$$$$$$')
                         pkgs_signed = sh(
                             returnStdout: true,
                             script: "./rpm_sign.sh ${download_dir} 0"
