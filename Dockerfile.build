@@ -6,7 +6,8 @@ USER root
 RUN yum makecache fast && yum -y install \
         git \
 	java-11-openjdk-headless \  
-	python3 python3-pip
+	python3 python3-pip \
+        rpm-sign
 
 ENV HOME /home/jenkins
 # Hack to use the same user/group ID in the container
