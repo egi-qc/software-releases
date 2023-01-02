@@ -12,8 +12,8 @@ function sign_pkgs {
     echo "Signing all packages"
     for pkg in `ls $1`
     do
-        echo "Signing: ${pkg}"
-        rpmsign --addsign ${pkg}
+        echo "Signing: ${1}/${pkg}"
+        rpmsign --addsign ${1}/${pkg}
     done
 }
 
@@ -22,8 +22,8 @@ function verify_sign {
     echo "Verifying signature all packages"
     for pkg in `ls $1`
     do
-        echo "Verify/Check: ${pkg}"
-        rpm --checksig ${pkg}
+        echo "Verify/Check: ${1}/${pkg}"
+        rpm --checksig ${1}/${pkg}
         if [ $? -ne 0 ]
         then
             exit 1
