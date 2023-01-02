@@ -1,4 +1,4 @@
-FROM centos:centos7 
+FROM rockylinux/rockylinux:8
 MAINTAINER Pablo Orviz <orviz@ifca.unican.es>
 
 USER root
