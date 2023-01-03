@@ -7,6 +7,7 @@ def download_dir = ''
 pipeline {
     environment {
         GPG_PRIVATE_KEY = credentials('6e2f2e3c-9368-4aae-b017-a5bae4591ce4')
+        GPG_PRIVATE_KEY_PASSPHRASE = credentials('d8ec011f-236a-404e-a6cb-ac6f9adfae82')
 	GPG_PUBLIC_KEY = credentials('eef6cd3d-b410-489d-86fb-349a53abe498')
     }
 
@@ -104,6 +105,7 @@ pipeline {
 		println('Importing public GPG key for RPM')
                 sh "sudo rpm --import $GPG_PUBLIC_KEY"
                 sh "rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'"
+                sh "sed -i \"s/--passphrase ''/--passphrase '$GPG_PRIVATE_KEY_PASSPHRASE'/g\" ~/.rpmmacros"
                 dir('scripts') {
                     script {
 			println('$$$$$$$$$')
