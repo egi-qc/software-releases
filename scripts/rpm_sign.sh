@@ -13,7 +13,7 @@ function sign_pkgs {
     for pkg in `ls $1`
     do
         echo "Signing: ${1}/${pkg}"
-        rpmsign --addsign ${1}/${pkg}
+        rpmsign --quiet --addsign ${1}/${pkg}
     done
 }
 
