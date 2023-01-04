@@ -12,8 +12,8 @@ function sign_pkgs {
     echo "Signing all packages"
     for pkg in `ls $1`
     do
-        echo "Signing: ${pkg}"
-        rpmsign --addsign ${pkg}
+        echo "Signing: ${1}/${pkg}"
+        rpmsign --quiet --addsign ${1}/${pkg}
     done
 }
 
@@ -22,8 +22,8 @@ function verify_sign {
     echo "Verifying signature all packages"
     for pkg in `ls $1`
     do
-        echo "Verify/Check: ${pkg}"
-        rpm --checksig ${pkg}
+        echo "Verify/Check: ${1}/${pkg}"
+        rpm --checksig ${1}/${pkg}
         if [ $? -ne 0 ]
         then
             exit 1
@@ -41,7 +41,7 @@ fi
 
 if [ $2 -eq "0" ]
 then
-    rpm_dir="/tmp/umdcmd/$1/"
+    rpm_dir=$1
     sign_pkgs ${rpm_dir}
     verify_sign ${rpm_dir}
 elif [ $2 -eq "1" ]

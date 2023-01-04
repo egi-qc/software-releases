@@ -15,6 +15,21 @@ import sys
 import utils
 from config import Config
 
+
+def main():
+    ev = Config().getconf(product_metadata_file)
+    pkg_dict = utils.create_dict_pkg(ev['json_file'])
+    download_dir = ev['tmp_dir']
+    if umd_download == '1':
+        download_dir = ev['download_dir']
+        for (pkg, url) in pkg_dict.items():
+            pkg_dict[pkg] = ev['repo_uri_download'] + '/' + pkg
+
+    utils.download_pkg(pkg_dict, download_dir)
+
+    return download_dir
+
+
 if __name__ == '__main__':
     if len(sys.argv) != 3:
         print('Usage:', sys.argv[0], '<package_name_version> (without extension .json) <0|1>')
@@ -25,14 +40,4 @@ if __name__ == '__main__':
     product_metadata_file = sys.argv[1]
     umd_download = sys.argv[2]
 
-    ev = Config().getconf(product_metadata_file)
-    pkg_dict = utils.create_dict_pkg(ev['json_file'])
-    download_dir = ev['tmp_dir']
-    if umd_download == '1':
-        download_dir = ev['download_dir']
-        for (pkg, url) in pkg_dict.items():
-            pkg_dict[pkg] = ev['repo_uri_download'] + '/' + pkg
-
-    print(pkg_dict)
-    utils.download_pkg(pkg_dict, download_dir)
-    sys.exit(0)
+    print(main())
