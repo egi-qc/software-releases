@@ -105,11 +105,11 @@ pipeline {
                 sh "sed -i \"s/--passphrase ''/--passphrase '$GPG_PRIVATE_KEY_PASSPHRASE'/g\" ~/.rpmmacros"
                 dir('scripts') {
                     script {
-                    	println(download_dir)
                         pkgs_signed = sh(
                             returnStdout: true,
                             script: "./rpm_sign.sh ${download_dir} 0"
                         ).trim()
+                    	println(pkgs_signed)
                     }
                 }
             }
