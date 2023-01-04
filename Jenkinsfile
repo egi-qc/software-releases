@@ -14,7 +14,6 @@ pipeline {
     agent {
         dockerfile {
             filename 'Dockerfile.build'
-            // args '-e GPG_PRIVATE_KEY'
         }
     }
     stages {
@@ -85,9 +84,7 @@ pipeline {
                                 returnStdout: true,
                                 script: "python3 download_pkgs.py ${json_release_file} 0"
                             ).trim()
-			    println('$$$$$$$$$')
                             println(download_dir)
-			    println('$$$$$$$$$')
                         }
                     }
                 }
@@ -108,9 +105,7 @@ pipeline {
                 sh "sed -i \"s/--passphrase ''/--passphrase '$GPG_PRIVATE_KEY_PASSPHRASE'/g\" ~/.rpmmacros"
                 dir('scripts') {
                     script {
-			println('$$$$$$$$$')
                     	println(download_dir)
-			println('$$$$$$$$$')
                         pkgs_signed = sh(
                             returnStdout: true,
                             script: "./rpm_sign.sh ${download_dir} 0"
