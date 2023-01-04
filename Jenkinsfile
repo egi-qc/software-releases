@@ -3,6 +3,7 @@
 def json_release_file = ''
 def String[] pkg_list = []
 def download_dir = ''
+def pkgs_signed = ''
 
 pipeline {
     environment {
