@@ -65,7 +65,6 @@ def download_pkg(pkg_dict, tmp_dir):
     for (pkg, url) in pkg_dict.items():
         req_get = requests.get(url, allow_redirects=True)
         out_file = tmp_dir  + '/' + pkg
-        # print('Downloading', url, 'to', out_file)
         with open(out_file, 'wb') as file:
             file.write(req_get.content)
 
