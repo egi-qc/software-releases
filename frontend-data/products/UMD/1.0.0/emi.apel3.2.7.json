@@ -1,0 +1,36 @@
+{
+  "name": "emi.apel",
+  "version": "3.2.7",
+  "documentationLinks": [
+    "http://www.eu-emi.eu/kebnekaise-products/-/asset_publisher/4BKc/content/apel-publisher?redirect=http%3A%2F%2Fwww.eu-emi.eu%2Fkebnekaise-products%3Fp_p_id%3D101_INSTANCE_4BKc%26p_p_lifecycle%3D0%26p_p_state%3Dnormal%26p_p_mode%3Dview%26p_p_col_id%3Dcolumn-2%26p_p_col_pos%3D1%26p_p_col_count%3D2"
+  ],
+  "target": [
+    {
+      "id": 11,
+      "productId": 32,
+      "platform": "sl5",
+      "arch": "x86_64",
+      "repositoryURL": "sw/production/umd/1/sl5/x86_64/base",
+      "gpgkey": null,
+      "rpms": [],
+      "apicallback": "http://admin-repo.egi.eu/api/report/release/xml?id=2202",
+      "status": 1
+    }
+  ],
+  "capabilities": ["Accounting"],
+  "currentState": "deployed",
+  "technologyProvider": "European Middleware Initiative",
+  "contact": "cristina.aiftimiei@pd.infn.it",
+  "technicalContact": "cristina.aiftimiei@pd.infn.it",
+  "description": "APEL (Accounting Processor for Event Logs) is a tool that gathers CPU accounting information by parsing batch system and blah accounting log files and inserts it into a local MySQL database. APEL then publishes the data into a centralised repository.",
+  "releaseDate": "2011-07-11 20:50:50",
+  "majorVersion": 3,
+  "minorVersion": 2,
+  "revisionVersion": 7,
+  "releaseNotes": "\n\n                           What's new:\n\n    * APEL publisher allows VO filtering (list of VOs for which the site wants to publish accounting data to the central server) and mapping between local groups to VOs.\n\n    * APEL publisher can be run in only joining mode without contacting the broker.\n\n    * The publisher doesn't start the ActiveMQ session until the joining of records has been done, avoiding timeouts.\n\n    * The default value for the Limit variable has been lowered to avoid out of memory problems.\n\n\n\nDeployment notes:\n\n    * The service must be reconfigured with YAIM after updating/installation.\n\n\n\nKnown issues:\n\n    * No known issues.\n\n                          ",
+  "changeLog": "\n\n                          Put the Change logs here (multiline field)\n\n                          ",
+  "repositoryURL": "sw/production/umd/1",
+  "distributionType": "UMD",
+  "distributionVersion": "1.0.0",
+  "softwareConfigurationLink": ""
+}
