@@ -111,6 +111,7 @@ pipeline {
                             script: "./rpm_sign.sh ${download_dir} 0"
                         ).trim()
                     	println(pkgs_signed)
+                        sh "./rpm_sign.sh ${download_dir} 1"
                     }
                 }
             }
