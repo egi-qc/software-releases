@@ -72,6 +72,7 @@ def upload_pkg(product_metadata_file):
     '''Upload all packages to nexus oss repo
     '''
     ev = Config().getconf(product_metadata_file)
+    #print(ev)
     with open(ev['file_list'], 'r') as f:
         for line in f:
             rpm_file = line.rstrip('\n')
