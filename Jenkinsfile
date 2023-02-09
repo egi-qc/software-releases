@@ -10,6 +10,7 @@ pipeline {
         GPG_PRIVATE_KEY = credentials('6e2f2e3c-9368-4aae-b017-a5bae4591ce4')
         GPG_PRIVATE_KEY_PASSPHRASE = credentials('d8ec011f-236a-404e-a6cb-ac6f9adfae82')
 	GPG_PUBLIC_KEY = credentials('eef6cd3d-b410-489d-86fb-349a53abe498')
+        NEXUS_CONFIG = credentials('ecfb20e4-0c97-48e3-9e36-50e42b0e59f1')
     }
 
     agent {
@@ -27,7 +28,8 @@ pipeline {
         }
         stage('Detect release changes') {
             when {
-                branch 'master'
+                // branch 'master'
+                branch 'feature/nexus' // REMOVE!!
             }
             steps {
                 script {
@@ -114,6 +116,16 @@ pipeline {
                         sh "./rpm_sign.sh ${download_dir} 1"
                     }
                 }
+            }
+        }
+
+        stage('Upload packages'){
+            when {
+                expression {return download_dir}
+            }
+            steps {
+                sh "ls -l $NEXUS_CONFIG"
+                sh "cat $NEXUS_CONFIG"
             }
         }
     }
