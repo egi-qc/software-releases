@@ -32,6 +32,7 @@ class Config:
         Read config file
         """
         cfnparser = ConfigParser()
+        print(os.getcwd())
         cfnparser.read(cfpath)
         for (key, val) in cfnparser.items('DEFAULT'):
             if ignore_keys and key in ignore_keys:
