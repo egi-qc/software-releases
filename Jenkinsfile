@@ -87,7 +87,7 @@ pipeline {
                                 returnStdout: true,
                                 script: "python3 download_pkgs.py ${json_release_file} 0"
                             ).trim()
-                            println(download_dir)
+                            // println(download_dir)
                         }
                     }
                 }

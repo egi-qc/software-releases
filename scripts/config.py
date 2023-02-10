@@ -31,8 +31,12 @@ class Config:
         """
         Read config file
         """
+        import sys
+        print('-'*20, file=sys.stderr)
+        print("cfpath: %s" % cfpath, file=sys.stderr)
+        print("pwd: %s" % os.getcwd(), file=sys.stderr)
+        print('-'*20, file=sys.stderr)
         cfnparser = ConfigParser()
-        print(os.getcwd())
         cfnparser.read(cfpath)
         for (key, val) in cfnparser.items('DEFAULT'):
             if ignore_keys and key in ignore_keys:
