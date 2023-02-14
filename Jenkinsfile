@@ -128,5 +128,22 @@ pipeline {
                 } 
             }
         }
+
+        stage('Trigger validation'){
+            when {
+                expression {return download_dir}
+            }
+            steps {
+		build job: 'QualityCriteriaValidation/package-install',
+                parameters: [
+		    string(name: 'Release', value: 'UMD5'),
+                    text(name: 'Verification_repository', value: 'https://admin-repo.egi.eu/sw/unverified/umd-4.apel.apel-ssm-test.centos7.x86_64/3/2/14/'),
+                    text(name: 'Packages', value: 'apel-ssm'),
+                    booleanParam(name: 'enable_testing_repo', value: false),
+                    booleanParam(name: 'enable_untested_repo', value: false),
+                    booleanParam(name: 'disable_updates_repo', value: false)
+                ]
+            }
+        }
     }
 }
