@@ -51,7 +51,7 @@ class Config:
         _cfpath = 'repo.conf'
         if cfpath:
             _cfpath = cfpath
-        if os.path.exists(cfpath):
+        if os.path.exists(_cfpath):
             self._conf_file_read(_cfpath, ignore_keys)
 
     def _env_override(self):
