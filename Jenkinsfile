@@ -28,8 +28,7 @@ pipeline {
         }
         stage('Detect release changes') {
             when {
-                // branch 'master'
-                branch 'feature/nexus' // REMOVE!!
+                branch 'master'
             }
             steps {
                 script {
