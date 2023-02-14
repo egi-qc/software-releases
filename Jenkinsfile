@@ -128,7 +128,7 @@ pipeline {
                 // sh "cat $NEXUS_CONFIG"
                 sh "pwd"
                 dir('scripts') {
-                    sh "python3 upload_pkgs.py ${json_release_file}"
+                    sh "python3 upload_pkgs.py ${json_release_file} $NEXUS_CONFIG"
                 } 
             }
         }

@@ -15,10 +15,13 @@ import utils
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        print('Usage:', sys.argv[0], '<package_name_version> (without extension .json)')
+    if len(sys.argv) not in [2,3]:
+        print('Usage:', sys.argv[0], '<package_name_version> (without extension .json) <config_file> (optional)')
         sys.exit(1)
 
     prod_name = sys.argv[1]
-    utils.upload_pkg(prod_name)
+    cfpath = None
+    if len(sys.argv) in [3]:
+        cfpath = sys.argv[2]
+    utils.upload_pkg(prod_name, cfpath=cfpath)
     sys.exit(0)

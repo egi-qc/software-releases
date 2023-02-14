@@ -68,10 +68,10 @@ def download_pkg(pkg_dict, tmp_dir):
         with open(out_file, 'wb') as file:
             file.write(req_get.content)
 
-def upload_pkg(product_metadata_file):
+def upload_pkg(product_metadata_file, cfpath=None):
     '''Upload all packages to nexus oss repo
     '''
-    ev = Config().getconf(product_metadata_file)
+    ev = Config().getconf(product_metadata_file, cfpath=cfpath)
     #print(ev)
     with open(ev['file_list'], 'r') as f:
         for line in f:
