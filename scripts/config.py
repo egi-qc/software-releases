@@ -39,13 +39,15 @@ class Config:
             if val is not None:
                 Config.conf[key] = val
 
-    def _file_override(self, ignore_keys=None):
+    def _file_override(self, cfpath=None, ignore_keys=None):
         """
         Override values from config file
         """
-        cfpath = 'repo.conf'
+        _cfpath = 'repo.conf'
+        if cfpath:
+            _cfpath = cfpath
         if os.path.exists(cfpath):
-            self._conf_file_read(cfpath, ignore_keys)
+            self._conf_file_read(_cfpath, ignore_keys)
 
     def _env_override(self):
         """Override config with environment"""
@@ -57,12 +59,12 @@ class Config:
         Config.conf['fe_user'] = os.getenv("UMD_FE_USER", Config.conf['fe_user'])
         Config.conf['fe_json_dir'] = os.getenv("UMD_FE_JSON_DIR", Config.conf['fe_json_dir'])
 
-    def getconf(self, product_metadata_file):
+    def getconf(self, product_metadata_file, cfpath=None):
         """Return all configuration variables"""
         product_name = os.path.splitext(os.path.basename(product_metadata_file))[0]
         Config.conf['json_file'] = Config.conf['json_dir'] + '/' + product_name + '.json'
         Config.conf['tmp_dir'] = Config.conf['tmp_base_dir'] + '/' + product_name
         Config.conf['file_list'] = Config.conf['tmp_base_dir'] + '/' + product_name + '.lst'
-        self._file_override()         # Override with variables in conf file
+        self._file_override(cfpath=cfpath)         # Override with variables in conf file
         self._env_override()          # Override with variables in environment
         return Config.conf

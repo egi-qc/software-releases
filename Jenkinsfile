@@ -124,8 +124,9 @@ pipeline {
                 expression {return download_dir}
             }
             steps {
-                sh "ls -l $NEXUS_CONFIG"
-                sh "cat $NEXUS_CONFIG"
+                dir('scripts') {
+                    sh "python3 upload_pkgs.py ${json_release_file} $NEXUS_CONFIG"
+                } 
             }
         }
     }
