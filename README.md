@@ -8,12 +8,10 @@ The pipeline is as follows:
 2. download the packages to a temporary directory.
 3. rpm sign each package.
 4. verify signature of each package.
-    a. verification of the packages
-5. upload each package to nexusrepo.
-6. download each package from nexusrepo.
-7. verify chksum and signature.
-8. upload json to the frontend for publication.
-9. clean temporary directories.
+5. verify packages - installation
+6. upload each package to nexusrepo.
+7. Pull Request: **manual approval** of the release, publication in frontend for publication.
+8. clean temporary directories, and repository testing.
 
 ## Pre condition
 
@@ -74,7 +72,7 @@ variables:
 | `fe_user`      | `UMD_FE_USER`      | Frontend user allowed to copy json files            |
 | `fe_json_dir`  | `UMD_FE_JSON_DIR`  | Frontend directory for the json files               |
 
-## Script: json_parser.py
+## **1** Script: json_parser.py
 
 The script `json-parser.py` implements item **1** from the pipeline:
 
@@ -89,7 +87,7 @@ python3 json_parser.py ~/software-releases/json/htcondor.json
 2. Create a dictionary with packages: URLs: variable `pkg_dict`
 3. Write a list of packages to a file: `/tmp/umdcmd/htcondor.lst`
 
-## Script: download_pkgs.py (option 0)
+## **2** Script: download_pkgs.py (option 0)
 
 The script `download_pkgs.py` implements item **2** (with option `0`) from the pipeline:
 
@@ -104,7 +102,7 @@ python3 download_pkgs.py ~/software-releases/json/htcondor.json 0
 the download is from the external source. Below the same script is run to download from the UMD/CMD
 repository with option `1`.
 
-## Script: rpm_sign.sh (option 0)
+## **3-4** Script: rpm_sign.sh (option 0)
 
 The script `rpm_sign.sh` implements item **3** and **4** from the pipeline, if you pass option `0`,
 it sign and verifies all packages. To list all rpm gpg keys:
@@ -138,7 +136,11 @@ Execute this script as follows:
 ./rpm_sign.sh htcondor 0
 ```
 
-## Script: upload_pkgs.py
+## **5** Script: TO BE Implemented
+
+Performs package installation
+
+## **6** Script: upload_pkgs.py
 
 The script `upload_pkgs.py` implements item **5** from the pipeline:
 
@@ -151,41 +153,13 @@ python3 upload_pkgs.py htcondor-9.0.1
 
 1. Upload packages to nexusrepo
 
-## Script: download_pkgs.py (option 1)
+## Pull Request: **manual approval** of the release
 
-The script `download_pkgs.py` implements item **6** (with option `1`) from the pipeline:
+Manual step: approval of Pull Request (PR)
 
-If the json file is `json/htcondor-9.0.1.json`, the script should be executed as follows:
+## **8** Script: clean.sh
 
-```bash
-cd scripts
-python3 download_pkgs.py htcondor-9.0.1 1
-```
-
-1. Download packages to temporary directory: `/tmp/umdcmd/htcondor-9.0.1/umdrepo_download`,
-the option `1` means the download is from the UMD/CMD
-
-## Script: rpm_sign.sh (option 1)
-
-The script `rpm_sign.sh` implements item **7** from the pipeline, if you pass option `1`,
-verifies all packages downloaded from the UMC/CMD repository. Execute this script as follows:
-
-```bash
-./rpm_sign.sh htcondor-9.0.1 1
-```
-
-## Script: upload_json.sh
-
-The script `upload_json.sh` implements item **8** from the pipeline, it upload the json file with
-rsync to the host of the repository frontend. Execute this script as follows:
-
-```bash
-./upload_json.sh htcondor-9.0.1
-```
-
-## Script: clean.sh
-
-The script `clean.sh` implements item **9** from the pipeline, that is it cleans/removes the
+The script `clean.sh` implements item **8** from the pipeline, that is it cleans/removes the
 temporary directory.
 
 ```bash
@@ -200,8 +174,5 @@ python3 json_parser.py htcondor-9.0.1
 python3 download_pkgs.py htcondor-9.0.1 0
 ./rpm_sign.sh htcondor-9.0.1 0
 python3 upload_pkgs.py htcondor-9.0.1
-python3 download_pkgs.py htcondor-9.0.1 1
-./rpm_sign.sh htcondor-9.0.1 1
-./upload_json.sh htcondor-9.0.1
 ./clean.sh
 ```
