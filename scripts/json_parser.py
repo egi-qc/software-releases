@@ -26,6 +26,7 @@ if __name__ == '__main__':
     # Directory containing the json files
     if not os.path.exists(ev['tmp_dir']):
         os.makedirs(ev['tmp_dir'])
+
     if not os.path.exists(ev['download_dir']):
         os.makedirs(ev['download_dir'])
 
