@@ -21,7 +21,7 @@ The pipeline is as follows:
 | 11 | *To be implemented*       | Cleanup - remove packages from testing repo |
 
 1. Approve the Pull Request.
-2. Create of the release - add json file as asset of the release.
+2. Create the git release (and git tag) - add json file as asset of the release.
 3. Get json file in the frontend for publication.
 
 ## Pre condition
