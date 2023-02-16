@@ -1,8 +1,20 @@
 # Repositories for EGI UMD/CMD
 
 EGI repository backend scripts and pipelines, for UMD/CMD releases.
+The repository structure is the following:
 
-The process starts with creation of a Pull Request (PR)): commit the json file
+* <https://nexusrepoegi.a.incd.pt/repository/umd/5/>
+  * `<OPERATING_SYSTEM>/release/<ARCH>`
+  * `<OPERATING_SYSTEM>/testing/<ARCH>`
+  * `<OPERATING_SYSTEM>/contrib/<ARCH>`
+
+For example for Alma Linux 9 x98_64, the complete paths are:
+
+* <https://nexusrepoegi.a.incd.pt/repository/umd/5/al9/release/x86_64>
+* <https://nexusrepoegi.a.incd.pt/repository/umd/5/al9/testing/x86_64>
+* <https://nexusrepoegi.a.incd.pt/repository/umd/5/al9/contrib/x86_64>
+
+The process starts with creation of a Pull Request (PR): commit the json file
 
 The pipeline is as follows:
 
