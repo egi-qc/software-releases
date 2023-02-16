@@ -2,16 +2,27 @@
 
 EGI repository backend scripts and pipelines, for UMD/CMD releases.
 
+The process starts with creation of a Pull Request (PR)): commit the json file
+
 The pipeline is as follows:
 
-1. parse json, get the list of files to download and produce list of filenames (packages).
-2. download the packages to a temporary directory.
-3. rpm sign each package.
-4. verify signature of each package.
-5. verify packages - installation
-6. upload each package to nexusrepo.
-7. Pull Request: **manual approval** of the release, publication in frontend for publication.
-8. clean temporary directories, and repository testing.
+| **#** | Script                 | Description              |
+| -- | ------------------------- | ------------------------ |
+| 01 |  N.A.                     | git clone repository - get json |
+| 02 | `json_parser.py`          | Parse json, get the list of files to download and produce list of filenames (packages). |
+| 03 | `download_pkgs.py` (option 0) | Download the packages from original developer location, to a temporary directory. |
+| 04 | `rpm_sign.sh`  (option 0) | RPM sign each package and verify signature. |
+| 05 | *To be implemented*       | Installation test: verify packages installation |
+| 06 | `upload_pkgs.py`          | Upload each package to nexusrepo - testing repository. |
+| 07 | *To be implemented*       | Install packages from testing repo and perform functional tests |
+| 08 | *To be implemented*       | Install all packages in release repo together with the new packages from testing |
+| 09 | *To be implemented*       | Move or upload packages from testing to release repo |
+| 10 | *To be implemented*       | Produce new json file as asset of the new release |
+| 11 | *To be implemented*       | Cleanup - remove packages from testing repo |
+
+1. Approve the Pull Request.
+2. Create of the release - add json file as asset of the release.
+3. Get json file in the frontend for publication.
 
 ## Pre condition
 
@@ -72,9 +83,9 @@ variables:
 | `fe_user`      | `UMD_FE_USER`      | Frontend user allowed to copy json files            |
 | `fe_json_dir`  | `UMD_FE_JSON_DIR`  | Frontend directory for the json files               |
 
-## **1** Script: json_parser.py
+## **02** Script: json_parser.py
 
-The script `json-parser.py` implements item **1** from the pipeline:
+The script `json-parser.py` implements item **02** from the pipeline:
 
 If the json file is `~/software-releases/json/htcondor.json`, the script should be executed as follows:
 
@@ -87,9 +98,9 @@ python3 json_parser.py ~/software-releases/json/htcondor.json
 2. Create a dictionary with packages: URLs: variable `pkg_dict`
 3. Write a list of packages to a file: `/tmp/umdcmd/htcondor.lst`
 
-## **2** Script: download_pkgs.py (option 0)
+## **03** Script: download_pkgs.py (option 0)
 
-The script `download_pkgs.py` implements item **2** (with option `0`) from the pipeline:
+The script `download_pkgs.py` implements item **03** (with option `0`) from the pipeline:
 
 If the json file is `json/htcondor-9.0.1.json`, the script should be executed as follows:
 
@@ -102,9 +113,9 @@ python3 download_pkgs.py ~/software-releases/json/htcondor.json 0
 the download is from the external source. Below the same script is run to download from the UMD/CMD
 repository with option `1`.
 
-## **3-4** Script: rpm_sign.sh (option 0)
+## **04** Script: rpm_sign.sh (option 0)
 
-The script `rpm_sign.sh` implements item **3** and **4** from the pipeline, if you pass option `0`,
+The script `rpm_sign.sh` implements item **04** from the pipeline, if you pass option `0`,
 it sign and verifies all packages. To list all rpm gpg keys:
 
 ```bash
@@ -136,13 +147,13 @@ Execute this script as follows:
 ./rpm_sign.sh htcondor 0
 ```
 
-## **5** Script: TO BE Implemented
+## **05** Script: TO BE Implemented
 
 Performs package installation
 
-## **6** Script: upload_pkgs.py
+## **06** Script: upload_pkgs.py
 
-The script `upload_pkgs.py` implements item **5** from the pipeline:
+The script `upload_pkgs.py` implements item **06** from the pipeline:
 
 If the json file is `json/htcondor-9.0.1.json`, the script should be executed as follows:
 
@@ -153,20 +164,27 @@ python3 upload_pkgs.py htcondor-9.0.1
 
 1. Upload packages to nexusrepo
 
-## Pull Request: **manual approval** of the release
+## **07** Script: TO BE Implemented
 
-Manual step: approval of Pull Request (PR)
+Install packages from testing repo and perform functional tests
 
-## **8** Script: clean.sh
+## **08** Script: TO BE Implemented
 
-The script `clean.sh` implements item **8** from the pipeline, that is it cleans/removes the
-temporary directory.
+Install all packages in release repo together with the new packages from testing
 
-```bash
-./clean.sh
-```
+## **09** Script: TO BE Implemented
 
-## Full pipeline summary
+Move or upload packages from testing to release repo.
+
+## **10** Script: TO BE Implemented
+
+Produce new json file as asset of the new release.
+
+## **11** Script: TO BE Implemented
+
+Cleanup - remove packages from testing repo.
+
+## Full pipeline summary: Example
 
 ```bash
 cd scripts
@@ -174,5 +192,4 @@ python3 json_parser.py htcondor-9.0.1
 python3 download_pkgs.py htcondor-9.0.1 0
 ./rpm_sign.sh htcondor-9.0.1 0
 python3 upload_pkgs.py htcondor-9.0.1
-./clean.sh
 ```
