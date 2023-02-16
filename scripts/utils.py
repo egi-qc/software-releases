@@ -13,32 +13,6 @@ import json
 import requests
 from config import Config
 
-# import configparser
-
-# def get_conf(product_metadata_file):
-#     """Get configuration options
-#     :returns dictionary with configuration options
-#     """
-#     product_name = os.path.splitext(os.path.basename(product_metadata_file))[0]
-#     parser = configparser.ConfigParser(allow_no_value=True)
-#     conf_file = "repo.conf"
-#     parser.read(conf_file)
-
-#     ev = {}
-#     ev['repo_uri'] = parser.get('DEFAULT', 'repo_uri')
-#     ev['repo_admin'] = parser.get('DEFAULT', 'repo_admin')
-#     ev['repo_pass'] = parser.get('DEFAULT', 'repo_pass')
-#     ev['tmp_base_dir'] = parser.get('DEFAULT', 'tmp_base_dir')
-
-#     ev['api_uri'] = ev['repo_uri'] + '/service/rest/v1'
-#     ev['repo_uri_download'] = ev['repo_uri'] + '/repository/umd'
-#     ev['json_dir'] = '../json'
-#     ev['json_file'] = ev['json_dir'] + '/' + product_name + '.json'
-#     ev['tmp_dir'] = ev['tmp_base_dir'] + '/' + product_name
-#     ev['download_dir'] = ev['tmp_base_dir'] + '/umdrepo_download'
-#     ev['file_list'] = ev['tmp_base_dir'] + '/' + product_name + '.lst'
-#     return ev
-
 def create_dict_pkg(json_file):
     '''Create a dictionary with package and respective URL
     pkg_dict = {'pkg1': 'http://xxx/pckg1',}
@@ -56,6 +30,14 @@ def create_dict_pkg(json_file):
             pkg_dict[pkg] = url_file
 
     return pkg_dict
+
+def get_info_json(json_file):
+    '''Get information from the json file
+    '''
+    with open(json_file, 'r') as jsfd:
+        json_data = json.load(jsfd)
+
+    return json_data
 
 def download_pkg(pkg_dict, tmp_dir):
     '''Downloads package from given URL
@@ -81,6 +63,5 @@ def upload_pkg(product_metadata_file, cfpath=None):
             upload = requests.put(repo_api,
                                   data=data,
                                   headers=headers,
-                                  auth=(ev['repo_admin'],
-                                  ev['repo_pass']))
+                                  auth=(ev['repo_admin'], ev['repo_pass']))
             print(line, upload.status_code)
