@@ -29,7 +29,7 @@ The pipeline is as follows:
 | 07 | *To be implemented*           | Install packages from testing repo and perform functional tests |
 | 08 | *To be implemented*           | Install all packages in release repo together with the new packages from testing |
 | 09 | `upload_pkgs.py` (option 1)   | Upload packages to release repo |
-| 10 | *To be implemented*           | Produce new json file as asset of the new release |
+| 10 | `json_parser.py` (option 1)   | Produce new json file as asset of the new release |
 | 11 | *To be implemented*           | Cleanup - remove packages from testing repo |
 
 1. Approve the Pull Request.
