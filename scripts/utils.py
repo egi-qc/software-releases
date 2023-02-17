@@ -112,4 +112,4 @@ def clean_pkg(prod_metadata, full_uri_path, cfpath=None):
             rpm_file = line.rstrip('\n')
             repo_api = full_uri_path + '/' + os.path.basename(rpm_file)
             req_del = requests.delete(repo_api, auth=(ev['repo_admin'], ev['repo_pass']))
-            print(line, req_del.status_code)
+            print(repo_api, req_del.status_code)
