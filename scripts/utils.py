@@ -103,20 +103,20 @@ def upload_pkg(prod_metadata, full_uri_path, cfpath=None):
             print(line, upload.status_code)
 
 
-def clean_pkg(prod_metadata, full_uri_path, cfpath=None):
-    '''Delete testing repo
-    '''
-    ev = Config().getconf(prod_metadata, cfpath=cfpath)
-    req_del = requests.delete(full_uri_path, auth=(ev['repo_admin'], ev['repo_pass']))
-    print(full_uri_path, req_del.status_code)
-
 # def clean_pkg(prod_metadata, full_uri_path, cfpath=None):
 #     '''Delete testing repo
 #     '''
 #     ev = Config().getconf(prod_metadata, cfpath=cfpath)
-#     with open(ev['file_list'], 'r') as f:
-#         for line in f:
-#             rpm_file = line.rstrip('\n')
-#             repo_api = full_uri_path + '/' + os.path.basename(rpm_file)
-#             req_del = requests.delete(repo_api, auth=(ev['repo_admin'], ev['repo_pass']))
-#             print(repo_api, req_del.status_code)
+#     req_del = requests.delete(full_uri_path, auth=(ev['repo_admin'], ev['repo_pass']))
+#     print(full_uri_path, req_del.status_code)
+
+def clean_pkg(prod_metadata, full_uri_path, cfpath=None):
+    '''Delete testing repo
+    '''
+    ev = Config().getconf(prod_metadata, cfpath=cfpath)
+    with open(ev['file_list'], 'r') as f:
+        for line in f:
+            rpm_file = line.rstrip('\n')
+            repo_api = full_uri_path + '/' + os.path.basename(rpm_file)
+            req_del = requests.delete(repo_api, auth=(ev['repo_admin'], ev['repo_pass']))
+            print(repo_api, req_del.status_code)
