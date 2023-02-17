@@ -16,7 +16,7 @@ from config import Config
 
 
 if __name__ == '__main__':
-    if len(sys.argv)  not in [3, 4]:
+    if len(sys.argv)  not in [2, 3]:
         print('Usage:', sys.argv[0],
               '<package_name_version> (without extension .json) <config_file> (optional)')
         sys.exit(1)
