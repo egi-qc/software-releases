@@ -14,9 +14,6 @@ class Config:
     conf['repo_admin'] = 'admin'
     conf['repo_pass'] = 'mypass'
     conf['tmp_base_dir'] = '/tmp/umdcmd'
-    conf['fe_ip'] = '127.0.0.1'
-    conf['fe_user'] = 'someuser'
-    conf['fe_json_dir'] = '/var/www/html/json_dir'
 
     conf['api_uri'] = conf['repo_uri'] + '/service/rest/v1'
     conf['repo_uri_path'] = conf['repo_uri'] + '/repository'
@@ -56,9 +53,6 @@ class Config:
         Config.conf['repo_admin'] = os.getenv("UMD_REPO_ADMIN", Config.conf['repo_admin'])
         Config.conf['repo_pass'] = os.getenv("UMD_REPO_PASS", Config.conf['repo_pass'])
         Config.conf['tmp_base_dir'] = os.getenv("UMD_TMP_BASE_DIR", Config.conf['tmp_base_dir'])
-        Config.conf['fe_ip'] = os.getenv("UMD_FE_IP", Config.conf['fe_ip'])
-        Config.conf['fe_user'] = os.getenv("UMD_FE_USER", Config.conf['fe_user'])
-        Config.conf['fe_json_dir'] = os.getenv("UMD_FE_JSON_DIR", Config.conf['fe_json_dir'])
 
     def getconf(self, product_metadata_file, cfpath=None):
         """Return all configuration variables"""

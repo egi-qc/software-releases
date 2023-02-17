@@ -13,6 +13,7 @@ import json
 import requests
 from config import Config
 
+
 def create_dict_pkg(json_file):
     '''Create a dictionary with package and respective URL
     pkg_dict = {'pkg1': 'http://xxx/pckg1',}
@@ -31,6 +32,7 @@ def create_dict_pkg(json_file):
 
     return pkg_dict
 
+
 def get_info_json(json_file):
     '''Get information from the json file
     '''
@@ -43,6 +45,31 @@ def get_info_json(json_file):
     arch = json_data["target"][0]["arch"]
     return (dst_type, dst_version, platform, arch)
 
+
+def create_json(json_file, uri_path):
+    '''Create the json file for release/publication'''
+    with open(json_file, 'r') as jsfd:
+        json_data = json.load(jsfd)
+
+    all_rpms = []
+    for package in json_data["target"]:
+        # print(package["platform"], package["arch"])
+        for url_file in package["rpms"]:
+            # print(url_file)
+            pkg = url_file.split('/')[-1]
+            rpm_uri = uri_path + '/' + pkg
+            all_rpms.append(rpm_uri)
+
+    json_data["target"]["rpms"] = all_rpms
+    return json_data
+
+
+def write_new_json(new_json, new_file):
+    '''Write the new json to release.json'''
+    with open(new_file, 'w') as jsfd:
+        json.dump(new_json, jsfd)
+
+
 def download_pkg(pkg_dict, tmp_dir):
     '''Downloads package from given URL
     pkg_dict: dictionary with all URLs of packages
@@ -53,6 +80,7 @@ def download_pkg(pkg_dict, tmp_dir):
         out_file = tmp_dir  + '/' + pkg
         with open(out_file, 'wb') as file:
             file.write(req_get.content)
+
 
 def upload_pkg(prod_metadata, full_uri_path, cfpath=None):
     '''Upload all packages to nexus oss repo
@@ -69,6 +97,7 @@ def upload_pkg(prod_metadata, full_uri_path, cfpath=None):
                                   headers=headers,
                                   auth=(ev['repo_admin'], ev['repo_pass']))
             print(line, upload.status_code)
+
 
 def clean_pkg(prod_metadata, full_uri_path, cfpath=None):
     '''Upload all packages to nexus oss repo
