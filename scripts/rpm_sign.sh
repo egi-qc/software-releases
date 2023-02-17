@@ -33,7 +33,7 @@ function verify_sign {
 
 if [ $# -ne 2 ]
 then
-    echo "Usage: $0 <package_name_version> (without extension .json) <0|1>"
+    echo "Usage: $0 <package_name> (without extension .json) <0|1>"
     echo "0 - signs and verifies the packages before uploading to umd/cmd repository"
     echo "1 - verifies the packages downloaded from umd/cmd repository"
     exit 1
@@ -41,7 +41,7 @@ fi
 
 if [ $2 -eq "0" ]
 then
-    rpm_dir=$1
+    rpm_dir="/tmp/umdcmd/${1}"
     sign_pkgs ${rpm_dir}
     verify_sign ${rpm_dir}
 elif [ $2 -eq "1" ]
