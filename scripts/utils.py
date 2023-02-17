@@ -81,6 +81,8 @@ def download_pkg(pkg_dict, tmp_dir):
         with open(out_file, 'wb') as file:
             file.write(req_get.content)
 
+        print(f'{pkg} downloaded')        
+
 
 def upload_pkg(prod_metadata, full_uri_path, cfpath=None):
     '''Upload all packages to nexus oss repo
