@@ -215,8 +215,12 @@ python3 cleanup.py htcondor
 ```bash
 cd scripts
 python3 json_parser.py htcondor
-python3 download_pkgs.py htcondor
+python3 download_pkgs.py htcondor 0
 ./rpm_sign.sh htcondor 0
+
 python3 upload_pkgs.py htcondor 0
+
 python3 upload_pkgs.py htcondor 1
+python3 json_parser.py htcondor 1
+python3 cleanup.py htcondor
 ```
