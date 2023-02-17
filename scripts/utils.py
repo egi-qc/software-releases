@@ -62,7 +62,7 @@ def create_json(json_file, uri_path):
             rpm_uri = uri_path + '/' + pkg
             all_rpms.append(rpm_uri)
 
-    json_data["target"]["rpms"] = all_rpms
+    json_data["target"][0]["rpms"] = all_rpms
     return json_data
 
 
