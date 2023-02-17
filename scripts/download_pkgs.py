@@ -15,23 +15,6 @@ import utils
 from config import Config
 
 
-def main():
-    ev = Config().getconf(product_metadata_file)
-    pkg_dict = utils.create_dict_pkg(ev['json_file'])
-    download_dir = ev['tmp_dir']
-    if umd_download == '1':
-        download_dir = ev['download_dir']
-        (dst_type, dst_version, platform, arch) = utils.get_info_json(ev['json_file'])
-        # full uri is repo_uri_path/rel_uripath ->
-        # https://nexusrepoegi.a.incd.pt/repository/umd/5/<OPERATING_SYSTEM>/testing/<ARCH>
-        rel_uripath = dst_type + '/' + dst_version + '/' + platform + '/' + 'testing' + '/' + arch
-        for (pkg, url) in pkg_dict.items():
-            pkg_dict[pkg] = ev['repo_uri_path'] + '/' + rel_uripath + '/' + pkg
-
-    utils.download_pkg(pkg_dict, download_dir)
-    return download_dir
-
-
 if __name__ == '__main__':
     if len(sys.argv) != 3:
         print('Usage:', sys.argv[0], '<package_name_version> (without extension .json) <0|1>')
@@ -41,4 +24,19 @@ if __name__ == '__main__':
 
     product_metadata_file = sys.argv[1]
     umd_download = sys.argv[2]
-    print(main())
+    ev = Config().getconf(product_metadata_file)
+    pkg_dict = utils.create_dict_pkg(ev['json_file'])
+    download_dir = ev['tmp_dir']
+    if umd_download == '1':
+        download_dir = ev['download_dir']
+        (dst_type, dst_version, platform, arch) = utils.get_info_json(ev['json_file'])
+
+        # full uri is repo_uri_path/rel_uripath ->
+        # https://nexusrepoegi.a.incd.pt/repository/umd/5/<OPERATING_SYSTEM>/testing/<ARCH>
+        rel_uripath = dst_type + '/' + dst_version + '/' + platform + '/' + 'testing' + '/' + arch
+        for (pkg, url) in pkg_dict.items():
+            pkg_dict[pkg] = ev['repo_uri_path'] + '/' + rel_uripath + '/' + pkg
+
+    utils.download_pkg(pkg_dict, download_dir)
+    print(download_dir)
+    sys.exit(0)

@@ -30,7 +30,7 @@ The pipeline is as follows:
 | 08 | *To be implemented*           | Install all packages in release repo together with the new packages from testing |
 | 09 | `upload_pkgs.py` (option 1)   | Upload packages to release repo |
 | 10 | `json_parser.py` (option 1)   | Produce new json file as asset of the new release |
-| 11 | *To be implemented*           | Cleanup - remove packages from testing repo |
+| 11 | `cleanup.py`                  | Cleanup - remove packages from testing repo |
 
 1. Approve the Pull Request.
 2. Create the git release (and git tag) - add json file as asset of the release.
@@ -189,16 +189,26 @@ If the json file is `json/htcondor`, the script should be executed as follows:
 
 ```bash
 cd scripts
-python3 upload_pkgs.py  ~/software-releases/json/htcondor.json 1
+python3 upload_pkgs.py htcondor 1
 ```
 
-## **10** Script: TO BE Implemented
+## **10** Script: json_parser.py (option 1)
 
 Produce new json file as asset of the new release.
 
-## **11** Script: TO BE Implemented
+```bash
+cd scripts
+python3 json_parser.py htcondor 1
+```
+
+## **11** Script: cleanup.py
 
 Cleanup - remove packages from testing repo.
+
+```bash
+cd scripts
+python3 cleanup.py htcondor
+```
 
 ## Full pipeline summary: Example
 
