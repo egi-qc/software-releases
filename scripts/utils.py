@@ -37,7 +37,11 @@ def get_info_json(json_file):
     with open(json_file, 'r') as jsfd:
         json_data = json.load(jsfd)
 
-    return json_data
+    dst_type = json_data["distributionType"].lower()
+    dst_version = json_data["distributionVersion"].split('.')[0]
+    platform = json_data["target"][0]["platform"]
+    arch = json_data["target"][0]["arch"]
+    return (dst_type, dst_version, platform, arch)
 
 def download_pkg(pkg_dict, tmp_dir):
     '''Downloads package from given URL
@@ -50,14 +54,14 @@ def download_pkg(pkg_dict, tmp_dir):
         with open(out_file, 'wb') as file:
             file.write(req_get.content)
 
-def upload_pkg(product_metadata_file, cfpath=None):
+def upload_pkg(prod_metadata, full_uri_path, cfpath=None):
     '''Upload all packages to nexus oss repo
     '''
-    ev = Config().getconf(product_metadata_file, cfpath=cfpath)
+    ev = Config().getconf(prod_metadata, cfpath=cfpath)
     with open(ev['file_list'], 'r') as f:
         for line in f:
             rpm_file = line.rstrip('\n')
-            repo_api = ev['repo_uri'] + '/repository/umd/' + os.path.basename(rpm_file)
+            repo_api = full_uri_path + '/' + os.path.basename(rpm_file)
             data = open(rpm_file, 'rb').read()
             headers = {"Content-Type": "application/binary",}
             upload = requests.put(repo_api,
@@ -65,3 +69,15 @@ def upload_pkg(product_metadata_file, cfpath=None):
                                   headers=headers,
                                   auth=(ev['repo_admin'], ev['repo_pass']))
             print(line, upload.status_code)
+
+def clean_pkg(prod_metadata, full_uri_path, cfpath=None):
+    '''Upload all packages to nexus oss repo
+    '''
+    ev = Config().getconf(prod_metadata, cfpath=cfpath)
+    with open(ev['file_list'], 'r') as f:
+        for line in f:
+            rpm_file = line.rstrip('\n')
+            repo_api = full_uri_path + '/' + os.path.basename(rpm_file)
+            data = open(rpm_file, 'rb').read()
+            req_del = requests.delete(repo_api, auth=(ev['repo_admin'], ev['repo_pass']))
+            print(line, req_del.status_code)

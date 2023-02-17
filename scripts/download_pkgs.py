@@ -21,8 +21,12 @@ def main():
     download_dir = ev['tmp_dir']
     if umd_download == '1':
         download_dir = ev['download_dir']
+        (dst_type, dst_version, platform, arch) = utils.get_info_json(ev['json_file'])
+        # full uri is repo_uri_path/rel_uripath ->
+        # https://nexusrepoegi.a.incd.pt/repository/umd/5/<OPERATING_SYSTEM>/testing/<ARCH>
+        rel_uripath = dst_type + '/' + dst_version + '/' + platform + '/' + 'testing' + '/' + arch
         for (pkg, url) in pkg_dict.items():
-            pkg_dict[pkg] = ev['repo_uri_path'] + '/' + pkg
+            pkg_dict[pkg] = ev['repo_uri_path'] + '/' + rel_uripath + '/' + pkg
 
     utils.download_pkg(pkg_dict, download_dir)
     return download_dir

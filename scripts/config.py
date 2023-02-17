@@ -60,10 +60,9 @@ class Config:
         Config.conf['fe_user'] = os.getenv("UMD_FE_USER", Config.conf['fe_user'])
         Config.conf['fe_json_dir'] = os.getenv("UMD_FE_JSON_DIR", Config.conf['fe_json_dir'])
 
-    def getconf(self, product_metadata_file, repo_path='/umd', cfpath=None):
+    def getconf(self, product_metadata_file, cfpath=None):
         """Return all configuration variables"""
         product_name = os.path.splitext(os.path.basename(product_metadata_file))[0]
-        Config.conf['repo_uri_path'] = Config.conf['repo_uri_path'] + repo_path
         Config.conf['json_file'] = Config.conf['json_dir'] + '/' + product_name + '.json'
         Config.conf['tmp_dir'] = Config.conf['tmp_base_dir'] + '/' + product_name
         Config.conf['file_list'] = Config.conf['tmp_base_dir'] + '/' + product_name + '.lst'
