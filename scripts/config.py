@@ -14,11 +14,7 @@ class Config:
     conf['repo_admin'] = 'admin'
     conf['repo_pass'] = 'mypass'
     conf['tmp_base_dir'] = '/tmp/umdcmd'
-
-    conf['api_uri'] = conf['repo_uri'] + '/service/rest/v1'
-    conf['repo_uri_path'] = conf['repo_uri'] + '/repository'
     conf['json_dir'] = '../json'
-    conf['download_dir'] = conf['tmp_base_dir'] + '/umdrepo_download'
 
     conf['json_file'] = ''
     conf['tmp_dir'] = ''
@@ -57,9 +53,12 @@ class Config:
     def getconf(self, product_metadata_file, cfpath=None):
         """Return all configuration variables"""
         product_name = os.path.splitext(os.path.basename(product_metadata_file))[0]
+        self._file_override(cfpath=cfpath)         # Override with variables in conf file
+        self._env_override()          # Override with variables in environment
         Config.conf['json_file'] = Config.conf['json_dir'] + '/' + product_name + '.json'
         Config.conf['tmp_dir'] = Config.conf['tmp_base_dir'] + '/' + product_name
         Config.conf['file_list'] = Config.conf['tmp_base_dir'] + '/' + product_name + '.lst'
-        self._file_override(cfpath=cfpath)         # Override with variables in conf file
-        self._env_override()          # Override with variables in environment
+        Config.conf['api_uri'] = Config.conf['repo_uri'] + '/service/rest/v1'
+        Config.conf['repo_uri_path'] = Config.conf['repo_uri'] + '/repository'
+        Config.conf['download_dir'] = Config.conf['tmp_base_dir'] + '/umdrepo_download'
         return Config.conf

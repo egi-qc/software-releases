@@ -213,6 +213,7 @@ python3 cleanup.py htcondor
 ## Full pipeline summary: Example
 
 ```bash
+source ~/repo-env.sh
 cd scripts
 python3 json_parser.py htcondor
 python3 download_pkgs.py htcondor 0
