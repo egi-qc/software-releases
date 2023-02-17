@@ -16,21 +16,27 @@ from config import Config
 
 
 if __name__ == '__main__':
-    if len(sys.argv) not in [2,3]:
+    if len(sys.argv)  not in [3, 4]:
         print('Usage:', sys.argv[0],
-              '<package_name_version> (without extension .json) <config_file> (optional)')
+              '<package_name_version> (without extension .json) <0|1> <config_file> (optional)')
+        print('0 - uploads packages to testing repository')
+        print('1 - uploads packages to release repository')
         sys.exit(1)
 
     prod_name = sys.argv[1]
     ev = Config().getconf(sys.argv[1])
     (dst_type, dst_version, platform, arch) = utils.get_info_json(ev['json_file'])
     # full uri is repo_uri_path/rel_uripath ->
-    # https://nexusrepoegi.a.incd.pt/repository/umd/5/<OPERATING_SYSTEM>/testing/<ARCH>
-    rel_uripath = dst_type + '/' + dst_version + '/' + platform + '/' + 'testing' + '/' + arch
+    # https://nexusrepoegi.a.incd.pt/repository/umd/5/<OPERATING_SYSTEM>/testing|release/<ARCH>
+    repo = 'testing'
+    if sys.argv[2] == 1:
+        repo = 'release'
+
+    rel_uripath = dst_type + '/' + dst_version + '/' + platform + '/' + repo + '/' + arch
     full_uri_path = ev['repo_uri_path'] + '/' + rel_uripath
     cfpath = None
-    if len(sys.argv) in [3]:
-        cfpath = sys.argv[2]
+    if len(sys.argv) in [4]:
+        cfpath = sys.argv[3]
 
     utils.upload_pkg(prod_name, full_uri_path, cfpath=cfpath)
     sys.exit(0)

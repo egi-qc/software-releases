@@ -18,19 +18,19 @@ The process starts with creation of a Pull Request (PR): commit the json file
 
 The pipeline is as follows:
 
-| **#** | Script                 | Description              |
-| -- | ------------------------- | ------------------------ |
-| 01 |  N.A.                     | git clone repository - get json |
-| 02 | `json_parser.py`          | Parse json, get the list of files to download and produce list of filenames (packages). |
+| **#** | Script                     | Description              |
+| -- | ----------------------------- | ------------------------ |
+| 01 |  N.A.                         | git clone repository - get json |
+| 02 | `json_parser.py`              | Parse json, get the list of files to download and produce list of filenames (packages). |
 | 03 | `download_pkgs.py` (option 0) | Download the packages from original developer location, to a temporary directory. |
-| 04 | `rpm_sign.sh`  (option 0) | RPM sign each package and verify signature. |
-| 05 | *To be implemented*       | Installation test: verify packages installation |
-| 06 | `upload_pkgs.py`          | Upload each package to nexusrepo - testing repository. |
-| 07 | *To be implemented*       | Install packages from testing repo and perform functional tests |
-| 08 | *To be implemented*       | Install all packages in release repo together with the new packages from testing |
-| 09 | *To be implemented*       | Upload packages to release repo |
-| 10 | *To be implemented*       | Produce new json file as asset of the new release |
-| 11 | *To be implemented*       | Cleanup - remove packages from testing repo |
+| 04 | `rpm_sign.sh` (option 0)      | RPM sign each package and verify signature. |
+| 05 | *To be implemented*           | Installation test: verify packages installation |
+| 06 | `upload_pkgs.py` (option 0)   | Upload each package to nexusrepo - testing repository. |
+| 07 | *To be implemented*           | Install packages from testing repo and perform functional tests |
+| 08 | *To be implemented*           | Install all packages in release repo together with the new packages from testing |
+| 09 | `upload_pkgs.py` (option 1)   | Upload packages to release repo |
+| 10 | *To be implemented*           | Produce new json file as asset of the new release |
+| 11 | *To be implemented*           | Cleanup - remove packages from testing repo |
 
 1. Approve the Pull Request.
 2. Create the git release (and git tag) - add json file as asset of the release.
@@ -91,9 +91,6 @@ variables:
 | `repo_admin`   | `UMD_REPO_ADMIN`   | Nexus admin user able to upload packages            |
 | `repo_pass`    | `UMD_REPO_PASS`    | Nexus admin password                                |
 | `tmp_base_dir` | `UMD_TMP_BASE_DIR` | tmp directory to host the packages under validation |
-| `fe_ip`        | `UMD_FE_IP`        | Frontend IP of repository                           |
-| `fe_user`      | `UMD_FE_USER`      | Frontend user allowed to copy json files            |
-| `fe_json_dir`  | `UMD_FE_JSON_DIR`  | Frontend directory for the json files               |
 
 ## **02** Script: json_parser.py
 
@@ -114,7 +111,7 @@ python3 json_parser.py ~/software-releases/json/htcondor.json
 
 The script `download_pkgs.py` implements item **03** (with option `0`) from the pipeline:
 
-If the json file is `json/htcondor-9.0.1.json`, the script should be executed as follows:
+If the json file is `json/htcondor.json`, the script should be executed as follows:
 
 ```bash
 cd scripts
@@ -163,18 +160,17 @@ Execute this script as follows:
 
 Performs package installation
 
-## **06** Script: upload_pkgs.py
+## **06** Script: upload_pkgs.py (option 0)
 
-The script `upload_pkgs.py` implements item **06** from the pipeline:
+The script `upload_pkgs.py` implements item **06** from the pipeline, it uploads all packages to the
+testing repository:
 
-If the json file is `json/htcondor-9.0.1.json`, the script should be executed as follows:
+If the json file is `json/htcondor`, the script should be executed as follows:
 
 ```bash
 cd scripts
-python3 upload_pkgs.py htcondor-9.0.1
+python3 upload_pkgs.py  ~/software-releases/json/htcondor.json 0
 ```
-
-1. Upload packages to nexusrepo
 
 ## **07** Script: TO BE Implemented
 
@@ -184,9 +180,17 @@ Install packages from testing repo and perform functional tests
 
 Install all packages in release repo together with the new packages from testing
 
-## **09** Script: TO BE Implemented
+## **09** Script: upload_pkgs.py (option 1)
 
-Move or upload packages from testing to release repo.
+The script `upload_pkgs.py` implements item **09** from the pipeline, it uploads all packages to the
+release repository:
+
+If the json file is `json/htcondor`, the script should be executed as follows:
+
+```bash
+cd scripts
+python3 upload_pkgs.py  ~/software-releases/json/htcondor.json 1
+```
 
 ## **10** Script: TO BE Implemented
 
@@ -200,8 +204,9 @@ Cleanup - remove packages from testing repo.
 
 ```bash
 cd scripts
-python3 json_parser.py htcondor-9.0.1
-python3 download_pkgs.py htcondor-9.0.1 0
-./rpm_sign.sh htcondor-9.0.1 0
-python3 upload_pkgs.py htcondor-9.0.1
+python3 json_parser.py htcondor
+python3 download_pkgs.py htcondor
+./rpm_sign.sh htcondor 0
+python3 upload_pkgs.py htcondor 0
+python3 upload_pkgs.py htcondor 1
 ```
