@@ -26,7 +26,7 @@ if __name__ == '__main__':
     print(f'Get product metadata file: {sys.argv[1]}')
     ev = Config().getconf(sys.argv[1])
 
-    if (len(sys.argv) == 3) and (sys.argv[2] == 1):
+    if (len(sys.argv) == 3) and (sys.argv[2] == '1'):
         # Option to create new json for release/publishing
         (dst_type, dst_version, platform, arch) = utils.get_info_json(ev['json_file'])
 
