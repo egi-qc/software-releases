@@ -30,7 +30,7 @@ if __name__ == '__main__':
     # full uri is repo_uri_path/rel_uripath ->
     # https://nexusrepoegi.a.incd.pt/repository/umd/5/<OPERATING_SYSTEM>/testing|release/<ARCH>
     repo = 'testing'
-    if sys.argv[2] == 1:
+    if sys.argv[2] == '1':
         repo = 'release'
 
     rel_uripath = dst_type + '/' + dst_version + '/' + platform + '/' + repo + '/' + arch
