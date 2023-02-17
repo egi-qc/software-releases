@@ -35,6 +35,7 @@ if __name__ == '__main__':
 
     rel_uripath = dst_type + '/' + dst_version + '/' + platform + '/' + repo + '/' + arch
     full_uri_path = ev['repo_uri_path'] + '/' + rel_uripath
+    print(f'Repository URI path {full_uri_path}')
     cfpath = None
     if len(sys.argv) in [4]:
         cfpath = sys.argv[3]
