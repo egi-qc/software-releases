@@ -4,6 +4,7 @@ def json_release_file = ''
 def String[] pkg_list = []
 def download_dir = ''
 def pkgs_signed = ''
+def pkgs_upload = ''
 
 pipeline {
     environment {
@@ -28,7 +29,7 @@ pipeline {
         }
         stage('Detect release changes') {
             when {
-                branch 'master'
+                changeRequest()
             }
             steps {
                 script {
