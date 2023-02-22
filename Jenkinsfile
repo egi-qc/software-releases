@@ -4,6 +4,7 @@ def json_release_file = ''
 def String[] pkg_list = []
 def download_dir = ''
 def pkgs_signed = ''
+def pkgs_upload = ''
 
 pipeline {
     environment {
@@ -28,7 +29,7 @@ pipeline {
         }
         stage('Detect release changes') {
             when {
-                branch 'master'
+                changeRequest()
             }
             steps {
                 script {
@@ -124,8 +125,32 @@ pipeline {
             }
             steps {
                 dir('scripts') {
-                    sh "python3 upload_pkgs.py ${json_release_file} $NEXUS_CONFIG"
+                    script {
+                        pkgs_upload = sh(
+			    returnStdout: true,
+                            script: "python3 upload_pkgs.py ${json_release_file} $NEXUS_CONFIG"
+                        ).trim()
+                        println(pkgs_upload)
+                    }
                 } 
+            }
+        }
+
+        stage('Trigger validation'){
+            when {
+                expression {return pkgs_upload}
+            }
+            steps {
+		build job: 'QualityCriteriaValidation/package-install',
+                parameters: [ // these values need to be extracted from the JSON
+		    string(name: 'Release', value: 'UMD5'),
+                    text(name: 'OS', value: 'centos7'),
+                    text(name: 'Verification_repository', value: ''),
+                    text(name: 'Packages', value: 'xrootd'),
+                    booleanParam(name: 'enable_testing_repo', value: false),
+                    booleanParam(name: 'enable_untested_repo', value: false),
+                    booleanParam(name: 'disable_updates_repo', value: false)
+                ]
             }
         }
     }
