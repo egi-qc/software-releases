@@ -124,14 +124,20 @@ pipeline {
             }
             steps {
                 dir('scripts') {
-                    sh "python3 upload_pkgs.py ${json_release_file} $NEXUS_CONFIG"
+                    script {
+                        pkgs_upload = sh(
+			    returnStdout: true,
+                            script: "python3 upload_pkgs.py ${json_release_file} $NEXUS_CONFIG"
+                        ).trim()
+                        println(pkgs_upload)
+                    }
                 } 
             }
         }
 
         stage('Trigger validation'){
             when {
-                expression {return download_dir}
+                expression {return pkgs_upload}
             }
             steps {
 		build job: 'QualityCriteriaValidation/package-install',
