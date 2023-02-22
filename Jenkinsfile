@@ -135,10 +135,11 @@ pipeline {
             }
             steps {
 		build job: 'QualityCriteriaValidation/package-install',
-                parameters: [
+                parameters: [ // these values need to be extracted from the JSON
 		    string(name: 'Release', value: 'UMD5'),
-                    text(name: 'Verification_repository', value: 'https://admin-repo.egi.eu/sw/unverified/umd-4.apel.apel-ssm-test.centos7.x86_64/3/2/14/'),
-                    text(name: 'Packages', value: 'apel-ssm'),
+                    text(name: 'OS', value: 'centos7'),
+                    text(name: 'Verification_repository', value: ''),
+                    text(name: 'Packages', value: 'xrootd'),
                     booleanParam(name: 'enable_testing_repo', value: false),
                     booleanParam(name: 'enable_untested_repo', value: false),
                     booleanParam(name: 'disable_updates_repo', value: false)
