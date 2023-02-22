@@ -103,7 +103,6 @@ pipeline {
                 sh "gpg --import --batch --yes $GPG_PRIVATE_KEY"
                 sh 'gpg --list-keys'
 		println('Importing public GPG key for RPM')
-                sh "sudo rpm --import $GPG_PUBLIC_KEY"
                 sh "rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'"
                 sh "sed -i \"s/--passphrase ''/--passphrase '$GPG_PRIVATE_KEY_PASSPHRASE'/g\" ~/.rpmmacros"
                 dir('scripts') {
