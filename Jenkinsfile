@@ -127,7 +127,7 @@ pipeline {
                     script {
                         pkgs_upload = sh(
 			    returnStdout: true,
-                            script: "python3 upload_pkgs.py ${json_release_file} $NEXUS_CONFIG"
+                            script: "python3 upload_pkgs.py ${json_release_file} 0 $NEXUS_CONFIG"
                         ).trim()
                         println(pkgs_upload)
                     }
