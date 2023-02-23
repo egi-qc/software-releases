@@ -67,7 +67,7 @@ pipeline {
                         script {
                             pkg_list = sh(
                                 returnStdout: true,
-                                script: "python3 json_parser.py ${json_release_file}"
+                                script: "python3 json_parser.py ${json_release_file} 0"
                             ).trim()
                         }
                     }
@@ -103,7 +103,6 @@ pipeline {
                 sh "gpg --import --batch --yes $GPG_PRIVATE_KEY"
                 sh 'gpg --list-keys'
 		println('Importing public GPG key for RPM')
-                sh "sudo rpm --import $GPG_PUBLIC_KEY"
                 sh "rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'"
                 sh "sed -i \"s/--passphrase ''/--passphrase '$GPG_PRIVATE_KEY_PASSPHRASE'/g\" ~/.rpmmacros"
                 dir('scripts') {
@@ -128,7 +127,7 @@ pipeline {
                     script {
                         pkgs_upload = sh(
 			    returnStdout: true,
-                            script: "python3 upload_pkgs.py ${json_release_file} $NEXUS_CONFIG"
+                            script: "python3 upload_pkgs.py ${json_release_file} 0" + ' ${NEXUS_CONFIG}'
                         ).trim()
                         println(pkgs_upload)
                     }

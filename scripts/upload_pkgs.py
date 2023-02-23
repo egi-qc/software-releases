@@ -24,7 +24,11 @@ if __name__ == '__main__':
         sys.exit(1)
 
     prod_name = sys.argv[1]
-    ev = Config().getconf(sys.argv[1])
+    cfpath = None
+    if len(sys.argv) in [4]:
+        cfpath = sys.argv[3]
+
+    ev = Config().getconf(sys.argv[1], cfpath=cfpath)
     (dst_type, dst_version, platform, arch) = utils.get_info_json(ev['json_file'])
 
     # full uri is repo_uri_path/rel_uripath ->
@@ -36,9 +40,7 @@ if __name__ == '__main__':
     rel_uripath = dst_type + '/' + dst_version + '/' + platform + '/' + repo + '/' + arch
     full_uri_path = ev['repo_uri_path'] + '/' + rel_uripath
     print(f'Repository URI path {full_uri_path}')
-    cfpath = None
-    if len(sys.argv) in [4]:
-        cfpath = sys.argv[3]
 
-    utils.upload_pkg(prod_name, full_uri_path, cfpath=cfpath)
+    if not utils.upload_pkg(prod_name, full_uri_path, ev['repo_admin'], ev['repo_pass']):
+        sys.exit(1)
     sys.exit(0)
