@@ -100,7 +100,11 @@ def upload_pkg(prod_metadata, full_uri_path, cfpath=None):
                                   data=data,
                                   headers=headers,
                                   auth=(ev['repo_admin'], ev['repo_pass']))
+            if upload.status_code not in [200]:
+                return False
+            print(upload.__dict__)
             print(line, upload.status_code)
+    return True
 
 
 # def clean_pkg(prod_metadata, full_uri_path, cfpath=None):

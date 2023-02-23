@@ -41,5 +41,6 @@ if __name__ == '__main__':
     full_uri_path = ev['repo_uri_path'] + '/' + rel_uripath
     print(f'Repository URI path {full_uri_path}')
 
-    utils.upload_pkg(prod_name, full_uri_path)
+    if not utils.upload_pkg(prod_name, full_uri_path):
+        sys.exit(1)
     sys.exit(0)
