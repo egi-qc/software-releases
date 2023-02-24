@@ -18,19 +18,19 @@ The process starts with creation of a Pull Request (PR): commit the json file
 
 The pipeline is as follows:
 
-| **#** | Script                     | Description              |
-| -- | ----------------------------- | ------------------------ |
-| 01 |  N.A.                         | git clone repository - get json |
-| 02 | `json_parser.py`              | Parse json, get the list of files to download and produce list of filenames (packages). |
-| 03 | `download_pkgs.py` (option 0) | Download the packages from original developer location, to a temporary directory. |
-| 04 | `rpm_sign.sh` (option 0)      | RPM sign each package and verify signature. |
-| 05 | *To be implemented*           | Installation test: verify packages installation |
-| 06 | `upload_pkgs.py` (option 0)   | Upload each package to nexusrepo - testing repository. |
-| 07 | *To be implemented*           | Install packages from testing repo and perform functional tests |
-| 08 | *To be implemented*           | Install all packages in release repo together with the new packages from testing |
-| 09 | `upload_pkgs.py` (option 1)   | Upload packages to release repo |
-| 10 | `json_parser.py` (option 1)   | Produce new json file as asset of the new release |
-| 11 | `cleanup.py`                  | Cleanup - remove packages from testing repo |
+| **#** | Script                      | Description              |
+| -- | ------------------------------ | ------------------------ |
+| 01 |  N.A.                          | git clone repository - get json |
+| 02 | `json_parser.py`               | Parse json, get the list of files to download and produce list of filenames (packages). |
+| 03 | `download_pkgs.py` (option 0)  | Download the packages from original developer location, to a temporary directory. |
+| 04 | `rpm_sign.sh` (option 0)       | RPM sign each package and verify signature. |
+| 05 | Jenkins' `package-install` job | Installation test: verify packages installation |
+| 06 | `upload_pkgs.py` (option 0)    | Upload each package to nexusrepo - testing repository. |
+| 07 | *To be implemented*            | Install packages from testing repo and perform functional tests |
+| 08 | *To be implemented*            | Install all packages in release repo together with the new packages from testing |
+| 09 | `upload_pkgs.py` (option 1)    | Upload packages to release repo |
+| 10 | `json_parser.py` (option 1)    | Produce new json file as asset of the new release |
+| 11 | `cleanup.py`                   | Cleanup - remove packages from testing repo |
 
 1. Approve the Pull Request.
 2. Create the git release (and git tag) - add json file as asset of the release.
