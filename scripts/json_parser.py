@@ -17,7 +17,7 @@ from config import Config
 
 
 if __name__ == '__main__':
-    if len(sys.argv) <= 2:
+    if len(sys.argv) < 2:
         print('Usage:', sys.argv[0],
               '<product_metadata_file> (relative path from root repo) <1> optional')
         print('1 - creates a new json file ready for release/publishing, named release.json')
