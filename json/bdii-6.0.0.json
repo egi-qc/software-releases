@@ -1,5 +1,5 @@
 {
-    "name" : "bdi",
+    "name" : "bdii",
     "version" : "6.0.0",
     "currentState" : "Production",
     "technology_provider" : "EGI",
@@ -23,9 +23,7 @@
             "arch": "x86_64",
             "repositoryURL": "umd/5/al9/release/x86_64",
             "gpgkey": "http://repository.egi.eu/sw/production/umd/UMD-RPM-PGP-KEY",
-            "rpms": [
-                "https://kojipkgs.fedoraproject.org//packages/bdii/6.0.0/1.el9/noarch/bdii-6.0.0-1.el9.noarch.rpm",
-                            ]
+            "rpms": ["https://kojipkgs.fedoraproject.org//packages/bdii/6.0.0/1.el9/noarch/bdii-6.0.0-1.el9.noarch.rpm"]
         }
     ],
     "softwareConfigurationLink": ""
