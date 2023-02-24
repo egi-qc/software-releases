@@ -42,6 +42,7 @@ fi
 if [ $2 -eq "0" ]
 then
     rpm_dir="${1}"
+    echo "rpm directory: ${1}"
     sign_pkgs ${rpm_dir}
     verify_sign ${rpm_dir}
 elif [ $2 -eq "1" ]

@@ -217,7 +217,7 @@ source ~/repo-env.sh
 cd scripts
 python3 json_parser.py htcondor
 python3 download_pkgs.py htcondor 0
-./rpm_sign.sh htcondor 0
+./rpm_sign.sh /tmp/umdcmd/htcondor 0
 
 python3 upload_pkgs.py htcondor 0
 
