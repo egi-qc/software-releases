@@ -83,13 +83,13 @@ def download_pkg(pkg_dict, tmp_dir):
         with open(out_file, 'wb') as file:
             file.write(req_get.content)
 
-        print(f'{pkg} downloaded')        
+        # print(f'{pkg} downloaded')        
 
 
-def upload_pkg(prod_metadata, full_uri_path, cfpath=None):
+def upload_pkg(prod_metadata, full_uri_path, repo_admin, repo_pass):
     '''Upload all packages to nexus oss repo
     '''
-    ev = Config().getconf(prod_metadata, cfpath=cfpath)
+    ev = Config().getconf(prod_metadata)
     with open(ev['file_list'], 'r') as f:
         for line in f:
             rpm_file = line.rstrip('\n')
@@ -99,8 +99,11 @@ def upload_pkg(prod_metadata, full_uri_path, cfpath=None):
             upload = requests.put(repo_api,
                                   data=data,
                                   headers=headers,
-                                  auth=(ev['repo_admin'], ev['repo_pass']))
-            print(line, upload.status_code)
+                                  auth=(repo_admin, repo_pass))
+            if upload.status_code not in [200]:
+                print(upload.status_code, upload.reason)
+                return False
+    return True
 
 
 # def clean_pkg(prod_metadata, full_uri_path, cfpath=None):
