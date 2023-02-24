@@ -99,7 +99,7 @@ def upload_pkg(prod_metadata, full_uri_path, repo_admin, repo_pass):
             upload = requests.put(repo_api,
                                   data=data,
                                   headers=headers,
-                                  auth=(ev['repo_admin'], ev['repo_pass']))
+                                  auth=(repo_admin, repo_pass))
             if upload.status_code not in [200]:
                 return False
             print(upload.__dict__)
