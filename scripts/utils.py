@@ -101,9 +101,8 @@ def upload_pkg(prod_metadata, full_uri_path, repo_admin, repo_pass):
                                   headers=headers,
                                   auth=(repo_admin, repo_pass))
             if upload.status_code not in [200]:
+                print(upload.status_code, upload.reason)
                 return False
-            print(upload.__dict__)
-            print(line, upload.status_code)
     return True
 
 
