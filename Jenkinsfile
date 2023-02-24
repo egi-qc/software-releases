@@ -5,6 +5,7 @@ def String[] pkg_list = []
 def download_dir = ''
 def pkgs_signed = ''
 def pkgs_upload = ''
+def build_job = ''
 
 pipeline {
     environment {
@@ -135,21 +136,42 @@ pipeline {
             }
         }
 
-        stage('Trigger validation'){
-            when {
-                expression {return pkgs_upload}
-            }
+        // stage('Trigger validation'){
+        //     when {
+        //         expression {return pkgs_upload}
+        //     }
+        //     steps {
+        //         script {
+        //             build_job = build job: 'QualityCriteriaValidation/package-install',
+        //                         parameters: [ // these values need to be extracted from the JSON
+        //                             string(name: 'Release', value: 'UMD4'),
+        //                             text(name: 'OS', value: 'centos7'),
+        //                             text(name: 'Verification_repository', value: 'https://nexusrepoegi.a.incd.pt/repository/umd/'),
+        //                             text(name: 'Packages', value: 'condor'),
+        //                             booleanParam(name: 'enable_testing_repo', value: false),
+        //                             booleanParam(name: 'enable_untested_repo', value: false),
+        //                             booleanParam(name: 'disable_updates_repo', value: false)
+        //                         ]
+        //         }
+        //     }
+        // }
+
+        stage('Check build job status') {
+            // when {
+            //     branch 'master' 
+            // }
             steps {
-                build job: 'QualityCriteriaValidation/package-install',
-                parameters: [ // these values need to be extracted from the JSON
-                    string(name: 'Release', value: 'UMD4'),
-                    text(name: 'OS', value: 'centos7'),
-                    text(name: 'Verification_repository', value: 'https://nexusrepoegi.a.incd.pt/repository/umd/'),
-                    text(name: 'Packages', value: 'condor'),
-                    booleanParam(name: 'enable_testing_repo', value: false),
-                    booleanParam(name: 'enable_untested_repo', value: false),
-                    booleanParam(name: 'disable_updates_repo', value: false)
-                ]
+                dir('scripts') {
+                    println('########')
+                    println(json_release_file)
+                    println('########')
+                    script {
+                        pkgs_cleanup = sh(
+                            returnStdout: true,
+                            script: "python3 cleanup.py ${json_release_file}" + ' ${NEXUS_CONFIG}'
+                        ).trim()
+                    }
+                }
             }
         }
     }
