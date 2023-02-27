@@ -5,6 +5,10 @@ def String[] pkg_list = []
 def download_dir = ''
 def pkgs_signed = ''
 def pkgs_upload = ''
+def dst_type = ''
+def dst_version = ''
+def platform = ''
+def arch = ''
 
 pipeline {
     environment {
@@ -27,6 +31,21 @@ pipeline {
                 }
             }
         }
+
+        stage('Get release info') {
+            steps {
+                dir('scripts') {
+                    script {
+                        def release_info = sh(
+                            returnStdout: true,
+                            script: 'python3 json_parser.py json/htcondor.json 2'
+                        ).trim()
+                        (dst_type, dst_version, platform, arch) = release_info.split(' ')
+                    }
+                }
+            }
+        }
+
         stage('Detect release changes') {
             when {
                 changeRequest()
@@ -142,10 +161,10 @@ pipeline {
             steps {
 		build job: 'QualityCriteriaValidation/package-install',
                 parameters: [ // these values need to be extracted from the JSON
-		    string(name: 'Release', value: 'UMD4'),
-                    text(name: 'OS', value: 'centos7'),
-                    text(name: 'Verification_repository', value: 'https://nexusrepoegi.a.incd.pt/repository/umd/'),
-                    text(name: 'Packages', value: 'condor'),
+		    string(name: 'Release', value: "${dst_type}${dst_version}"),
+                    text(name: 'OS', value: "$platform"),
+                    text(name: 'Verification_repository', value: ''),
+                    text(name: 'Packages', value: 'xrootd'),
                     booleanParam(name: 'enable_testing_repo', value: false),
                     booleanParam(name: 'enable_untested_repo', value: false),
                     booleanParam(name: 'disable_updates_repo', value: false)

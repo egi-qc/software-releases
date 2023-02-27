@@ -24,7 +24,7 @@ if __name__ == '__main__':
         print('2 - returns release info from the product\'s json file')
         sys.exit(1)
 
-    print(f'Get product metadata file: {sys.argv[1]}')
+    # print(f'Get product metadata file: {sys.argv[1]}')
     ev = Config().getconf(sys.argv[1])
 
     if len(sys.argv) == 3:
@@ -42,6 +42,7 @@ if __name__ == '__main__':
             sys.exit(0)
         elif sys.argv[2] == '2':
             print(dst_type, dst_version, platform, arch)
+            sys.exit(0)
 
 
     # Directory containing the json files
