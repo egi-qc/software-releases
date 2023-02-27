@@ -160,7 +160,7 @@ pipeline {
                         ).trim()
                         println(pkgs_upload)
                     }
-                } 
+                }
             }
         }
 
@@ -170,9 +170,9 @@ pipeline {
             }
             steps {
                 script {
-		    def pkg_install_job = build job: 'QualityCriteriaValidation/package-install',
+                    def pkg_install_job = build job: 'QualityCriteriaValidation/package-install',
                                           parameters: [
-		                              string(name: 'Release', value: "${dst_type}${dst_version}"),
+                                              string(name: 'Release', value: "${dst_type}${dst_version}"),
                                               text(name: 'OS', value: "$platform"),
                                               text(name: 'Packages', value: "$pkg_names"),
                                               booleanParam(name: 'enable_verification_repo', value: true),
