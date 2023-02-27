@@ -12,6 +12,7 @@ import os
 import json
 import requests
 from config import Config
+from urllib.parse import urlparse
 
 
 def create_dict_pkg(json_file):
@@ -31,6 +32,23 @@ def create_dict_pkg(json_file):
             pkg_dict[pkg] = url_file
 
     return pkg_dict
+
+
+def get_pkgs_json(json_file):
+    '''Get package names from the json file
+    '''
+    with open(json_file, 'r') as jsfd:
+        json_data = json.load(jsfd)
+
+    pkg_list = []
+    for package in json_data["target"]:
+        for url_file in package["rpms"]:
+            a = urlparse(url_file)
+            pkg_list.append(
+                os.path.splitext(os.path.basename(a.path))[0]
+            )
+
+    return pkg_list
 
 
 def get_info_json(json_file):
