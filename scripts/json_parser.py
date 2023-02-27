@@ -48,6 +48,9 @@ if __name__ == '__main__':
         elif sys.argv[2] == '3':
             print('\n'.join(utils.get_pkgs_json(ev['json_file'])))
             sys.exit(0)
+        elif sys.argv[2] == '3':
+            print(utils.get_pkgs_json(ev['json_file']))
+            sys.exit(0)
 
     # Directory containing the json files
     if not os.path.exists(ev['tmp_dir']):
