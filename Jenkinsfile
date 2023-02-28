@@ -10,7 +10,7 @@ def dst_version = ''
 def platform = ''
 def arch = ''
 def pkg_names = ''
-def pkg_install_job = ''
+def validation_job_status = ''
 
 
 pipeline {
@@ -35,23 +35,6 @@ pipeline {
             }
         }
 
-        stage('Get release info') {
-            steps {
-                dir('scripts') {
-                    script {
-                        def release_info = sh(
-                            returnStdout: true,
-                            script: "python3 json_parser.py ${json_release_file} 2"
-                        ).trim()
-                        (dst_type, dst_version, platform, arch) = release_info.split(' ')
-                        pkg_names = sh(
-                            returnStdout: true,
-                            script: "python3 json_parser.py ${json_release_file} 3"
-                        ).trim()
-                    }
-                }
-            }
-        }
         stage('Detect release changes') {
             when {
                 changeRequest()
@@ -77,6 +60,27 @@ pipeline {
                     else {
                         println("Changes to ${json_files_changed[0]} found. Processing file..")
                         json_release_file = json_files_changed[0]
+                    }
+                }
+            }
+        }
+
+        stage('Get release info') {
+            when {
+                expression {return json_release_file}
+            }
+            steps {
+                dir('scripts') {
+                    script {
+                        def release_info = sh(
+                            returnStdout: true,
+                            script: "python3 json_parser.py ${json_release_file} 2"
+                        ).trim()
+                        (dst_type, dst_version, platform, arch) = release_info.split(' ')
+                        pkg_names = sh(
+                            returnStdout: true,
+                            script: "python3 json_parser.py ${json_release_file} 3"
+                        ).trim()
                     }
                 }
             }
@@ -166,16 +170,17 @@ pipeline {
             }
             steps {
                 script {
-		    pkg_install_job = build job: 'QualityCriteriaValidation/package-install',
-                                      parameters: [
-		                          string(name: 'Release', value: "${dst_type}${dst_version}"),
-                                          text(name: 'OS', value: "$platform"),
-                                          text(name: 'Packages', value: "$pkg_names"),
-                                          booleanParam(name: 'enable_verification_repo', value: true),
-                                          booleanParam(name: 'enable_testing_repo', value: false),
-                                          booleanParam(name: 'enable_untested_repo', value: false),
-                                          booleanParam(name: 'disable_updates_repo', value: false)
-                                      ]
+		    def pkg_install_job = build job: 'QualityCriteriaValidation/package-install',
+                                          parameters: [
+		                              string(name: 'Release', value: "${dst_type}${dst_version}"),
+                                              text(name: 'OS', value: "$platform"),
+                                              text(name: 'Packages', value: "$pkg_names"),
+                                              booleanParam(name: 'enable_verification_repo', value: true),
+                                              booleanParam(name: 'enable_testing_repo', value: false),
+                                              booleanParam(name: 'enable_untested_repo', value: false),
+                                              booleanParam(name: 'disable_updates_repo', value: false)
+                                          ]
+                    validation_job_status = pkg_install_job.result
                 }
             }
         }
@@ -184,7 +189,7 @@ pipeline {
             when {
                 allOf {
                     expression {return json_release_file}
-                    equals expected: 'SUCCESS', actual: pkg_install_job.result
+                    equals expected: 'SUCCESS', actual: validation_job_status
                 }
             }
             steps {
