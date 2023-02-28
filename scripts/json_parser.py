@@ -38,7 +38,8 @@ if __name__ == '__main__':
             rel_uripath = dst_type + '/' + dst_version + '/' + platform + '/' + 'release' + '/' + arch
             uri_path = ev['repo_uri_path'] + '/' + rel_uripath
             new_json = utils.create_json(ev['json_file'], uri_path)
-            new_file = ev['tmp_base_dir'] + '/' + 'release.json'
+            # new_file = ev['tmp_base_dir'] + '/' + 'release.json'
+            new_file = 'release.json'
             utils.write_new_json(new_json, new_file)
             sys.exit(0)
         elif sys.argv[2] == '2':
