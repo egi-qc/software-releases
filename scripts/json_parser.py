@@ -45,7 +45,7 @@ if __name__ == '__main__':
             print(dst_type.upper(), dst_version, platform, arch)
             sys.exit(0)
         elif sys.argv[2] == '3':
-            print(utils.get_pkgs_json(ev['json_file']))
+            print('\n'.join(utils.get_pkgs_json(ev['json_file'])))
             sys.exit(0)
 
     # Directory containing the json files
