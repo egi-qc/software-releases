@@ -9,6 +9,9 @@ def dst_type = ''
 def dst_version = ''
 def platform = ''
 def arch = ''
+def pkg_names = ''
+def pkg_install_job = ''
+
 
 pipeline {
     environment {
@@ -38,14 +41,17 @@ pipeline {
                     script {
                         def release_info = sh(
                             returnStdout: true,
-                            script: 'python3 json_parser.py json/htcondor.json 2'
+                            script: "python3 json_parser.py ${json_release_file} 2"
                         ).trim()
                         (dst_type, dst_version, platform, arch) = release_info.split(' ')
+                        pkg_names = sh(
+                            returnStdout: true,
+                            script: "python3 json_parser.py ${json_release_file} 3"
+                        ).trim()
                     }
                 }
             }
         }
-
         stage('Detect release changes') {
             when {
                 changeRequest()
@@ -159,16 +165,36 @@ pipeline {
                 expression {return pkgs_upload}
             }
             steps {
-		build job: 'QualityCriteriaValidation/package-install',
-                parameters: [ // these values need to be extracted from the JSON
-		    string(name: 'Release', value: "${dst_type}${dst_version}"),
-                    text(name: 'OS', value: "$platform"),
-                    text(name: 'Verification_repository', value: ''),
-                    text(name: 'Packages', value: 'xrootd'),
-                    booleanParam(name: 'enable_testing_repo', value: false),
-                    booleanParam(name: 'enable_untested_repo', value: false),
-                    booleanParam(name: 'disable_updates_repo', value: false)
-                ]
+                script {
+		    pkg_install_job = build job: 'QualityCriteriaValidation/package-install',
+                                      parameters: [ // these values need to be extracted from the JSON
+		                          string(name: 'Release', value: "${dst_type}${dst_version}"),
+                                          text(name: 'OS', value: "$platform"),
+                                          text(name: 'Packages', value: "$pkg_names"),
+                                          booleanParam(name: 'enable_verification_repo', value: true),
+                                          booleanParam(name: 'enable_testing_repo', value: false),
+                                          booleanParam(name: 'enable_untested_repo', value: false),
+                                          booleanParam(name: 'disable_updates_repo', value: false)
+                                      ]
+                }
+            }
+        }
+
+        stage('Generate JSON release file') {
+            when {
+                equals expected: 'SUCCESS', actual: pkg_install_job.result
+            }
+            steps {
+                dir('scripts') {
+                    withPythonEnv('python3') {
+                        script {
+                            pkg_list = sh(
+                                returnStdout: true,
+                                script: "python3 json_parser.py ${json_release_file} 1"
+                            ).trim()
+                        }
+                    }
+                }
             }
         }
     }
