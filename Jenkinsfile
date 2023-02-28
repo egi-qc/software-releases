@@ -167,7 +167,7 @@ pipeline {
             steps {
                 script {
 		    pkg_install_job = build job: 'QualityCriteriaValidation/package-install',
-                                      parameters: [ // these values need to be extracted from the JSON
+                                      parameters: [
 		                          string(name: 'Release', value: "${dst_type}${dst_version}"),
                                           text(name: 'OS', value: "$platform"),
                                           text(name: 'Packages', value: "$pkg_names"),
