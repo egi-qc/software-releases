@@ -10,11 +10,7 @@ def dst_version = ''
 def platform = ''
 def arch = ''
 def pkg_names = ''
-<<<<<<< HEAD
 def validation_job_status = ''
-=======
-def pkg_install_job = ''
->>>>>>> 9418277 (Generate JSON release file if package_install succeeds)
 
 
 pipeline {
@@ -39,26 +35,6 @@ pipeline {
             }
         }
 
-<<<<<<< HEAD
-=======
-        stage('Get release info') {
-            steps {
-                dir('scripts') {
-                    script {
-                        def release_info = sh(
-                            returnStdout: true,
-                            script: "python3 json_parser.py ${json_release_file} 2"
-                        ).trim()
-                        (dst_type, dst_version, platform, arch) = release_info.split(' ')
-                        pkg_names = sh(
-                            returnStdout: true,
-                            script: "python3 json_parser.py ${json_release_file} 3"
-                        ).trim()
-                    }
-                }
-            }
-        }
->>>>>>> 9418277 (Generate JSON release file if package_install succeeds)
         stage('Detect release changes') {
             when {
                 changeRequest()
