@@ -182,18 +182,20 @@ pipeline {
 
         stage('Generate JSON release file') {
             when {
-                equals expected: 'SUCCESS', actual: pkg_install_job.result
+                allOf {
+                    expression {return json_release_file}
+                    equals expected: 'SUCCESS', actual: pkg_install_job.result
+                }
             }
             steps {
                 dir('scripts') {
-                    withPythonEnv('python3') {
                         script {
                             pkg_list = sh(
                                 returnStdout: true,
                                 script: "python3 json_parser.py ${json_release_file} 1"
                             ).trim()
                         }
-                    }
+                        archiveArtifacts artifacts: 'release.json', followSymlinks: false
                 }
             }
         }
