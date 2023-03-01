@@ -94,7 +94,7 @@ pipeline {
                 dir('scripts') {
                     withPythonEnv('python3') {
                         script {
-                            pkg_list = sh(
+                            sh(
                                 returnStdout: true,
                                 script: "python3 json_parser.py ${json_release_file} 0"
                             ).trim()
@@ -106,7 +106,7 @@ pipeline {
 
         stage('Download the packages to a temporary directory') {
             when {
-                expression {return pkg_list}
+                expression {return json_release_file}
             }
             steps {
                 dir('scripts') {
