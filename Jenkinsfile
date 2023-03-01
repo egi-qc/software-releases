@@ -5,6 +5,13 @@ def String[] pkg_list = []
 def download_dir = ''
 def pkgs_signed = ''
 def pkgs_upload = ''
+def dst_type = ''
+def dst_version = ''
+def platform = ''
+def arch = ''
+def pkg_names = ''
+def validation_job_status = ''
+
 
 pipeline {
     environment {
@@ -27,6 +34,7 @@ pipeline {
                 }
             }
         }
+
         stage('Detect release changes') {
             when {
                 changeRequest()
@@ -57,6 +65,27 @@ pipeline {
             }
         }
 
+        stage('Get release info') {
+            when {
+                expression {return json_release_file}
+            }
+            steps {
+                dir('scripts') {
+                    script {
+                        def release_info = sh(
+                            returnStdout: true,
+                            script: "python3 json_parser.py ${json_release_file} 2"
+                        ).trim()
+                        (dst_type, dst_version, platform, arch) = release_info.split(' ')
+                        pkg_names = sh(
+                            returnStdout: true,
+                            script: "python3 json_parser.py ${json_release_file} 3"
+                        ).trim()
+                    }
+                }
+            }
+        }
+
         stage('Collect the list of packages') {
             when {
                 expression {return json_release_file}
@@ -65,7 +94,7 @@ pipeline {
                 dir('scripts') {
                     withPythonEnv('python3') {
                         script {
-                            pkg_list = sh(
+                            sh(
                                 returnStdout: true,
                                 script: "python3 json_parser.py ${json_release_file} 0"
                             ).trim()
@@ -77,7 +106,7 @@ pipeline {
 
         stage('Download the packages to a temporary directory') {
             when {
-                expression {return pkg_list}
+                expression {return json_release_file}
             }
             steps {
                 dir('scripts') {
@@ -140,16 +169,39 @@ pipeline {
                 expression {return pkgs_upload}
             }
             steps {
-		build job: 'QualityCriteriaValidation/package-install',
-                parameters: [ // these values need to be extracted from the JSON
-		    string(name: 'Release', value: 'UMD4'),
-                    text(name: 'OS', value: 'centos7'),
-                    text(name: 'Verification_repository', value: 'https://nexusrepoegi.a.incd.pt/repository/umd/'),
-                    text(name: 'Packages', value: 'condor'),
-                    booleanParam(name: 'enable_testing_repo', value: false),
-                    booleanParam(name: 'enable_untested_repo', value: false),
-                    booleanParam(name: 'disable_updates_repo', value: false)
-                ]
+                script {
+		    def pkg_install_job = build job: 'QualityCriteriaValidation/package-install',
+                                          parameters: [
+		                              string(name: 'Release', value: "${dst_type}${dst_version}"),
+                                              text(name: 'OS', value: "$platform"),
+                                              text(name: 'Packages', value: "$pkg_names"),
+                                              booleanParam(name: 'enable_verification_repo', value: true),
+                                              booleanParam(name: 'enable_testing_repo', value: false),
+                                              booleanParam(name: 'enable_untested_repo', value: false),
+                                              booleanParam(name: 'disable_updates_repo', value: false)
+                                          ]
+                    validation_job_status = pkg_install_job.result
+                }
+            }
+        }
+
+        stage('Generate JSON release file') {
+            when {
+                allOf {
+                    expression {return json_release_file}
+                    equals expected: 'SUCCESS', actual: validation_job_status
+                }
+            }
+            steps {
+                dir('scripts') {
+                        script {
+                            pkg_list = sh(
+                                returnStdout: true,
+                                script: "python3 json_parser.py ${json_release_file} 1"
+                            ).trim()
+                        }
+                        archiveArtifacts artifacts: 'release.json', followSymlinks: false
+                }
             }
         }
     }
