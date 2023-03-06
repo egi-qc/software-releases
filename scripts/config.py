@@ -52,7 +52,9 @@ class Config:
 
     def getconf(self, product_metadata_file, cfpath=None):
         """Return all configuration variables"""
-        product_name = os.path.splitext(os.path.basename(product_metadata_file))[0]
+        product_name = os.path.basename(product_metadata_file)
+        if product_name.endswith('.json'):
+             product_name = product_name.split('.json')[0]
 
         self._file_override(cfpath=cfpath)         # Override with variables in conf file
         self._env_override()          # Override with variables in environment
