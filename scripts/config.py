@@ -52,7 +52,7 @@ class Config:
 
     def getconf(self, product_metadata_file, cfpath=None):
         """Return all configuration variables"""
-        product_name = product_metadata_file
+        product_name = os.path.basename(product_metadata_file)
         if product_metadata_file.endswith('.json'):
              product_name = product_metadata_file.removesuffix('.json')
 
