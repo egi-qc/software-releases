@@ -1,0 +1,37 @@
+{
+    "name": "cernvm.cvmfs",
+    "version": "2.9.4",
+    "documentationLinks": ["https://cvmfs.readthedocs.io/en/2.9/cpt-releasenotes.html#release-notes-for-cernvm-fs-2-9-4"],
+    "target": [
+        {
+            "id": 354,
+            "productId": 739,
+            "platform": "centos7",
+            "arch": "x86_64",
+            "repositoryURL": "sw\/production\/umd\/4\/centos7\/x86_64\/updates",
+            "gpgkey": null,
+            "rpms": null,
+            "apicallback": "https://admin-repo.egi.eu/api/report/release/xml?id=17817",
+            "status": 1
+        }
+    ],
+    "capabilities": [
+        "File Access"
+    ],
+    "currentState": "deployed",
+    "technologyProvider": "CernVM",
+    "contact": "cvmfs-devel@cern.ch",
+    "technicalContact": "cvmfs-devel@cern.ch",
+    "description": "CernVM File System (CernVM-FS) is a network file system based on HTTP and optimized to deliver experiment software in a fast, scalable, and reliable way. Files and file metadata are aggressively cached and downloaded on demand. Thereby the CernVM-FS decouples the life cycle management of the application software releases from the operating system. CernVM-FS is included in CernVM, however it can also be used outside CernVM. \n",
+    "releaseDate": "2022-08-11 18:42:21",
+    "lastUpdated": "2022-09-07 16:49:35",
+    "majorVersion": 2,
+    "minorVersion": 9,
+    "revisionVersion": 4,
+    "releaseNotes": "https://cvmfs.readthedocs.io/en/2.9/cpt-releasenotes.html#release-notes-for-cernvm-fs-2-9-4",
+    "changeLog": "N/A",
+    "repositoryURL": "sw\/production\/umd\/4",
+    "distributionType": "UMD",
+    "distributionVersion": "4.17.0",
+    "softwareConfigurationLink": ""
+}

@@ -1,0 +1,39 @@
+{
+    "name": "globus.gridftp",
+    "version": "13.26.1",
+    "documentationLinks": [
+        "http://toolkit.globus.org/toolkit/docs/6.0/gridftp/#gridftp"
+    ],
+    "target": [
+        {
+            "id": 354,
+            "productId": 739,
+            "platform": "centos7",
+            "arch": "x86_64",
+            "repositoryURL": "sw\/production\/umd\/4\/centos7\/x86_64\/updates",
+            "gpgkey": null,
+            "rpms": null,
+            "apicallback": "https://admin-repo.egi.eu/api/report/release/xml?id=17803",
+            "status": 1
+        }
+    ],
+    "capabilities": [
+        "File Transfer"
+    ],
+    "currentState": "deployed",
+    "technologyProvider": "Globus",
+    "contact": "mattias.ellert@fysast.uu.se",
+    "technicalContact": "mattias.ellert@fysast.uu.se",
+    "description": "GridFTP provides high-performance and reliable data transport.\n",
+    "releaseDate": "2022-07-20 17:07:27",
+    "lastUpdated": "2022-09-07 16:49:35",
+    "majorVersion": 13,
+    "minorVersion": 26,
+    "revisionVersion": 1,
+    "releaseNotes": "https://centos.pkgs.org/7/epel-x86_64/globus-gridftp-server-13.24-1.el7.x86_64.rpm.html",
+    "changeLog": "N\/A",
+    "repositoryURL": "sw\/production\/umd\/4",
+    "distributionType": "UMD",
+    "distributionVersion": "4.17.0",
+    "softwareConfigurationLink": ""
+}

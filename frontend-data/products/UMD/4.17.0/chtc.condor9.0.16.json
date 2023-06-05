@@ -1,0 +1,37 @@
+{
+    "name": "chtc.condor",
+    "version": "9.0.16",
+    "documentationLinks": ["http://research.cs.wisc.edu/htcondor/manual/"],
+    "target": [
+        {
+            "id": 354,
+            "productId": 739,
+            "platform": "centos7",
+            "arch": "x86_64",
+            "repositoryURL": "sw\/production\/umd\/4\/centos7\/x86_64\/updates",
+            "gpgkey": null,
+            "rpms": null,
+            "apicallback": "https://admin-repo.egi.eu/api/report/release/xml?id=17826",
+            "status": 1
+        }
+    ],
+    "capabilities": [
+        "File Access"
+    ],
+    "currentState": "deployed",
+    "technologyProvider": "chtc",
+    "contact": "jfrey.at.cs.wisc.edu",
+    "technicalContact": "jfrey.at.cs.wisc.edu",
+    "description": "HTCondor is a specialized workload management system for compute-intensive jobs. Like other full-featured batch systems, HTCondor provides a job queueing mechanism, scheduling policy, priority scheme, resource monitoring, and resource management. Users submit their serial or parallel jobs to HTCondor, HTCondor places them into a queue, chooses when and where to run the jobs based upon a policy, carefully monitors their progress, and ultimately informs the user upon completion. \n",
+    "releaseDate": "2022-08-18 16:39:41",
+    "lastUpdated": "2022-09-07 16:49:35",
+    "majorVersion": 9,
+    "minorVersion": 0,
+    "revisionVersion": 16,
+    "releaseNotes": "https://htcondor.readthedocs.io/en/v9_0/",
+    "changeLog": "This is the stable release (LTS) series of HTCondor.",
+    "repositoryURL": "sw\/production\/umd\/4",
+    "distributionType": "UMD",
+    "distributionVersion": "4.17.0",
+    "softwareConfigurationLink": ""
+}

@@ -1,0 +1,37 @@
+{
+    "name": "cern.davix",
+    "version": "0.8.2",
+    "documentationLinks": ["https://davix.web.cern.ch/davix/docs/devel/"],
+    "target": [
+        {
+            "id": 354,
+            "productId": 739,
+            "platform": "centos7",
+            "arch": "x86_64",
+            "repositoryURL": "sw\/production\/umd\/4\/centos7\/x86_64\/updates",
+            "gpgkey": null,
+            "rpms": null,
+            "apicallback": "https://admin-repo.egi.eu/api/report/release/xml?id=17818",
+            "status": 1
+        }
+    ],
+    "capabilities": [
+        "Data Access"
+    ],
+    "currentState": "deployed",
+    "technologyProvider": "CERN",
+    "contact": "dmc-support@cern.ch",
+    "technicalContact": "dmc-support@cern.ch",
+    "description": "davix is a C++ toolkit for advanced I/O on remote resources with HTTP based protocols. \n",
+    "releaseDate": "2022-08-12 14:51:09",
+    "lastUpdated": "2022-09-07 16:49:35",
+    "majorVersion": 0,
+    "minorVersion": 8,
+    "revisionVersion": 2,
+    "releaseNotes": "https://github.com/cern-fts/davix/releases/tag/R_0_8_2",
+    "changeLog": "N/A",
+    "repositoryURL": "sw\/production\/umd\/4",
+    "distributionType": "UMD",
+    "distributionVersion": "4.17.0",
+    "softwareConfigurationLink": ""
+}

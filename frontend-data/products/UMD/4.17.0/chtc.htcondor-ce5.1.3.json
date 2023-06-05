@@ -1,0 +1,37 @@
+{
+    "name": "chtc.htcondor-ce",
+    "version": "5.1.3",
+    "documentationLinks": ["https://htcondor.github.io/htcondor-ce/"],
+    "target": [
+        {
+            "id": 354,
+            "productId": 739,
+            "platform": "centos7",
+            "arch": "x86_64",
+            "repositoryURL": "sw\/production\/umd\/4\/centos7\/x86_64\/updates",
+            "gpgkey": null,
+            "rpms": null,
+            "apicallback": "https://admin-repo.egi.eu/api/report/release/xml?id=17696",
+            "status": 1
+        }
+    ],
+    "capabilities": [
+        "File Access"
+    ],
+    "currentState": "deployed",
+    "technologyProvider": "chtc",
+    "contact": "jfrey.at.cs.wisc.edu",
+    "technicalContact": "jfrey.at.cs.wisc.edu",
+    "description": "HTCondor-CE is a special configuration of the HTCondor software designed to be a job gateway solution for the OSG. It is configured to use the JobRouter daemon to delegate jobs by transforming and submitting them to the site's batch system. Currently HTCondor suppots LSF, PBS and TORQUE, SGE, and Slurm batch systems. \n",
+    "releaseDate": "2022-04-28 16:54:22",
+    "lastUpdated": "2022-09-07 16:49:35",
+    "majorVersion": 5,
+    "minorVersion": 1,
+    "revisionVersion": 3,
+    "releaseNotes": "https://htcondor.github.io/htcondor-ce",
+    "changeLog": "This is the stable release series of HTCondor-CE.",
+    "repositoryURL": "sw\/production\/umd\/4",
+    "distributionType": "UMD",
+    "distributionVersion": "4.17.0",
+    "softwareConfigurationLink": ""
+}

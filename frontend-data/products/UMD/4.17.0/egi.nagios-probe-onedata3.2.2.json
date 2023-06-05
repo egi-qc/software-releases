@@ -1,0 +1,37 @@
+{
+    "name": "egi.nagios-probe-onedata",
+    "version": "3.2.2",
+    "documentationLinks": [],
+    "target": [
+        {
+            "id": 354,
+            "productId": 739,
+            "platform": "centos7",
+            "arch": "x86_64",
+            "repositoryURL": "sw\/production\/umd\/4\/centos7\/x86_64\/updates",
+            "gpgkey": null,
+            "rpms": null,
+            "apicallback": "https://admin-repo.egi.eu/api/report/release/xml?id=17802",
+            "status": 1
+        }
+    ],
+    "capabilities": [
+        "Client Tools"
+    ],
+    "currentState": "deployed",
+    "technologyProvider": "egi",
+    "contact": "eimamagi@srce.hr",
+    "technicalContact": "eimamagi@srce.hr",
+    "description": "Nagios probes for monitoring Argus services.\n",
+    "releaseDate": "2022-07-20 09:33:05",
+    "lastUpdated": "2022-09-07 16:49:35",
+    "majorVersion": 3,
+    "minorVersion": 2,
+    "revisionVersion": 2,
+    "releaseNotes": "nagios probe for Argus service",
+    "changeLog": "N\/A",
+    "repositoryURL": "sw\/production\/umd\/4",
+    "distributionType": "UMD",
+    "distributionVersion": "4.17.0",
+    "softwareConfigurationLink": ""
+}

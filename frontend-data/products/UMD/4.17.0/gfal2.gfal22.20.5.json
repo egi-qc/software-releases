@@ -1,0 +1,37 @@
+{
+    "name": "gfal2.gfal2",
+    "version": "2.20.5",
+    "documentationLinks": ["https://dmc-docs.web.cern.ch/dmc-docs/gfal2/gfal2.html"],
+    "target": [
+        {
+            "id": 354,
+            "productId": 739,
+            "platform": "centos7",
+            "arch": "x86_64",
+            "repositoryURL": "sw\/production\/umd\/4\/centos7\/x86_64\/updates",
+            "gpgkey": null,
+            "rpms": null,
+            "apicallback": "https://admin-repo.egi.eu/api/report/release/xml?id=17693",
+            "status": 1
+        }
+    ],
+    "capabilities": [
+        "Client Tools"
+    ],
+    "currentState": "deployed",
+    "technologyProvider": "gfal2",
+    "contact": "dmc-support@cern.ch",
+    "technicalContact": "dmc-support@cern.ch",
+    "description": "GFAL (Grid File Access Library ) is a C library providing an abstraction layer of the grid storage system complexity. \n",
+    "releaseDate": "2022-04-28 16:00:15",
+    "lastUpdated": "2022-09-07 16:49:35",
+    "majorVersion": 6,
+    "minorVersion": 2,
+    "revisionVersion": 44,
+    "releaseNotes": "https://gitlab.cern.ch/dmc/gfal2/-/tags/v2.20-5",
+    "changeLog": "",
+    "repositoryURL": "sw\/production\/umd\/4",
+    "distributionType": "UMD",
+    "distributionVersion": "4.17.0",
+    "softwareConfigurationLink": ""
+}

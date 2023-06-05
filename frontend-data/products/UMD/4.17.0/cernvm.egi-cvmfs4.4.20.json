@@ -1,0 +1,37 @@
+{
+    "name": "cernvm.egi-cvmfs",
+    "version": "4.4.20",
+    "documentationLinks": ["http://www.nordugrid.org/arc/arc6"],
+    "target": [
+        {
+            "id": 354,
+            "productId": 739,
+            "platform": "centos7",
+            "arch": "x86_64",
+            "repositoryURL": "sw\/production\/umd\/4\/centos7\/x86_64\/updates",
+            "gpgkey": null,
+            "rpms": null,
+            "apicallback": "https://admin-repo.egi.eu/api/report/release/xml?id=17692",
+            "status": 1
+        }
+    ],
+    "capabilities": [
+        "File Access"
+    ],
+    "currentState": "deployed",
+    "technologyProvider": "CernVM",
+    "contact": "cvmfs-devel@cern.ch",
+    "technicalContact": "cvmfs-devel@cern.ch",
+    "description": "Configuration file for the egi-cvmfs services. \n",
+    "releaseDate": "2022-08-12 15:00:08",
+    "lastUpdated": "2022-09-07 16:49:35",
+    "majorVersion": 4,
+    "minorVersion": 4,
+    "revisionVersion": 20,
+    "releaseNotes": "https://github.com/cvmfs-contrib/egi-cvmfs/releases/tag/v4-4",
+    "changeLog": "",
+    "repositoryURL": "sw\/production\/umd\/4",
+    "distributionType": "UMD",
+    "distributionVersion": "4.17.0",
+    "softwareConfigurationLink": ""
+}
