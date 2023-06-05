@@ -1,0 +1,38 @@
+{
+    "name": "egi.glite-info-provider",
+    "version": "1.5.0",
+    "documentationLinks": ["https://github.com/EGI-Federation/glite-info-provider-ldap"],
+    "target": [
+        {
+            "id": 354,
+            "productId": 739,
+            "platform": "centos7",
+            "arch": "x86_64",
+            "repositoryURL": "sw\/production\/umd\/4\/centos7\/x86_64\/updates",
+            "gpgkey": null,
+            "rpms": null,
+            "apicallback": "https://admin-repo.egi.eu/api/report/release/xml?id=17852",
+            "status": 1
+        }
+    ],
+    "capabilities": [
+        "Client Tools"
+    ],
+    "currentState": "deployed",
+    "technologyProvider": "EGI",
+    "contact": "baptiste.grenier@egi.eu",
+    "technicalContact": "baptiste.grenier@egi.eu",
+    "description": "glite-info-update-endpoints is a cron job that runs every hour to download the list of site BDII URLs that are going to be used by the top level BDII to publish their resources. \n",
+    "releaseDate": "2022-09-19 14:27:05",
+    "lastUpdated": "2022-09-22 14:51:33",
+    "majorVersion": 1,
+    "minorVersion": 5,
+    "revisionVersion": 0,
+    "releaseNotes": "https://github.com/EGI-Federation/glite-info-provider-ldap/releases/tag/v1.5.0",
+    "changeLog": "N/A",
+    "repositoryURL": "sw\/production\/umd\/4",
+    "distributionType": "UMD",
+    "distributionVersion": "4.17.1",
+    "softwareConfigurationLink": ""
+}
+

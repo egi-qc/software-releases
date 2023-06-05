@@ -1,0 +1,39 @@
+{
+    "name": "dcache.dcache",
+    "version": "7.2.15",
+    "documentationLinks": ["https://www.dcache.org/manuals/index.shtml"],
+    "target": [
+        {
+            "id": 354,
+            "productId": 739,
+            "platform": "centos7",
+            "arch": "x86_64",
+            "repositoryURL": "sw\/production\/umd\/4\/centos7\/x86_64\/updates",
+            "gpgkey": null,
+            "rpms": null,
+            "apicallback": "https://admin-repo.egi.eu/api/report/release/xml?id=17848",
+            "status": 1
+        }
+    ],
+    "capabilities": [
+        "File Access", "File Transfer"
+    ],
+    "currentState": "deployed",
+    "technologyProvider": "EGI",
+    "contact": "juergen.starek@desy.de",
+    "technicalContact": "juergen.starek@desy.de",
+    "description": "dCache provides system for storing and retrieving huge amounts of data, distributed among a large number of heterogenous server nodes, under a single virtual filesystem tree with a variety of standard access methods. \n",
+    "releaseDate": "2022-09-13 14:36:16",
+    "lastUpdated": "2022-09-22 14:51:33",
+    "majorVersion": 7,
+    "minorVersion": 2,
+    "revisionVersion": 15,
+    "releaseNotes": "https://www.dcache.org/old/downloads/1.9/index.shtml#server-7.2",
+    "changeLog": "N/A",
+    "repositoryURL": "sw\/production\/umd\/4",
+    "distributionType": "UMD",
+    "distributionVersion": "4.17.1",
+    "softwareConfigurationLink": ""
+}
+
+

@@ -1,0 +1,40 @@
+{
+    "name": "infn.argus",
+    "version": "1.7.5",
+    "documentationLinks": ["https://github.com/argus-authz/"],
+    "target": [
+        {
+            "id": 354,
+            "productId": 739,
+            "platform": "centos7",
+            "arch": "x86_64",
+            "repositoryURL": "sw\/production\/umd\/4\/centos7\/x86_64\/updates",
+            "gpgkey": null,
+            "rpms": null,
+            "apicallback": "https://admin-repo.egi.eu/api/report/release/xml?id=17854",
+            "status": 1
+        }
+    ],
+    "capabilities": [
+        "Authorization"
+    ],
+    "currentState": "deployed",
+    "technologyProvider": "INFN",
+    "contact": "enrico.vianello@cnaf.infn.it",
+    "technicalContact": "enrico.vianello@cnaf.infn.it",
+    "description": "https://github.com/argus-authz/argus-parent/releases/tag/v1.7.4 \n",
+    "releaseDate": "2022-09-22 10:06:16",
+    "lastUpdated": "2022-09-22 14:51:33",
+    "majorVersion": 1,
+    "minorVersion": 7,
+    "revisionVersion": 5,
+    "releaseNotes": "https://github.com/argus-authz/",
+    "changeLog": "This release provides a fix for the argus pepd to avoid process fails to start if uncomnon DN found the IGTF certs.",
+    "repositoryURL": "sw\/production\/umd\/4",
+    "distributionType": "UMD",
+    "distributionVersion": "4.17.1",
+    "softwareConfigurationLink": ""
+}
+
+
+
