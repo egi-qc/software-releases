@@ -15,29 +15,26 @@ For example for Alma Linux 9 x98_64, the complete paths are:
 * <https://nexusrepoegi.a.incd.pt/repository/umd/5/al9/contrib/x86_64>
 
 The process is as follows:
-1. Creation of a Pull Request (PR), containing the details of the new product's
-   release (within `json/` folder). Then, the CI/CD pipeline runs the following
-   steps:
 
-| **#** | Script                          | Description              |
-| -- | ---------------------------------- | ------------------------ |
-| 01 | <Jenkins SCM plugin>               | git clone repository - get json |
-| 02 | `json_parser.py`                   | Parse json, get the list of files to download and produce list of filenames (packages). |
-| 03 | `download_pkgs.py` (option 0)      | Download the packages from original developer location, to a temporary directory. |
-| 04 | `rpm_sign.sh` (option 0)           | RPM sign each package and verify signature. |
-| 05 | `upload_pkgs.py` (option 0)        | Upload each package to nexusrepo - testing repository. |
-| 06 | <Jenkins' `package-install` job>   | Validate package installations from testing repository and perform functional tests. |
-| 07 | <Jenkins' `release-candidate` job> | Install all packages in release repo together with the new packages from testing |
-| 08 | `json_parser.py` (option 1)        | Produce new json file as asset of the new release |
+| **#** | Script                            | Description              |
+| -- | ------------------------------------ | ------------------------ |
+| 00 | N.A.                                 | Creation of a Pull Request (PR), containing the details of the new product's release (within `json/` folder). |
+| 01 | < Jenkins SCM plugin >               | git clone repository - get json |
+| 02 | `json_parser.py`                     | Parse json, get the list of files to download and produce list of filenames (packages). |
+| 03 | `download_pkgs.py` (option 0)        | Download the packages from original developer location, to a temporary directory. |
+| 04 | `rpm_sign.sh` (option 0)             | RPM sign each package and verify signature. |
+| 05 | `upload_pkgs.py` (option 0)          | Upload each package to nexusrepo - testing repository. |
+| 06 | < Jenkins' `package-install` job >   | Validate package installations from testing repository and perform functional tests. |
+| 07 | < Jenkins' `release-candidate` job > | Install all packages in release repo together with the new packages from testing |
+| 08 | `json_parser.py` (option 1)          | Produce new json file as asset of the new release |
+| 09 | N.A.                                 | Approve the PR |
+| 10 | N.A.                                 | Run manually the following scripts |
+| 11 | `upload_pkgs.py` (option 1)          | Upload packages to release repo |
+| 12 | `cleanup.py`                         | Cleanup - remove packages from testing repo |
+| 13 | N.A.                                 | Create the git release (and git tag) - add json file as asset of the release. |
+| 14 | N.A.                                 | Get json file in the frontend for publication. |
 
-2. Approve the PR
-3. Run manually the following scripts:
-
-| 09 | `upload_pkgs.py` (option 1)      | Upload packages to release repo |
-| 10 | `cleanup.py`                     | Cleanup - remove packages from testing repo |
-
-4. Create the git release (and git tag) - add json file as asset of the release.
-5. Get json file in the frontend for publication.
+![UMD/CMD pipeline](imgs/umdcmdpipeline.png)
 
 ## Pre condition
 
