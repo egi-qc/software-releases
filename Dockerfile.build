@@ -4,11 +4,11 @@ MAINTAINER Pablo Orviz <orviz@ifca.unican.es>
 USER root
 
 RUN yum makecache --timer && yum -y install \
-        git \
-	java-11-openjdk-headless \  
-	python3 python3-pip \
-        rpm-sign \
-        sudo
+    git \
+    java-11-openjdk-headless \
+    python3 python3-pip \
+    rpm-sign \
+    sudo
 
 # Copy and import UMD key
 COPY RPM-GPG-KEY-umd-cmd .
