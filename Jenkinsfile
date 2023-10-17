@@ -155,27 +155,27 @@ pipeline {
             }
         }
 
-        stage('Upload packages'){
-            when {
-                expression {return download_dir}
-            }
-            steps {
-                dir('scripts') {
-                    script {
-                        pkgs_upload = sh(
-                            returnStdout: true,
-                            script: "python3 upload_pkgs.py ${json_release_file} 0" + ' ${NEXUS_CONFIG}'
-                        ).trim()
-                        println(pkgs_upload)
-                    }
-                }
-            }
-        }
+        // stage('Upload packages'){
+        //     when {
+        //         expression {return download_dir}
+        //     }
+        //     steps {
+        //         dir('scripts') {
+        //             script {
+        //                 pkgs_upload = sh(
+        //                     returnStdout: true,
+        //                     script: "python3 upload_pkgs.py ${json_release_file} 0" + ' ${NEXUS_CONFIG}'
+        //                 ).trim()
+        //                 println(pkgs_upload)
+        //             }
+        //         }
+        //     }
+        // }
 
         stage('Trigger validation'){
-            when {
-                expression {return pkgs_upload}
-            }
+            // when {
+            //     expression {return pkgs_upload}
+            // }
             steps {
                 script {
                     def pkg_install_job = build job: 'QualityCriteriaValidation/package-install',
