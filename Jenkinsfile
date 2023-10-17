@@ -1,5 +1,6 @@
 #!/usr/bin/groovy
 
+// Product validation
 def json_release_file = ''
 def String[] pkg_list = []
 def download_dir = ''
@@ -11,6 +12,10 @@ def platform = ''
 def arch = ''
 def pkg_names = ''
 def validation_job_status = ''
+
+// RC validation
+def release_candidate_job_status = ''
+def String[] extra_repository = []
 
 
 pipeline {
@@ -27,6 +32,9 @@ pipeline {
         }
     }
     stages {
+        //
+        // Testing branch (product validation)
+        //
         stage('Install dependencies') {
             steps {
                 withPythonEnv('python3') {
@@ -201,6 +209,25 @@ pipeline {
                         ).trim()
                     }
                     archiveArtifacts artifacts: 'release.json', followSymlinks: false
+                }
+            }
+        }
+
+        //
+        // Production branch (RC validation)
+        //
+        stage('Trigger Release Candidate validation'){
+            when {
+                changeRequest target: 'production'
+            }
+            steps {
+                script {
+                    def release_candidate_job = build job: 'QualityCriteriaValidation/release-candidate',
+                                                    parameters: [
+                                                        string(name: 'Release', value: "${dst_type}${dst_version}"),
+                                                        text(name: 'Extra_repository', value: "$extra_repository")
+                                                    ]
+                    release_candidate_job_status = release_candidate_job.result
                 }
             }
         }
