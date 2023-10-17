@@ -45,7 +45,10 @@ pipeline {
 
         stage('Detect release changes') {
             when {
-                changeRequest target: 'test/testing'
+                allOf {
+                    changeRequest target: 'test/testing'
+                    changeset '**/*.json'
+                }
             }
             steps {
                 script {
