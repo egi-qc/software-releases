@@ -45,7 +45,7 @@ pipeline {
 
         stage('Detect release changes') {
             when {
-                changeRequest target: 'testing'
+                changeRequest target: 'test/testing'
             }
             steps {
                 script {
@@ -218,7 +218,7 @@ pipeline {
         //
         stage('Trigger Release Candidate validation'){
             when {
-                changeRequest target: 'production'
+                changeRequest target: 'test/production'
             }
             steps {
                 script {
