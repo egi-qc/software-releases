@@ -14,7 +14,6 @@ def pkg_names = ''
 def validation_job_status = ''
 
 // RC validation
-def release_candidate_job = ''
 def release_candidate_job_status = ''
 def String[] extra_repository = []
 
