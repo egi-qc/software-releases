@@ -47,8 +47,8 @@ pipeline {
             when {
                 // changeset '**/*.json'
                 anyOf {
-                    changeRequest target: 'testing'
-                    changeRequest target: 'production'
+                    changeRequest target: 'test/testing'
+                    changeRequest target: 'test/production'
                 }
             }
             steps {
