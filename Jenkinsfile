@@ -37,7 +37,7 @@ pipeline {
 
         stage('Detect release changes') {
             when {
-                changeRequest()
+                changeRequest target: 'testing'
             }
             steps {
                 script {
