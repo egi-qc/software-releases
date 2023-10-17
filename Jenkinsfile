@@ -229,7 +229,7 @@ pipeline {
         //
         stage('Trigger Release Candidate validation'){
             when {
-                changeRequest target: 'test/production'
+                changeRequest target: 'test/production_umd5'
             }
             steps {
                 script {
