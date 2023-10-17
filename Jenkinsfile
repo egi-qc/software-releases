@@ -173,9 +173,10 @@ pipeline {
         // }
 
         stage('Trigger validation'){
-            // when {
-            //     expression {return pkgs_upload}
-            // }
+            when {
+                // expression {return pkgs_upload}
+                changeRequest target: 'test/testing'
+            }
             steps {
                 script {
                     def pkg_install_job = build job: 'QualityCriteriaValidation/package-install',
