@@ -45,10 +45,9 @@ pipeline {
 
         stage('Detect release changes') {
             when {
-                // changeset '**/*.json'
                 anyOf {
-                    changeRequest target: 'test/testing'
-                    changeRequest target: 'test/production'
+                    changeRequest target: 'testing/umd5'
+                    changeRequest target: 'production/umd5'
                 }
             }
             steps {
@@ -101,7 +100,7 @@ pipeline {
         stage('Collect the list of packages') {
             when {
                 allOf {
-                    changeRequest target: 'test/testing'
+                    changeRequest target: 'testing/umd5'
                     expression {return json_release_file}
                 }
             }
@@ -122,7 +121,7 @@ pipeline {
         stage('Download the packages to a temporary directory') {
             when {
                 allOf {
-                    changeRequest target: 'test/testing'
+                    changeRequest target: 'testing/umd5'
                     expression {return json_release_file}
                 }
             }
@@ -165,27 +164,26 @@ pipeline {
             }
         }
 
-        // stage('Upload packages'){
-        //     when {
-        //         expression {return download_dir}
-        //     }
-        //     steps {
-        //         dir('scripts') {
-        //             script {
-        //                 pkgs_upload = sh(
-        //                     returnStdout: true,
-        //                     script: "python3 upload_pkgs.py ${json_release_file} 0" + ' ${NEXUS_CONFIG}'
-        //                 ).trim()
-        //                 println(pkgs_upload)
-        //             }
-        //         }
-        //     }
-        // }
+        stage('Upload packages'){
+            when {
+                expression {return download_dir}
+            }
+            steps {
+                dir('scripts') {
+                    script {
+                        pkgs_upload = sh(
+                            returnStdout: true,
+                            script: "python3 upload_pkgs.py ${json_release_file} 0" + ' ${NEXUS_CONFIG}'
+                        ).trim()
+                        println(pkgs_upload)
+                    }
+                }
+            }
+        }
 
         stage('Trigger validation'){
             when {
-                // expression {return pkgs_upload}
-                changeRequest target: 'test/testing'
+                expression {return pkgs_upload}
             }
             steps {
                 script {
@@ -229,7 +227,7 @@ pipeline {
         //
         stage('Trigger Release Candidate validation'){
             when {
-                changeRequest target: 'test/production_umd5'
+                changeRequest target: 'production/umd5'
             }
             steps {
                 script {
