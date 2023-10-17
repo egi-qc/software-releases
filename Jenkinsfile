@@ -46,7 +46,10 @@ pipeline {
         stage('Detect release changes') {
             when {
                 allOf {
-                    changeRequest target: 'test/testing'
+                    anyOf {
+                        changeRequest target: 'test/testing'
+                        changeRequest target: 'test/production'
+                    }
                     changeset '**/*.json'
                 }
             }
@@ -99,7 +102,10 @@ pipeline {
 
         stage('Collect the list of packages') {
             when {
-                expression {return json_release_file}
+                allOf {
+                    changeRequest target: 'test/testing'
+                    expression {return json_release_file}
+                }
             }
             steps {
                 dir('scripts') {
@@ -117,7 +123,10 @@ pipeline {
 
         stage('Download the packages to a temporary directory') {
             when {
-                expression {return json_release_file}
+                allOf {
+                    changeRequest target: 'test/testing'
+                    expression {return json_release_file}
+                }
             }
             steps {
                 dir('scripts') {
