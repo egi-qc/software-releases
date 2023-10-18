@@ -47,8 +47,8 @@ pipeline {
             when {
                 // changeset '**/*.json'
                 anyOf {
-                    changeRequest target: 'test/testing'
-                    changeRequest target: 'test/production'
+                    changeRequest target: 'test/testing_umd5'
+                    changeRequest target: 'test/production_umd5'
                 }
             }
             steps {
@@ -101,7 +101,7 @@ pipeline {
         stage('Collect the list of packages') {
             when {
                 allOf {
-                    changeRequest target: 'test/testing'
+                    changeRequest target: 'test/testing_umd5'
                     expression {return json_release_file}
                 }
             }
@@ -122,7 +122,7 @@ pipeline {
         stage('Download the packages to a temporary directory') {
             when {
                 allOf {
-                    changeRequest target: 'test/testing'
+                    changeRequest target: 'test/testing_umd5'
                     expression {return json_release_file}
                 }
             }
@@ -185,7 +185,7 @@ pipeline {
         stage('Trigger validation'){
             when {
                 // expression {return pkgs_upload}
-                changeRequest target: 'test/testing'
+                changeRequest target: 'test/testing_umd5'
             }
             steps {
                 script {
