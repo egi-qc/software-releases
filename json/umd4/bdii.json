@@ -16,10 +16,10 @@
     "repositoryURL" : "umd/5/al9/release/x86_64",
     "distributionType": "UMD",
     "distributionVersion": "5.0.0",
-    "capabilities": ["File Access", "Workload Management System"], 
+    "capabilities": ["File Access", "Workload Management System"],
     "target": [
         {
-            "platform": "al9", 
+            "platform": "al9",
             "arch": "x86_64",
             "repositoryURL": "umd/5/al9/release/x86_64",
             "gpgkey": "http://repository.egi.eu/sw/production/umd/UMD-RPM-PGP-KEY",
