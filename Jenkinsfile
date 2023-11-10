@@ -20,9 +20,9 @@ def String[] extra_repository = []
 
 pipeline {
     environment {
-        GPG_PRIVATE_KEY = credentials('6e2f2e3c-9368-4aae-b017-a5bae4591ce4')
-        GPG_PRIVATE_KEY_PASSPHRASE = credentials('d8ec011f-236a-404e-a6cb-ac6f9adfae82')
-        GPG_PUBLIC_KEY = credentials('eef6cd3d-b410-489d-86fb-349a53abe498')
+        GPG_PRIVATE_KEY = credentials('327d4c0c-baae-458a-b1b6-21a256974c41')
+        GPG_PRIVATE_KEY_PASSPHRASE = credentials('749515f4-4938-4034-aa5c-fb4839b4b4bf')
+        GPG_PUBLIC_KEY = credentials('901f6bce-3b15-4fe0-8cc8-b96fe2807fe3')
         NEXUS_CONFIG = credentials('ecfb20e4-0c97-48e3-9e36-50e42b0e59f1')
     }
 
@@ -46,8 +46,8 @@ pipeline {
         stage('Detect release changes') {
             when {
                 anyOf {
-                    changeRequest target: 'testing/umd5'
-                    changeRequest target: 'production/umd5'
+                    changeRequest target: 'testing/umd4'
+                    changeRequest target: 'production/umd4'
                 }
             }
             steps {
@@ -100,7 +100,7 @@ pipeline {
         stage('Collect the list of packages') {
             when {
                 allOf {
-                    changeRequest target: 'testing/umd5'
+                    changeRequest target: 'testing/umd4'
                     expression {return json_release_file}
                 }
             }
@@ -121,7 +121,7 @@ pipeline {
         stage('Download the packages to a temporary directory') {
             when {
                 allOf {
-                    changeRequest target: 'testing/umd5'
+                    changeRequest target: 'testing/umd4'
                     expression {return json_release_file}
                 }
             }
@@ -227,13 +227,13 @@ pipeline {
         //
         stage('Trigger Release Candidate validation'){
             when {
-                changeRequest target: 'production/umd5'
+                changeRequest target: 'production/umd4'
             }
             steps {
                 script {
                     def release_candidate_job = build job: 'QualityCriteriaValidation/release-candidate',
                                                     parameters: [
-                                                        string(name: 'Release', value: "UMD5"),
+                                                        string(name: 'Release', value: "UMD4"),
                                                         text(name: 'Extra_repository', value: "$extra_repository")
                                                     ]
                     release_candidate_job_status = release_candidate_job.result
