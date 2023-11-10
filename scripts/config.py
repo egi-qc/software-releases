@@ -52,13 +52,13 @@ class Config:
 
     def getconf(self, product_metadata_file, cfpath=None):
         """Return all configuration variables"""
-        product_name = os.path.basename(product_metadata_file)
+        product_name = product_metadata_file
         if product_name.endswith('.json'):
              product_name = product_name.split('.json')[0]
 
         self._file_override(cfpath=cfpath)         # Override with variables in conf file
         self._env_override()          # Override with variables in environment
-        Config.conf['json_file'] = Config.conf['json_dir'] + '/' + product_name + '.json'
+        Config.conf['json_file'] = '../' + product_name + '.json'
         Config.conf['tmp_dir'] = Config.conf['tmp_base_dir'] + '/' + product_name
         Config.conf['file_list'] = Config.conf['tmp_base_dir'] + '/' + product_name + '.lst'
         Config.conf['api_uri'] = Config.conf['repo_uri'] + '/service/rest/v1'
