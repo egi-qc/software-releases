@@ -15,13 +15,13 @@
     "documentationLinks" : ["http://bdii.readthedocs.io/","link2"],
     "repositoryURL" : "umd/5/al9/release/x86_64",
     "distributionType": "UMD",
-    "distributionVersion": "5.0.0",
+    "distributionVersion": "4.0.0",
     "capabilities": ["File Access", "Workload Management System"],
     "target": [
         {
-            "platform": "al9",
+            "platform": "centos7",
             "arch": "x86_64",
-            "repositoryURL": "umd/5/al9/release/x86_64",
+            "repositoryURL": "umd/4/centos7/release/x86_64/",
             "gpgkey": "http://repository.egi.eu/sw/production/umd/UMD-RPM-PGP-KEY",
             "rpms": ["https://kojipkgs.fedoraproject.org//packages/bdii/6.0.0/1.el9/noarch/bdii-6.0.0-1.el9.noarch.rpm"]
         }
