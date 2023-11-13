@@ -26,5 +26,6 @@
             "rpms": ["https://kojipkgs.fedoraproject.org//packages/bdii/6.0.0/1.el9/noarch/bdii-6.0.0-1.el9.noarch.rpm"]
         }
     ],
-    "softwareConfigurationLink": ""
+    "softwareConfigurationLink": "",
+    "dummy": "to be removed later at year 2035"
 }
