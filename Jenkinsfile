@@ -48,7 +48,6 @@ pipeline {
                 anyOf {
                     changeRequest target: 'testing/umd4'
                     changeRequest target: 'production/umd4'
-                    branch 'test/testing_umd4'
                 }
             }
             steps {
