@@ -2,6 +2,7 @@
 """Configurations options and treatment/overrinding"""
 import os
 from configparser import ConfigParser
+import utils
 
 
 class Config:
@@ -10,15 +11,27 @@ class Config:
     Config.init()
     """
     conf = {}
-    conf['repo_uri'] = 'https://mynexusrepo.mydomain'
-    conf['repo_admin'] = 'admin'
-    conf['repo_pass'] = 'mypass'
-    conf['tmp_base_dir'] = '/tmp/umdcmd'
-    conf['json_dir'] = '../json'
 
-    conf['json_file'] = ''
-    conf['tmp_dir'] = ''
-    conf['file_list'] = ''
+    def __init__(self, yaml_file=None) -> None:
+        if yaml_file is None:
+            self.conf['repo_uri'] = 'https://mynexusrepo.mydomain'
+            self.conf['repo_admin'] = 'admin'
+            self.conf['repo_pass'] = 'mypass'
+            self.conf['tmp_base_dir'] = '/tmp/umdcmd'
+            self.conf['json_dir'] = '../'
+            self.conf['json_file'] = ''
+            self.conf['tmp_dir'] = ''
+            self.conf['file_list'] = ''
+        else:
+            config = utils.load_config(yaml_file)
+            self.conf['repo_uri'] = config.get('repo_uri')
+            self.conf['repo_admin'] = config.get('repo_admin')
+            self.conf['repo_pass'] = config.get('repo_pass')
+            self.conf['tmp_base_dir'] = config.get('tmp_base_dir')
+            self.conf['json_dir'] = config.get('json_dir')
+            self.conf['json_file'] = config.get('json_file')
+            self.conf['tmp_dir'] = config.get('tmp_dir')
+            self.conf['file_list'] = config.get('file_list')
 
     def _conf_file_read(self, cfpath, ignore_keys=None):
         """
@@ -58,7 +71,7 @@ class Config:
 
         self._file_override(cfpath=cfpath)         # Override with variables in conf file
         self._env_override()          # Override with variables in environment
-        Config.conf['json_file'] = '../' + product_name + '.json'
+        Config.conf['json_file'] = Config.conf['json_dir'] + product_name + '.json'
         Config.conf['tmp_dir'] = Config.conf['tmp_base_dir'] + '/' + product_name
         Config.conf['file_list'] = Config.conf['tmp_base_dir'] + '/' + product_name + '.lst'
         Config.conf['api_uri'] = Config.conf['repo_uri'] + '/service/rest/v1'
