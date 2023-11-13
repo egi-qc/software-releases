@@ -54,15 +54,13 @@ pipeline {
                 script {
                     last_commit = sh(
                         returnStdout: true,
-                        script: 'git diff-tree --name-only --no-commit-id -r HEAD').trim()
-                    println("Files found: ${last_commit}")
+                        script: 'git diff-tree --name-only --no-commit-id -r HEAD^1').trim()
                     json_files_changed = []
                     last_commit.split('\n').each {
                         if (it.contains('.json')) {
                             json_files_changed.add(it)
                         }
                     }
-                    println("JSON files changed content: ${json_files_changed.toListString()}")
                     if (json_files_changed.size() == 0) {
                         println('No changes detected to any JSON release file')
                     }
