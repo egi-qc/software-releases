@@ -55,12 +55,14 @@ pipeline {
                     last_commit = sh(
                         returnStdout: true,
                         script: 'git diff-tree --name-only --no-commit-id -r HEAD').trim()
+                    println("Files found: ${last_commit}")
                     json_files_changed = []
                     last_commit.split('\n').each {
                         if (it.contains('.json')) {
                             json_files_changed.add(it)
                         }
                     }
+                    println("JSON files changed content: ${json_files_changed.toListString()}")
                     if (json_files_changed.size() == 0) {
                         println('No changes detected to any JSON release file')
                     }
@@ -157,7 +159,7 @@ pipeline {
                             returnStdout: true,
                             script: "./rpm_sign.sh ${download_dir} 0"
                         ).trim()
-                    	println(pkgs_signed)
+                        println(pkgs_signed)
                         sh "./rpm_sign.sh ${download_dir} 1"
                     }
                 }
