@@ -54,7 +54,7 @@ pipeline {
                 script {
                     last_commit = sh(
                         returnStdout: true,
-                        script: 'git diff-tree --name-only --no-commit-id -r ${GIT_COMMIT}').trim()
+                        script: 'git diff-tree --name-only --no-commit-id -r HEAD^1').trim()
                     json_files_changed = []
                     last_commit.split('\n').each {
                         if (it.contains('.json')) {
@@ -151,7 +151,7 @@ pipeline {
                 println('Importing public GPG key for RPM')
                 sh "rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'"
                 sh """
-cat << EOF >> ~/.rpmmacros
+cat << EOF > ~/.rpmmacros
 %_signature gpg
 %_gpg_path /home/jenkins/.gnupg
 %_gpg_name RPM sign UMD/CMD
