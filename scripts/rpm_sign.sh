@@ -5,7 +5,26 @@
 # Copyright 2022 LIP
 #
 # Author: Mario David <mariojmdavid@gmail.com>
+# Contributors: Samuel Bernardo <samuel@lip.pt>
 #
+
+
+function expect_script
+{
+cat << End-of-text #No white space between << and End-of-text
+spawn rpm --resign -D "_signature gpg" ${1}/${pkg}
+expect -exact "Enter pass phrase: "
+send -- "${PASSPHRASE}\r"
+expect eof
+exit
+End-of-text
+}
+
+function sign_rpm
+{
+expect_script | /usr/bin/expect -f -
+}
+
 
 # Fuction to sign all packages
 function sign_pkgs {
@@ -13,7 +32,7 @@ function sign_pkgs {
     for pkg in `ls $1`
     do
         echo "Signing: ${1}/${pkg}"
-        rpmsign --quiet --addsign ${1}/${pkg}
+        rpmsign - ${1}/${pkg}
     done
 }
 

@@ -150,15 +150,6 @@ pipeline {
                 sh 'gpg --list-keys'
                 println('Importing public GPG key for RPM')
                 sh "rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'"
-                sh """
-cat << EOF > ~/.rpmmacros
-%_signature gpg
-%_gpg_path /home/jenkins/.gnupg
-%_gpg_name RPM sign UMD/CMD
-%_gpgbin /usr/bin/gpg
-%__gpg_sign_cmd %{__gpg} gpg --batch --no-verbose --no-armor --pinentry-mode loopback --passphrase '${GPG_PRIVATE_KEY_PASSPHRASE}' --no-secmem-warning -u "%{_gpg_name}" -sbo %{__signature_filename} --digest-algo sha256 %{__plaintext_filename}
-EOF
-                """
                 dir('scripts') {
                     script {
                         pkgs_signed = sh(
