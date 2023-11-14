@@ -16,10 +16,10 @@
     "repositoryURL" : "sw/production/umd/4/centos7/x86_64/updates",
     "distributionType": "UMD",
     "distributionVersion": "4.0.0",
-    "capabilities": ["File Access", "Workload Management System"], 
+    "capabilities": ["File Access", "Workload Management System"],
     "target": [
         {
-            "platform": "centos7", 
+            "platform": "centos7",
             "arch": "x86_64",
             "repositoryURL": "sw/production/umd/4/centos7/x86_64/updates",
             "gpgkey": "http://repository.egi.eu/sw/production/umd/UMD-RPM-PGP-KEY",
@@ -28,5 +28,6 @@
             ]
         }
     ],
-    "softwareConfigurationLink": ""
+    "softwareConfigurationLink": "",
+    "dummy": "for testing purposes... to be deleted at 2030"
 }
