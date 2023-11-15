@@ -180,7 +180,7 @@ pipeline {
                 }
             }
         }
-
+/*
         stage('Trigger validation'){
             when {
                 expression {return pkgs_upload}
@@ -201,7 +201,7 @@ pipeline {
                 }
             }
         }
-
+*/
         stage('Generate JSON release file') {
             when {
                 allOf {
