@@ -12,9 +12,9 @@
 function expect_script
 {
 cat << End-of-text #No white space between << and End-of-text
-spawn rpm --resign -D "_signature gpg" ${1}/${pkg}
+spawn rpm --resign -D "_signature gpg" -D "_gpg_name ${REPO_RPM_SIGN_GPGNAME}" ${rpm_dir}/${pkg}
 expect -exact "Enter pass phrase: "
-send -- "${PASSPHRASE}\r"
+send -- "${GPG_PRIVATE_KEY_PASSPHRASE}\r"
 expect eof
 exit
 End-of-text
@@ -32,7 +32,7 @@ function sign_pkgs {
     for pkg in `ls $1`
     do
         echo "Signing: ${1}/${pkg}"
-        rpmsign - ${1}/${pkg}
+        sign_rpm
     done
 }
 

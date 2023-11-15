@@ -24,6 +24,7 @@ pipeline {
         GPG_PRIVATE_KEY_PASSPHRASE = credentials('749515f4-4938-4034-aa5c-fb4839b4b4bf')
         GPG_PUBLIC_KEY = credentials('901f6bce-3b15-4fe0-8cc8-b96fe2807fe3')
         NEXUS_CONFIG = credentials('ecfb20e4-0c97-48e3-9e36-50e42b0e59f1')
+        REPO_RPM_SIGN_GPGNAME = credentials('7e5e4b45-1c9a-454e-8148-8c5fdc7f7faf')
     }
 
     agent {

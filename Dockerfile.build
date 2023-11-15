@@ -8,7 +8,8 @@ RUN ulimit -n 1024000 && yum makecache && yum -y install \
     java-11-openjdk-headless \
     python3 python3-pip \
     rpm-sign \
-    sudo
+    sudo \
+    expect
 
 # Copy and import UMD key
 COPY RPM-GPG-KEY-umd-cmd .
