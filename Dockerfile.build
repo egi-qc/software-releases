@@ -9,7 +9,10 @@ RUN ulimit -n 1024000 && yum makecache && yum -y install \
     python3 python3-pip \
     rpm-sign \
     sudo \
-    expect
+    expect \
+    https://repository.egi.eu:8443/repository/umd/4/centos7/base/x86_64/umd-release-nexus-4.0.0-1.el7.centos.noarch.rpm \
+    && yum -y update \
+    && yum clean all
 
 # Copy and import UMD key
 COPY RPM-GPG-KEY-umd-cmd .

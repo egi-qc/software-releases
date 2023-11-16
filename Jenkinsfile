@@ -189,33 +189,49 @@ pipeline {
                 }
             }
         }
-/*
-        stage('Trigger validation'){
+
+        stage('Trigger validation for testing'){
             when {
-                expression {return pkgs_upload}
+                allOf {
+                    expression { return pkgs_upload }
+                    changeRequest target: 'testing/umd4'
+                }
             }
             steps {
                 script {
-                    def pkg_install_job = build job: 'QualityCriteriaValidation/package-install',
-                                          parameters: [
-                                              string(name: 'Release', value: "${dst_type}${dst_version}"),
-                                              text(name: 'OS', value: "$platform"),
-                                              text(name: 'Packages', value: "$pkg_names"),
-                                              booleanParam(name: 'enable_verification_repo', value: true),
-                                              booleanParam(name: 'enable_testing_repo', value: false),
-                                              booleanParam(name: 'enable_untested_repo', value: false),
-                                              booleanParam(name: 'disable_updates_repo', value: false)
-                                          ]
-                    validation_job_status = pkg_install_job.result
+                    json_package = readJSON file: ${json_release_file}
+                    packages_validation = sh(
+                        returnStdout: true,
+                        script: "sudo -Es && yum -y --disablerepo="UMD-4-updates" --disablerepo="UMD-4-base" --enablerepo="UMD-4-testing" install ${json_package.name}-${json_package.version} > testing.report 2>&1"
+                    ).trim()
                 }
+                archiveArtifacts artifacts: 'testing.report', followSymlinks: false, fingerprint: true
             }
         }
-*/
+
+        stage('Trigger validation for production'){
+            when {
+                allOf {
+                    expression { return pkgs_upload }
+                    changeRequest target: 'production/umd4'
+                }
+            }
+            steps {
+                script {
+                    json_package = readJSON file: ${json_release_file}
+                    packages_validation = sh(
+                        returnStdout: true,
+                        script: "sudo -Es && yum -y --disablerepo="UMD-4-testing" --disablerepo="UMD-4-base" --enablerepo="UMD-4-updates" install ${json_package.name}-${json_package.version} > production.report 2>&1"
+                    ).trim()
+                }
+                archiveArtifacts artifacts: 'production.report', followSymlinks: false, fingerprint: true
+            }
+        }
+
         stage('Generate JSON release file') {
             when {
                 allOf {
                     expression {return json_release_file}
-                    equals expected: 'SUCCESS', actual: validation_job_status
                 }
             }
             steps {
@@ -230,25 +246,5 @@ pipeline {
                 }
             }
         }
-/*
-        //
-        // Production branch (RC validation)
-        //
-        stage('Trigger Release Candidate validation'){
-            when {
-                changeRequest target: 'production/umd4'
-            }
-            steps {
-                script {
-                    def release_candidate_job = build job: 'QualityCriteriaValidation/release-candidate',
-                                                    parameters: [
-                                                        string(name: 'Release', value: "UMD4"),
-                                                        text(name: 'Extra_repository', value: "$extra_repository")
-                                                    ]
-                    release_candidate_job_status = release_candidate_job.result
-                }
-            }
-        }
-*/
     }
 }

@@ -5,6 +5,7 @@
 # Copyright 2022 LIP
 #
 # Author: Mario David <mariojmdavid@gmail.com>
+# Contributor: Samuel Bernardo <samuel@lip.pt>
 #
 
 """upload packages to nexus oss repositories
@@ -35,7 +36,9 @@ if __name__ == '__main__':
     # https://nexusrepoegi.a.incd.pt/repository/umd/5/<OPERATING_SYSTEM>/testing|release/<ARCH>
     repo = 'testing'
     if sys.argv[2] == '1':
-        repo = 'update'
+        repo = 'updates'
+    if sys.argv[2] == '2':
+        repo = 'base'
 
     rel_uripath = dst_type + '/' + dst_version + '/' + platform + '/' + repo + '/' + arch
     full_uri_path = ev['repo_uri_path'] + '/' + rel_uripath
