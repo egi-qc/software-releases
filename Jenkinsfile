@@ -33,17 +33,6 @@ pipeline {
         }
     }
     stages {
-        //
-        // Testing branch (product validation)
-        //
-        stage('Install dependencies') {
-            steps {
-                withPythonEnv('python3') {
-                   sh 'pip3 install --user -r requirements.txt'
-                }
-            }
-        }
-
         stage('Detect release changes') {
             when {
                 anyOf {
@@ -164,9 +153,9 @@ pipeline {
             }
         }
 
-        stage('Upload packages'){
+        stage('Upload packages to testing'){
             when {
-                expression {return download_dir}
+                expression { return download_dir }
             }
             steps {
                 dir('scripts') {
@@ -174,6 +163,26 @@ pipeline {
                         pkgs_upload = sh(
                             returnStdout: true,
                             script: "python3 upload_pkgs.py ${json_release_file} 0" + ' ${NEXUS_CONFIG}'
+                        ).trim()
+                        println(pkgs_upload)
+                    }
+                }
+            }
+        }
+
+        stage('Upload packages to production'){
+            when {
+                allOf {
+                    changeRequest target: 'production/umd4'
+                    expression { return download_dir }
+                }
+            }
+            steps {
+                dir('scripts') {
+                    script {
+                        pkgs_upload = sh(
+                            returnStdout: true,
+                            script: "python3 upload_pkgs.py ${json_release_file} 1" + ' ${NEXUS_CONFIG}'
                         ).trim()
                         println(pkgs_upload)
                     }
@@ -221,7 +230,7 @@ pipeline {
                 }
             }
         }
-
+/*
         //
         // Production branch (RC validation)
         //
@@ -240,5 +249,6 @@ pipeline {
                 }
             }
         }
+*/
     }
 }

@@ -28,5 +28,8 @@ RUN sed --in-place 's/^#\s*\(%wheel\s\+ALL=(ALL)\s\+NOPASSWD:\s\+ALL\)/\1/' /etc
 # Switch to jenkins user
 USER jenkins
 WORKDIR $HOME
+# Install python requirements
+COPY ./requirements.txt ./
+RUN pip3 install --user -r requirements.txt && rm ./requirements.txt
 
 CMD ["/bin/bash"]
