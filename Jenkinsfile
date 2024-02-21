@@ -199,7 +199,7 @@ pipeline {
             }
             steps {
                 script {
-                    json_package = readJSON file: ${json_release_file}
+                    json_package = readJSON file: "${json_release_file}"
                     packages_validation = sh(
                         returnStdout: true,
                         script: "sudo -Es && yum -y --disablerepo=\"UMD-4-updates\" --disablerepo=\"UMD-4-base\" --enablerepo=\"UMD-4-testing\" install ${json_package.name}-${json_package.version} > testing.report 2>&1"
@@ -218,7 +218,7 @@ pipeline {
             }
             steps {
                 script {
-                    json_package = readJSON file: ${json_release_file}
+                    json_package = readJSON file: "${json_release_file}"
                     packages_validation = sh(
                         returnStdout: true,
                         script: "sudo -Es && yum -y --disablerepo=\"UMD-4-testing\" --disablerepo=\"UMD-4-base\" --enablerepo=\"UMD-4-updates\" install ${json_package.name}-${json_package.version} > production.report 2>&1"
