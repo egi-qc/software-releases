@@ -29,7 +29,7 @@ RUN chown jenkins:jenkins /home/jenkins
 RUN usermod -aG wheel jenkins
 RUN sed --in-place 's/^#\s*\(%wheel\s\+ALL=(ALL)\s\+NOPASSWD:\s\+ALL\)/\1/' /etc/sudoers
 # Switch to jenkins user
-USER jenkins
+#USER jenkins
 WORKDIR $HOME
 # Install python requirements
 COPY ./requirements.txt ./
