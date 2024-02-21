@@ -10,7 +10,7 @@ RUN ulimit -n 1024000 && yum makecache && yum -y install \
     rpm-sign \
     sudo \
     expect \
-    https://repository.egi.eu:8443/repository/umd/4/centos7/base/x86_64/umd-release-nexus-4.0.0-1.el7.centos.noarch.rpm \
+    https://repository.egi.eu:8443/repository/umd/4/centos7/x86_64/base/umd-release-nexus-4.0.0-1.el7.centos.noarch.rpm \
     && yum -y update \
     && yum clean all
 
