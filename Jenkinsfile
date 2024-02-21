@@ -24,6 +24,7 @@ pipeline {
         GPG_PRIVATE_KEY_PASSPHRASE = credentials('749515f4-4938-4034-aa5c-fb4839b4b4bf')
         GPG_PUBLIC_KEY = credentials('901f6bce-3b15-4fe0-8cc8-b96fe2807fe3')
         NEXUS_CONFIG = credentials('ecfb20e4-0c97-48e3-9e36-50e42b0e59f1')
+        REPO_RPM_SIGN_GPGNAME = credentials('7e5e4b45-1c9a-454e-8148-8c5fdc7f7faf')
     }
 
     agent {
@@ -32,17 +33,6 @@ pipeline {
         }
     }
     stages {
-        //
-        // Testing branch (product validation)
-        //
-        stage('Install dependencies') {
-            steps {
-                withPythonEnv('python3') {
-                   sh 'pip3 install --user -r requirements.txt'
-                }
-            }
-        }
-
         stage('Detect release changes') {
             when {
                 anyOf {
@@ -54,7 +44,7 @@ pipeline {
                 script {
                     last_commit = sh(
                         returnStdout: true,
-                        script: 'git diff-tree --name-only --no-commit-id -r HEAD').trim()
+                        script: 'git diff-tree --name-only --no-commit-id -r HEAD^1').trim()
                     json_files_changed = []
                     last_commit.split('\n').each {
                         if (it.contains('.json')) {
@@ -142,7 +132,7 @@ pipeline {
 
         stage('Add UMD GPG key'){
             when {
-                expression {return download_dir}
+                expression { return download_dir }
             }
             steps {
                 println('Importing private GPG key')
@@ -150,23 +140,22 @@ pipeline {
                 sh 'gpg --list-keys'
                 println('Importing public GPG key for RPM')
                 sh "rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'"
-                sh "sed -i \"s/--passphrase ''/--passphrase '$GPG_PRIVATE_KEY_PASSPHRASE'/g\" ~/.rpmmacros"
                 dir('scripts') {
                     script {
                         pkgs_signed = sh(
                             returnStdout: true,
                             script: "./rpm_sign.sh ${download_dir} 0"
                         ).trim()
-                    	println(pkgs_signed)
+                        println(pkgs_signed)
                         sh "./rpm_sign.sh ${download_dir} 1"
                     }
                 }
             }
         }
 
-        stage('Upload packages'){
+        stage('Upload packages to testing'){
             when {
-                expression {return download_dir}
+                expression { return download_dir }
             }
             steps {
                 dir('scripts') {
@@ -181,24 +170,61 @@ pipeline {
             }
         }
 
-        stage('Trigger validation'){
+        stage('Upload packages to production'){
             when {
-                expression {return pkgs_upload}
+                allOf {
+                    changeRequest target: 'production/umd4'
+                    expression { return download_dir }
+                }
+            }
+            steps {
+                dir('scripts') {
+                    script {
+                        pkgs_upload = sh(
+                            returnStdout: true,
+                            script: "python3 upload_pkgs.py ${json_release_file} 1" + ' ${NEXUS_CONFIG}'
+                        ).trim()
+                        println(pkgs_upload)
+                    }
+                }
+            }
+        }
+
+        stage('Trigger validation for testing'){
+            when {
+                allOf {
+                    expression { return pkgs_upload }
+                    changeRequest target: 'testing/umd4'
+                }
             }
             steps {
                 script {
-                    def pkg_install_job = build job: 'QualityCriteriaValidation/package-install',
-                                          parameters: [
-                                              string(name: 'Release', value: "${dst_type}${dst_version}"),
-                                              text(name: 'OS', value: "$platform"),
-                                              text(name: 'Packages', value: "$pkg_names"),
-                                              booleanParam(name: 'enable_verification_repo', value: true),
-                                              booleanParam(name: 'enable_testing_repo', value: false),
-                                              booleanParam(name: 'enable_untested_repo', value: false),
-                                              booleanParam(name: 'disable_updates_repo', value: false)
-                                          ]
-                    validation_job_status = pkg_install_job.result
+                    json_package = readJSON file: ${json_release_file}
+                    packages_validation = sh(
+                        returnStdout: true,
+                        script: "sudo -Es && yum -y --disablerepo=\"UMD-4-updates\" --disablerepo=\"UMD-4-base\" --enablerepo=\"UMD-4-testing\" install ${json_package.name}-${json_package.version} > testing.report 2>&1"
+                    ).trim()
                 }
+                archiveArtifacts artifacts: 'testing.report', followSymlinks: false, fingerprint: true
+            }
+        }
+
+        stage('Trigger validation for production'){
+            when {
+                allOf {
+                    expression { return pkgs_upload }
+                    changeRequest target: 'production/umd4'
+                }
+            }
+            steps {
+                script {
+                    json_package = readJSON file: ${json_release_file}
+                    packages_validation = sh(
+                        returnStdout: true,
+                        script: "sudo -Es && yum -y --disablerepo=\"UMD-4-testing\" --disablerepo=\"UMD-4-base\" --enablerepo=\"UMD-4-updates\" install ${json_package.name}-${json_package.version} > production.report 2>&1"
+                    ).trim()
+                }
+                archiveArtifacts artifacts: 'production.report', followSymlinks: false, fingerprint: true
             }
         }
 
@@ -206,7 +232,6 @@ pipeline {
             when {
                 allOf {
                     expression {return json_release_file}
-                    equals expected: 'SUCCESS', actual: validation_job_status
                 }
             }
             steps {
@@ -218,25 +243,6 @@ pipeline {
                         ).trim()
                     }
                     archiveArtifacts artifacts: 'release.json', followSymlinks: false
-                }
-            }
-        }
-
-        //
-        // Production branch (RC validation)
-        //
-        stage('Trigger Release Candidate validation'){
-            when {
-                changeRequest target: 'production/umd4'
-            }
-            steps {
-                script {
-                    def release_candidate_job = build job: 'QualityCriteriaValidation/release-candidate',
-                                                    parameters: [
-                                                        string(name: 'Release', value: "UMD4"),
-                                                        text(name: 'Extra_repository', value: "$extra_repository")
-                                                    ]
-                    release_candidate_job_status = release_candidate_job.result
                 }
             }
         }

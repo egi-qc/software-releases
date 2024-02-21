@@ -1,14 +1,18 @@
-FROM almalinux:9.2
-MAINTAINER Pablo Orviz <orviz@ifca.unican.es>
+FROM centos:7
+LABEL mantainer="Pablo Orviz <orviz@ifca.unican.es>"
 
 USER root
 
-RUN yum makecache --timer && yum -y install \
+RUN ulimit -n 1024000 && yum makecache && yum -y install \
     git \
     java-11-openjdk-headless \
     python3 python3-pip \
     rpm-sign \
-    sudo
+    sudo \
+    expect \
+    https://repository.egi.eu:8443/repository/umd/4/centos7/x86_64/base/umd-release-nexus-4.0.0-1.el7.centos.noarch.rpm \
+    && yum -y update \
+    && yum clean all
 
 # Copy and import UMD key
 COPY RPM-GPG-KEY-umd-cmd .
@@ -27,7 +31,8 @@ RUN sed --in-place 's/^#\s*\(%wheel\s\+ALL=(ALL)\s\+NOPASSWD:\s\+ALL\)/\1/' /etc
 # Switch to jenkins user
 USER jenkins
 WORKDIR $HOME
-
-COPY rpms/.rpmmacros $HOME/.rpmmacros
+# Install python requirements
+COPY ./requirements.txt ./
+RUN pip3 install --user -r requirements.txt && rm ./requirements.txt
 
 CMD ["/bin/bash"]

@@ -2,9 +2,10 @@
 
 # -*- encoding: utf-8 -*-
 #
-# Copyright 2022 LIP
+# Copyright 2023 LIP
 #
 # Author: Mario David <mariojmdavid@gmail.com>
+# Contributor: Samuel Bernardo <samuel@lip.pt>
 #
 
 """json parser of a UMD or CMD release

@@ -1,0 +1,33 @@
+{
+    "name" : "vault-nagios-probe",
+    "version" : "1.0.1",
+    "currentState" : "Production",
+    "technology_provider" : "IISAS",
+    "contact" : "Viet Tran <cloud-admin@savba.sk>",
+    "technicalContact" : "cloud-admin@savba.sk",
+    "description" : "Nagios probe script for Secret Store service",
+    "releaseDate" : "2023-11-13",
+    "majorVersion" : "1",
+    "minorVersion" : "0",
+    "revisionVersion" : "1",
+    "releaseNotes" : "https://github.com/IISAS/vault-nagios-probe/releases/tag/v1.0.1",
+    "changeLog" : "https://github.com/IISAS/vault-nagios-probe/releases/tag/v1.0.1",
+    "documentationLinks" : ["https://vault.docs.fedcloud.eu/intro.html","link2"],
+    "repositoryURL" : "sw/production/umd/4/centos7/x86_64/updates",
+    "distributionType": "UMD",
+    "distributionVersion": "4.0.0",
+    "capabilities": ["File Access", "Workload Management System"],
+    "target": [
+        {
+            "platform": "centos7",
+            "arch": "x86_64",
+            "repositoryURL": "sw/production/umd/4/centos7/x86_64/updates",
+            "gpgkey": "http://repository.egi.eu/sw/production/umd/UMD-RPM-PGP-KEY",
+            "rpms": [
+                "https://github.com/IISAS/vault-nagios-probe/releases/download/v1.0.1/nagios-plugin-secret-store-1.0.1-1.noarch.rpm"
+            ]
+        }
+    ],
+    "softwareConfigurationLink": "",
+    "dummy": "for testing purposes... to be deleted at 2028"
+}
