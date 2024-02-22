@@ -33,7 +33,7 @@ if __name__ == '__main__':
     (dst_type, dst_version, platform, arch) = utils.get_info_json(ev['json_file'])
 
     # full uri is repo_uri_path/rel_uripath ->
-    # https://nexusrepoegi.a.incd.pt/repository/umd/5/<OPERATING_SYSTEM>/testing|release/<ARCH>
+    # https://nexusrepoegi.a.incd.pt/repository/umd/4/<OPERATING_SYSTEM>/<ARCH>/<testing|base|updates>/
     repo = 'testing'
     if sys.argv[2] == '1':
         repo = 'updates'
