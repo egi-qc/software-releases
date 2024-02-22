@@ -40,7 +40,7 @@ if __name__ == '__main__':
     if sys.argv[2] == '2':
         repo = 'base'
 
-    rel_uripath = dst_type + '/' + dst_version + '/' + platform + '/' + repo + '/' + arch
+    rel_uripath = dst_type + '/' + dst_version + '/' + platform + '/' + arch + '/' + repo
     full_uri_path = ev['repo_uri_path'] + '/' + rel_uripath
     print(f'Repository URI path {full_uri_path}')
 
