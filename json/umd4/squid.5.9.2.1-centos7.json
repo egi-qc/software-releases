@@ -1,5 +1,5 @@
 {
-"name" : "frontier-squid",
+    "name" : "frontier-squid",
     "version" : "5.9.2",
     "currentState" : "Production",
     "technology_provider" : "CernFrontier",
@@ -28,6 +28,6 @@
             ]
         }
     ],
-    "softwareConfigurationLink": ""
-     "dummy": "Again Joao Pina testing purposes... to be deleted at 2030"
+    "softwareConfigurationLink": "",
+    "dummy": "Again Joao Pina testing purposes... to be deleted at 2030"
 }
