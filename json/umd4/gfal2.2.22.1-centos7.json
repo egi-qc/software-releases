@@ -1,4 +1,5 @@
-"name" : "Gfal2",
+{
+    "name" : "Gfal2",
     "version" : "2.22.1",
     "currentState" : "Production",
     "technology_provider" : "CERN",
