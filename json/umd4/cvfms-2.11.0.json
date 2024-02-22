@@ -34,9 +34,7 @@
                 "https://ecsft.cern.ch/dist/cvmfs/cvmfs-2.11.2/cvmfs-shrinkwrap-2.11.2-1.el7.x86_64.rpm",
                 "https://ecsft.cern.ch/dist/cvmfs/cvmfs-2.11.2/cvmfs-unittests-2.11.2-1.el7.x86_64.rpm"
             ]
-        "softwareConfigurationLink": "",
-        "dummy": "Again Joao Pina testing purposes... to be deleted at 2029"
-        }
+         }
     ],
     "softwareConfigurationLink": "",
     "dummy": "for testing purposes... to be deleted at 2028"
