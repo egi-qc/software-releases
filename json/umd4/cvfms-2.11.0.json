@@ -1,4 +1,4 @@
-cvmfs-2.10.0/{
+{ 
     "name" : "cvmfs",
     "version" : "2.11.2",
     "currentState" : "Production",
