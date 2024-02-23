@@ -3,16 +3,33 @@
 EGI repository backend scripts and pipelines, for UMD/CMD releases.
 The repository structure is the following:
 
-* <https://nexusrepoegi.a.incd.pt/repository/umd/5/>
+* UMD 4 : <https://repository.egi.eu/repository/umd/4/>
+  * `<OPERATING_SYSTEM>/<ARCH>/base`
+  * `<OPERATING_SYSTEM>/<ARCH>/updates`
+  * `<OPERATING_SYSTEM>/<ARCH>/testing`
+ 
+* UMD 5 : <https://repositoryegi.eu/repository/umd/5/>
   * `<OPERATING_SYSTEM>/release/<ARCH>`
   * `<OPERATING_SYSTEM>/testing/<ARCH>`
   * `<OPERATING_SYSTEM>/contrib/<ARCH>`
 
-For example for Alma Linux 9 x98_64, the complete paths are:
 
-* <https://nexusrepoegi.a.incd.pt/repository/umd/5/al9/release/x86_64>
-* <https://nexusrepoegi.a.incd.pt/repository/umd/5/al9/testing/x86_64>
-* <https://nexusrepoegi.a.incd.pt/repository/umd/5/al9/contrib/x86_64>
+For example for Centos7, x86_64, the complet paths are: 
+
+* <https://repository.egi.eu/repository/umd/4/centos7/x86_64/base> (base packages) 
+* <https://repository.egi.eu/repository/umd/4/centos7/x86_64/updates> (updates of packages) 
+* <https://repository.egi.eu/repository/umd/4/centos7/x86_64/testing> (for packages ready to be moved into production)
+
+For example for Alma Linux 9 x86_64, the complete paths are:
+
+* <https://nexusrepoegi.a.incd.pt/repository/umd/5/al9/release/x86_64> (production repository)
+* <https://nexusrepoegi.a.incd.pt/repository/umd/5/al9/testing/x86_64> (for packages ready to be moved into production)
+* <https://nexusrepoegi.a.incd.pt/repository/umd/5/al9/contrib/x86_64>  (external contributors for example package maintained by communities)
+
+For **browing** replace /repository/ by /software/
+
+Example: https://repository.egi.eu/software/umd/4/centos7/x86_64/base
+
 
 The process is as follows:
 
