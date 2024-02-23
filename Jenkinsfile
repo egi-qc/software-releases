@@ -170,26 +170,6 @@ pipeline {
             }
         }
 
-        stage('Upload packages to production'){
-            when {
-                allOf {
-                    changeRequest target: 'production/umd4'
-                    expression { return download_dir }
-                }
-            }
-            steps {
-                dir('scripts') {
-                    script {
-                        pkgs_upload = sh(
-                            returnStdout: true,
-                            script: "python3 upload_pkgs.py ${json_release_file} 1" + ' ${NEXUS_CONFIG}'
-                        ).trim()
-                        println(pkgs_upload)
-                    }
-                }
-            }
-        }
-
         stage('Trigger validation'){
             when {
                 expression {return pkgs_upload}
@@ -248,5 +228,27 @@ pipeline {
                 }
             }
         }
+
+        stage('Upload packages to production'){
+            when {
+                allOf {
+                    changeRequest target: 'production/umd4'
+                    expression { return download_dir }
+                    equals expected: 'SUCCESS', actual: release_candidate_job_status
+                }
+            }
+            steps {
+                dir('scripts') {
+                    script {
+                        pkgs_upload = sh(
+                            returnStdout: true,
+                            script: "python3 upload_pkgs.py ${json_release_file} 1" + ' ${NEXUS_CONFIG}'
+                        ).trim()
+                        println(pkgs_upload)
+                    }
+                }
+            }
+        }
+
     }
 }
