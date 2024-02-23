@@ -4,9 +4,9 @@ EGI repository backend scripts and pipelines, for UMD/CMD releases.
 The repository structure is the following:
 
 * UMD 4 : <https://repository.egi.eu/repository/umd/4/>
-  * `<OPERATING_SYSTEM>/<ARCH>/base
-  * `<OPERATING_SYSTEM>/<ARCH>/updates
-  * `<OPERATING_SYSTEM>/<ARCH>/testing
+  * `<OPERATING_SYSTEM>/<ARCH>/base`
+  * `<OPERATING_SYSTEM>/<ARCH>/updates`
+  * `<OPERATING_SYSTEM>/<ARCH>/testing`
  
 * UMD 5 : <https://repositoryegi.eu/repository/umd/5/>
   * `<OPERATING_SYSTEM>/release/<ARCH>`
