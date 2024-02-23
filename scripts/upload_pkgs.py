@@ -45,5 +45,8 @@ if __name__ == '__main__':
     print(f'Repository URI path {full_uri_path}')
 
     if not utils.upload_pkg(prod_name, full_uri_path, ev['repo_admin'], ev['repo_pass']):
-        sys.exit(1)
+        utils.clean_pkg(prod_name, full_uri_path, cfpath=cfpath)
+        if not utils.upload_pkg(prod_name, full_uri_path, ev['repo_admin'], ev['repo_pass']):
+            sys.exit(1)
+
     sys.exit(0)
