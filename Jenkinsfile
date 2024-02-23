@@ -62,7 +62,6 @@ pipeline {
                         println("Changes to ${json_files_changed[0]} found. Processing file..")
                         json_release_file = json_files_changed[0]
                     }
-                    //json_release_file = "json/umd4/squid.5.9.2.1-centos7.json"
                 }
             }
         }
@@ -234,7 +233,7 @@ pipeline {
         //
         // Production branch (RC validation)
         //
-        /*stage('Trigger Release Candidate validation'){
+        stage('Trigger Release Candidate validation'){
             when {
                 changeRequest target: 'production/umd4'
             }
@@ -248,6 +247,6 @@ pipeline {
                     release_candidate_job_status = release_candidate_job.result
                 }
             }
-        }*/
+        }
     }
 }
