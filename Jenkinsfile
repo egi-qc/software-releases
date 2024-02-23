@@ -62,6 +62,7 @@ pipeline {
                         println("Changes to ${json_files_changed[0]} found. Processing file..")
                         json_release_file = json_files_changed[0]
                     }
+                    json_release_file = "json/umd4/squid.5.9.2.1-centos7.json"
                 }
             }
         }
@@ -202,7 +203,7 @@ pipeline {
                                               text(name: 'OS', value: "$platform"),
                                               text(name: 'Packages', value: "$pkg_names"),
                                               booleanParam(name: 'enable_verification_repo', value: true),
-                                              booleanParam(name: 'enable_testing_repo', value: false),
+                                              booleanParam(name: 'enable_testing_repo', value: true),
                                               booleanParam(name: 'enable_untested_repo', value: false),
                                               booleanParam(name: 'disable_updates_repo', value: false)
                                           ]
