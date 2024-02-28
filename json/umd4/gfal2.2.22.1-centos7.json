@@ -37,7 +37,12 @@
                 "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/g/gfal2-plugin-rfio-2.22.1-1.el7.x86_64.rpm",
                 "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/g/gfal2-plugin-sftp-2.22.1-1.el7.x86_64.rpm",
                 "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/g/gfal2-plugin-srm-2.22.1-1.el7.x86_64.rpm",
-                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/g/gfal2-plugin-xrootd-2.22.1-1.el7.x86_64.rpm"
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/g/gfal2-plugin-xrootd-2.22.1-1.el7.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/d/davix-0.8.5-1.el7.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/d/davix-devel-0.8.5-1.el7.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/d/davix-doc-0.8.5-1.el7.noarch.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/d/davix-libs-0.8.5-1.el7.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/d/davix-tests-0.8.5-1.el7.x86_64.rpm"
             ]
         }
     ],
