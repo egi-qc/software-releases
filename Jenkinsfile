@@ -222,6 +222,7 @@ pipeline {
                     def release_candidate_job = build job: 'QualityCriteriaValidation/release-candidate',
                                                     parameters: [
                                                         string(name: 'Release', value: "UMD4"),
+                                                        string(name: 'Operating_system', value: "centos7-large"),
                                                         text(name: 'Extra_repository', value: "$extra_repository")
                                                     ]
                     release_candidate_job_status = release_candidate_job.result
