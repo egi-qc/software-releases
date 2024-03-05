@@ -215,7 +215,10 @@ pipeline {
         //
         stage('Trigger Release Candidate validation'){
             when {
-                changeRequest target: 'production/umd4'
+                allOf {
+                    changeRequest target: 'production/umd4'
+                    expression {return json_release_file}
+                }
             }
             steps {
                 script {
@@ -233,7 +236,7 @@ pipeline {
             when {
                 allOf {
                     changeRequest target: 'production/umd4'
-                    //expression { return download_dir }
+                    expression {return json_release_file}
                     equals expected: 'SUCCESS', actual: release_candidate_job_status
                 }
             }
