@@ -233,7 +233,7 @@ pipeline {
             when {
                 allOf {
                     changeRequest target: 'production/umd4'
-                    expression { return download_dir }
+                    //expression { return download_dir }
                     equals expected: 'SUCCESS', actual: release_candidate_job_status
                 }
             }
