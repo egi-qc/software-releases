@@ -232,11 +232,35 @@ pipeline {
             }
         }
 
+         stage('Production download packages to a temporary directory') {
+            when {
+                 allOf {
+                    changeRequest target: 'production/umd4'
+                    expression {return json_release_file}
+                    equals expected: 'SUCCESS', actual: release_candidate_job_status
+                }
+            }
+            steps {
+                dir('scripts') {
+                    withPythonEnv('python3') {
+                        script {
+                            download_dir = sh(
+                                returnStdout: true,
+                                script: "python3 download_pkgs.py ${json_release_file} 1"
+                            ).trim()
+                            println(download_dir)
+                        }
+                    }
+                }
+            }
+        }
+        
         stage('Upload packages to production'){
             when {
                 allOf {
                     changeRequest target: 'production/umd4'
                     expression {return json_release_file}
+                    expression { return download_dir }
                     equals expected: 'SUCCESS', actual: release_candidate_job_status
                 }
             }
