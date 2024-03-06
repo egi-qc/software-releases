@@ -62,7 +62,6 @@ pipeline {
                         println("Changes to ${json_files_changed[0]} found. Processing file..")
                         json_release_file = json_files_changed[0]
                     }
-                    //json_release_file = "json/umd4/squid.5.9.2.1-centos7.json"
                 }
             }
         }
@@ -171,26 +170,6 @@ pipeline {
             }
         }
 
-        stage('Upload packages to production'){
-            when {
-                allOf {
-                    changeRequest target: 'production/umd4'
-                    expression { return download_dir }
-                }
-            }
-            steps {
-                dir('scripts') {
-                    script {
-                        pkgs_upload = sh(
-                            returnStdout: true,
-                            script: "python3 upload_pkgs.py ${json_release_file} 1" + ' ${NEXUS_CONFIG}'
-                        ).trim()
-                        println(pkgs_upload)
-                    }
-                }
-            }
-        }
-
         stage('Trigger validation'){
             when {
                 expression {return pkgs_upload}
@@ -234,9 +213,12 @@ pipeline {
         //
         // Production branch (RC validation)
         //
-        /*stage('Trigger Release Candidate validation'){
+        stage('Trigger Release Candidate validation'){
             when {
-                changeRequest target: 'production/umd4'
+                allOf {
+                    changeRequest target: 'production/umd4'
+                    expression {return json_release_file}
+                }
             }
             steps {
                 script {
@@ -248,6 +230,52 @@ pipeline {
                     release_candidate_job_status = release_candidate_job.result
                 }
             }
-        }*/
+        }
+
+         stage('Production download packages to a temporary directory') {
+            when {
+                 allOf {
+                    changeRequest target: 'production/umd4'
+                    expression {return json_release_file}
+                    equals expected: 'SUCCESS', actual: release_candidate_job_status
+                }
+            }
+            steps {
+                dir('scripts') {
+                    withPythonEnv('python3') {
+                        script {
+                            download_dir = sh(
+                                returnStdout: true,
+                                script: "python3 download_pkgs.py ${json_release_file} 1"
+                            ).trim()
+                            println(download_dir)
+                        }
+                    }
+                }
+            }
+        }
+        
+        stage('Upload packages to production'){
+            when {
+                allOf {
+                    changeRequest target: 'production/umd4'
+                    expression {return json_release_file}
+                    expression { return download_dir }
+                    equals expected: 'SUCCESS', actual: release_candidate_job_status
+                }
+            }
+            steps {
+                dir('scripts') {
+                    script {
+                        pkgs_upload = sh(
+                            returnStdout: true,
+                            script: "python3 upload_pkgs.py ${json_release_file} 1" + ' ${NEXUS_CONFIG}'
+                        ).trim()
+                        println(pkgs_upload)
+                    }
+                }
+            }
+        }
+
     }
 }
