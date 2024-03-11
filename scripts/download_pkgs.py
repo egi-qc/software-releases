@@ -44,7 +44,7 @@ if __name__ == '__main__':
             pkg_dict[pkg] = ev['repo_uri_path'] + '/' + rel_uripath + '/' + pkg
 
     if not os.path.exists(download_dir):
-        pathlib.Path(download_dir)).mkdir(parents=True, exist_ok=True)
+        pathlib.Path(download_dir).mkdir(parents=True, exist_ok=True)
     utils.download_pkg(pkg_dict, download_dir)
     print(download_dir)
     sys.exit(0)
