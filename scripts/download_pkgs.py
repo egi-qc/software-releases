@@ -10,6 +10,7 @@
 """json parser of a UMD or CMD release, and download packages
 """
 
+import os
 import sys
 import utils
 from config import Config
