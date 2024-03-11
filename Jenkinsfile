@@ -250,7 +250,9 @@ pipeline {
                                 returnStdout: true,
                                 script: "python3 download_pkgs.py ${json_release_file} 1" + ' ${NEXUS_CONFIG}'
                             ).trim()
+                            download_dir_content = sh(returnStdout: true, script:"ls ${download_dir}")
                             println(download_dir)
+                            println(download_dir_content)
                         }
                     }
                 }
