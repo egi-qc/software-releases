@@ -247,7 +247,7 @@ pipeline {
                         script {
                             download_dir = sh(
                                 returnStdout: true,
-                                script: "python3 download_pkgs.py ${json_release_file} 1"
+                                script: "python3 download_pkgs.py ${json_release_file} 1" + ' ${NEXUS_CONFIG}'
                             ).trim()
                             println(download_dir)
                         }
@@ -255,7 +255,7 @@ pipeline {
                 }
             }
         }
-        
+
         stage('Upload packages to production'){
             when {
                 allOf {

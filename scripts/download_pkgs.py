@@ -16,7 +16,7 @@ from config import Config
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 3:
+    if len(sys.argv) not in [3, 4]:
         print('Usage:', sys.argv[0], '<package_name_version> (without extension .json) <0|1>')
         print('0 - downloads from the original external source')
         print('1 - downloads from the EGI UMD/CMD repository')
@@ -24,7 +24,11 @@ if __name__ == '__main__':
 
     product_metadata_file = sys.argv[1]
     umd_download = sys.argv[2]
-    ev = Config().getconf(product_metadata_file)
+    cfpath = None
+    if len(sys.argv) in [4]:
+        cfpath = sys.argv[3]
+
+    ev = Config().getconf(product_metadata_file, cfpath=cfpath)
     pkg_dict = utils.create_dict_pkg(ev['json_file'])
     download_dir = ev['tmp_dir']
     if umd_download == '1':
