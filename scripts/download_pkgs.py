@@ -11,6 +11,7 @@
 """
 
 import os
+import pathlib
 import sys
 import utils
 from config import Config
@@ -43,7 +44,7 @@ if __name__ == '__main__':
             pkg_dict[pkg] = ev['repo_uri_path'] + '/' + rel_uripath + '/' + pkg
 
     if not os.path.exists(download_dir):
-        os.mkdir(download_dir)
+        pathlib.Path(download_dir)).mkdir(parents=True, exist_ok=True)
     utils.download_pkg(pkg_dict, download_dir)
     print(download_dir)
     sys.exit(0)
