@@ -92,6 +92,7 @@ pipeline {
             when {
                 allOf {
                     changeRequest target: 'testing/umd4'
+                    changeRequest target: 'production/umd4'
                     expression {return json_release_file}
                 }
             }
