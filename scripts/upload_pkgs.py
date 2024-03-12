@@ -55,6 +55,7 @@ if __name__ == '__main__':
     if repo == _UPDATES_:
         rel_uripath = dst_type + '/' + dst_version + '/' + platform + '/' + arch + '/' + _TESTING_
         full_uri_path = ev['repo_uri_path'] + '/' + rel_uripath
+        print(f'Repository URI path {full_uri_path}')
         utils.clean_pkg(prod_name, full_uri_path, cfpath=cfpath)
     
     sys.exit(0)
