@@ -83,8 +83,7 @@ pipeline {
                             returnStdout: true,
                             script: "python3 json_parser.py ${json_release_file} 3"
                         ).trim()
-                        return json_release_file
-                    }
+                       }
                 }
             }
         }
@@ -94,7 +93,7 @@ pipeline {
                 allOf {
                     changeRequest target: 'testing/umd4'
                     changeRequest target: 'production/umd4'
-                    expression {return json_release_file}
+                    //expression {return json_release_file}
                 }
             }
             steps {
