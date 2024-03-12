@@ -44,6 +44,7 @@ if __name__ == '__main__':
         repo = _BASE_
 
     rel_uripath = dst_type + '/' + dst_version + '/' + platform + '/' + arch + '/' + repo
+    real_uri = ev['repo_uri_path']
     full_uri_path = ev['repo_uri_path'] + '/' + rel_uripath
     print(f'Repository URI path {full_uri_path}')
 
@@ -54,7 +55,7 @@ if __name__ == '__main__':
     # Clean up packages from the testing repo after successful copy to the production branch
     if repo == _UPDATES_:
         rel_uripath = dst_type + '/' + dst_version + '/' + platform + '/' + arch + '/' + _TESTING_
-        full_uri_path = ev['repo_uri_path'] + '/' + rel_uripath
+        full_uri_path = real_uri + '/' + rel_uripath
         print(f'Repository URI path {full_uri_path}')
         utils.clean_pkg(prod_name, full_uri_path, cfpath=cfpath)
     
