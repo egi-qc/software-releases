@@ -34,7 +34,7 @@ if __name__ == '__main__':
     pkg_dict = utils.create_dict_pkg(ev['json_file'])
     download_dir = ev['tmp_dir']
     if umd_download == '1':
-        //download_dir = ev['download_dir']
+        # download_dir = ev['download_dir']
         (dst_type, dst_version, platform, arch) = utils.get_info_json(ev['json_file'])
 
         # full uri is repo_uri_path/rel_uripath ->
