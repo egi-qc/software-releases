@@ -91,9 +91,11 @@ pipeline {
         stage('Collect the list of packages') {
             when {
                 allOf {
-                    changeRequest target: 'testing/umd4'
-                    changeRequest target: 'production/umd4'
-                    //expression {return json_release_file}
+                    anyOf{
+                        changeRequest target: 'testing/umd4'
+                        changeRequest target: 'production/umd4'
+                    }
+                    expression {return json_release_file}
                 }
             }
             steps {
