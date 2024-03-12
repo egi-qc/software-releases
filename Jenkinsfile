@@ -218,7 +218,7 @@ pipeline {
         stage('Trigger Release Candidate validation'){
             when {
                 allOf {
-                    changeRequest target: 'production/umd4'
+                    changeRequest target: 'production/umd4toberemoved'
                     expression {return json_release_file}
                 }
             }
