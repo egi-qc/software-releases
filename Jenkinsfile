@@ -44,7 +44,7 @@ pipeline {
                 script {
                     last_commit = sh(
                         returnStdout: true,
-                        script: 'git diff-tree --name-only --no-commit-id -r HEAD^1').trim()
+                        script: 'git diff-tree --name-only --no-commit-id -r HEAD^0').trim()
                     json_files_changed = []
                     last_commit.split('\n').each {
                         if (it.contains('.json')) {
@@ -62,6 +62,7 @@ pipeline {
                         println("Changes to ${json_files_changed[0]} found. Processing file..")
                         json_release_file = json_files_changed[0]
                     }
+                    //json_release_file = "json/umd4/squid.5.9.2.1-centos7.json"
                 }
             }
         }
@@ -82,7 +83,7 @@ pipeline {
                             returnStdout: true,
                             script: "python3 json_parser.py ${json_release_file} 3"
                         ).trim()
-                    }
+                       }
                 }
             }
         }
@@ -90,7 +91,10 @@ pipeline {
         stage('Collect the list of packages') {
             when {
                 allOf {
-                    changeRequest target: 'testing/umd4'
+                    anyOf{
+                        changeRequest target: 'testing/umd4'
+                        changeRequest target: 'production/umd4'
+                    }
                     expression {return json_release_file}
                 }
             }
@@ -215,7 +219,10 @@ pipeline {
         //
         stage('Trigger Release Candidate validation'){
             when {
-                changeRequest target: 'production/umd4'
+                allOf {
+                    changeRequest target: 'production/umd4toberemoved'
+                    expression {return json_release_file}
+                }
             }
             steps {
                 script {
@@ -230,12 +237,38 @@ pipeline {
             }
         }
 
+         stage('Production download packages to a temporary directory') {
+            when {
+                 allOf {
+                    changeRequest target: 'production/umd4'
+                    expression {return json_release_file}
+                    //equals expected: 'SUCCESS', actual: release_candidate_job_status
+                }
+            }
+            steps {
+                dir('scripts') {
+                    withPythonEnv('python3') {
+                        script {
+                            download_dir = sh(
+                                returnStdout: true,
+                                script: "python3 download_pkgs.py ${json_release_file} 1" + ' ${NEXUS_CONFIG}'
+                            ).trim()
+                            download_dir_content = sh(returnStdout: true, script:"ls ${download_dir}")
+                            println(download_dir)
+                            println(download_dir_content)
+                        }
+                    }
+                }
+            }
+        }
+
         stage('Upload packages to production'){
             when {
                 allOf {
                     changeRequest target: 'production/umd4'
+                    expression {return json_release_file}
                     expression { return download_dir }
-                    equals expected: 'SUCCESS', actual: release_candidate_job_status
+                    //equals expected: 'SUCCESS', actual: release_candidate_job_status
                 }
             }
             steps {

@@ -5,7 +5,7 @@
     "technology_provider" : "CernFrontier",
     "contact" : "carl.vuosalo@cern.ch",
     "technicalContact" : "carl.vuosalo@cern.ch",
-    "description" : "The Frontier distributed database caching system uses a RESTful http-based protocol to distribute data queries. The LHC experiments ATLAS and CMS use it to access conditions data describing their complicated detectors, and cache the results at all the worldwide sites that process their particle collision data. This twiki site contains documentation for the software of the Frontier system that is not experiment-specific. ",
+    "description" : "The Frontier distributed database caching system uses a RESTful http-based protocol to distribute data queries. The LHC experiments ATLAS and CMS use it to access conditions data describing their complicated detectors, and cache the results at all the worldwide sites that process their particle collision data. This twiki site contains documentation for the software of the Frontier system that is not experiment-specific.",
     "releaseDate" : "2024-02-22",
     "majorVersion" : "5",
     "minorVersion" : "9",
@@ -16,10 +16,10 @@
     "repositoryURL" : "sw/production/umd/4/centos7/x86_64/updates",
     "distributionType": "UMD",
     "distributionVersion": "4.0.0",
-    "capabilities": ["File Access", "Workload Management System"], 
+    "capabilities": ["File Access", "Workload Management System"],
     "target": [
         {
-            "platform": "centos7", 
+            "platform": "centos7",
             "arch": "x86_64",
             "repositoryURL": "sw/production/umd/4/centos7/x86_64/updates",
             "gpgkey": "http://repository.egi.eu/sw/production/umd/UMD-RPM-PGP-KEY",
@@ -29,5 +29,5 @@
         }
     ],
     "softwareConfigurationLink": "",
-    "dummy": "Again Joao Pina testing purposes... to be deleted at 2036"
+    "dummy": "Again Joao Pina testing purposes... to be deleted at 2055"
 }
