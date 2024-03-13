@@ -220,7 +220,7 @@ pipeline {
         stage('Trigger Release Candidate validation'){
             when {
                 allOf {
-                    changeRequest target: 'production/umd4toberemoved'
+                    changeRequest target: 'production/umd4'
                     expression {return json_release_file}
                 }
             }
@@ -242,7 +242,7 @@ pipeline {
                  allOf {
                     changeRequest target: 'production/umd4'
                     expression {return json_release_file}
-                    //equals expected: 'SUCCESS', actual: release_candidate_job_status
+                    equals expected: 'SUCCESS', actual: release_candidate_job_status
                 }
             }
             steps {
@@ -268,7 +268,7 @@ pipeline {
                     changeRequest target: 'production/umd4'
                     expression {return json_release_file}
                     expression { return download_dir }
-                    //equals expected: 'SUCCESS', actual: release_candidate_job_status
+                    equals expected: 'SUCCESS', actual: release_candidate_job_status
                 }
             }
             steps {
