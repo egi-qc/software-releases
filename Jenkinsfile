@@ -44,7 +44,7 @@ pipeline {
                 script {
                     last_commit = sh(
                         returnStdout: true,
-                        script: 'git diff-tree --name-only --no-commit-id -r HEAD^1').trim()
+                        script: 'git diff-tree --name-only --no-commit-id -r HEAD^0').trim()
                     json_files_changed = []
                     last_commit.split('\n').each {
                         if (it.contains('.json')) {
@@ -62,6 +62,7 @@ pipeline {
                         println("Changes to ${json_files_changed[0]} found. Processing file..")
                         json_release_file = json_files_changed[0]
                     }
+                    //json_release_file = "json/umd4/squid.5.9.2.1-centos7.json"
                 }
             }
         }
@@ -82,7 +83,7 @@ pipeline {
                             returnStdout: true,
                             script: "python3 json_parser.py ${json_release_file} 3"
                         ).trim()
-                    }
+                       }
                 }
             }
         }
@@ -90,7 +91,10 @@ pipeline {
         stage('Collect the list of packages') {
             when {
                 allOf {
-                    changeRequest target: 'testing/umd4'
+                    anyOf{
+                        changeRequest target: 'testing/umd4'
+                        changeRequest target: 'production/umd4'
+                    }
                     expression {return json_release_file}
                 }
             }
@@ -225,6 +229,7 @@ pipeline {
                     def release_candidate_job = build job: 'QualityCriteriaValidation/release-candidate',
                                                     parameters: [
                                                         string(name: 'Release', value: "UMD4"),
+                                                        string(name: 'Operating_system', value: "centos7-large"),
                                                         text(name: 'Extra_repository', value: "$extra_repository")
                                                     ]
                     release_candidate_job_status = release_candidate_job.result
@@ -246,15 +251,17 @@ pipeline {
                         script {
                             download_dir = sh(
                                 returnStdout: true,
-                                script: "python3 download_pkgs.py ${json_release_file} 1"
+                                script: "python3 download_pkgs.py ${json_release_file} 1" + ' ${NEXUS_CONFIG}'
                             ).trim()
+                            download_dir_content = sh(returnStdout: true, script:"ls ${download_dir}")
                             println(download_dir)
+                            println(download_dir_content)
                         }
                     }
                 }
             }
         }
-        
+
         stage('Upload packages to production'){
             when {
                 allOf {
