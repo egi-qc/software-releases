@@ -1,0 +1,37 @@
+{
+"name" : "gfal2-utils",
+    "version" : "1.8.1",
+    "currentState" : "Production",
+    "technology_provider" : "CERN",
+    "contact" : "dmc-support@cern.ch",
+    "technicalContact" : "dmc-support@cern.ch",
+    "description" : "GFAL (Grid File Access Library ) is a C library providing an abstraction layer of the grid storage system complexity.",
+    "releaseDate" : "2024-03-15",
+    "majorVersion" : "1",
+    "minorVersion" : "8",
+    "revisionVersion" : "1",
+    "releaseNotes" : "https://github.com/cern-fts/gfal2-util/tree/v1.8.1",
+    "changeLog" : "https://github.com/cern-fts/gfal2-util/tree/v1.8.1",
+    "documentationLinks" : ["https://dmc.web.cern.ch/","link2"],
+    "repositoryURL" : "sw/production/umd/4/centos7/x86_64/updates",
+    "distributionType": "UMD",
+    "distributionVersion": "4.0.0",
+    "capabilities": ["File Access", "Workload Management System"], 
+    "target": [
+        {
+            "platform": "centos7", 
+            "arch": "x86_64",
+            "repositoryURL": "sw/production/umd/4/centos7/x86_64/updates",
+            "gpgkey": "http://repository.egi.eu/sw/production/umd/UMD-RPM-PGP-KEY",
+            "rpms": [
+                "https://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/p/python2-gfal2-1.12.2-1.el7.x86_64.rpm",
+                "https://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/p/python2-gfal2-util-1.8.1-1.el7.noarch.rpm",
+                "https://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/p/python3-gfal2-1.12.2-1.el7.x86_64.rpm",
+                "https://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/p/python3-gfal2-util-1.8.1-1.el7.noarch.rpm",
+                "https://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/g/gfal2-util-scripts-1.8.1-1.el7.noarch.rpm"
+                                
+            ]
+        }
+    ],
+    "softwareConfigurationLink": ""
+}
