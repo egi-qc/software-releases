@@ -44,7 +44,7 @@ pipeline {
                 script {
                     last_commit = sh(
                         returnStdout: true,
-                        script: 'git diff-tree --name-only --no-commit-id -r HEAD^0').trim()
+                        script: 'git diff-tree --name-only --no-commit-id -r HEAD^1').trim()
                     json_files_changed = []
                     last_commit.split('\n').each {
                         if (it.contains('.json')) {
