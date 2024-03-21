@@ -42,11 +42,15 @@
                 "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/d/davix-devel-0.8.5-1.el7.x86_64.rpm",
                 "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/d/davix-doc-0.8.5-1.el7.noarch.rpm",
                 "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/d/davix-libs-0.8.5-1.el7.x86_64.rpm",
-                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/d/davix-tests-0.8.5-1.el7.x86_64.rpm"
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/d/davix-tests-0.8.5-1.el7.x86_64.rpm",
+                "https://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/p/python2-gfal2-1.12.2-1.el7.x86_64.rpm",
+                "https://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/p/python2-gfal2-util-1.8.1-1.el7.noarch.rpm",
+                "https://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/p/python3-gfal2-1.12.2-1.el7.x86_64.rpm",
+                "https://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/p/python3-gfal2-util-1.8.1-1.el7.noarch.rpm",
+                "https://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/g/gfal2-util-scripts-1.8.1-1.el7.noarch.rpm"
 
             ]
         }
     ],
-    "softwareConfigurationLink": "",
-     "dummy": "Again Joao Pina testing purposes... to be deleted at 2058"
+    "softwareConfigurationLink": ""
 }
