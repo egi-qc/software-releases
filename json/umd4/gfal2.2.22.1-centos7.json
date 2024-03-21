@@ -48,9 +48,9 @@
                 "https://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/p/python3-gfal2-1.12.2-1.el7.x86_64.rpm",
                 "https://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/p/python3-gfal2-util-1.8.1-1.el7.noarch.rpm",
                 "https://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/g/gfal2-util-scripts-1.8.1-1.el7.noarch.rpm"
-
             ]
         }
     ],
-    "softwareConfigurationLink": ""
+    "softwareConfigurationLink": "",
+     "dummy": "Again Joao Pina testing purposes... to be deleted at 2055"
 }
