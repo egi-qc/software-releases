@@ -34,7 +34,9 @@
                 "https://ecsft.cern.ch/dist/cvmfs/cvmfs-2.11.2/cvmfs-shrinkwrap-2.11.2-1.el7.x86_64.rpm",
                 "https://ecsft.cern.ch/dist/cvmfs/cvmfs-2.11.2/cvmfs-unittests-2.11.2-1.el7.x86_64.rpm",
                 "https://download.opensuse.org/repositories/home:/cvmfs:/contrib-egi/CentOS_7/noarch/egi-cvmfs-6-4.25.obs.el7.noarch.rpm",
-                "https://download.opensuse.org/repositories/home:/cvmfs:/contrib-egi/CentOS_7/noarch/cvmfs-config-egi-2.6-1.7.obs.el7.noarch.rpm"
+                "https://download.opensuse.org/repositories/home:/cvmfs:/contrib-egi/CentOS_7/noarch/cvmfs-config-egi-2.6-1.7.obs.el7.noarch.rpm",
+                "https://download.opensuse.org/repositories/home:/cvmfs:/contrib/CentOS_7/x86_64/cvmfs-x509-helper-2.4-1.31.obs.el7.x86_64.rpm",
+                "https://download.opensuse.org/repositories/home:/cvmfs:/contrib/CentOS_7/x86_64/cvmfs-x509-helper-debuginfo-2.4-1.31.obs.el7.x86_64.rpm"
             ]
         }
     ],
