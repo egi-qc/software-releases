@@ -1,0 +1,56 @@
+{
+"name" : "Gfal2",
+    "version" : "2.22.1",
+    "currentState" : "Production",
+    "technology_provider" : "CERN",
+    "contact" : "dmc-support@cern.ch",
+    "technicalContact" : "dmc-support@cern.ch",
+    "description" : "GFAL (Grid File Access Library ) is a C library providing an abstraction layer of the grid storage system complexity.",
+    "releaseDate" : "2024-02-22",
+    "majorVersion" : "2",
+    "minorVersion" : "22",
+    "revisionVersion" : "1",
+    "releaseNotes" : "https://dmc.web.cern.ch/release/gfal2-2.22.1-1",
+    "changeLog" : "https://dmc.web.cern.ch/release/gfal2-2.22.1-1",
+    "documentationLinks" : ["https://dmc.web.cern.ch/","link2"],
+    "repositoryURL" : "sw/production/umd/4/centos7/x86_64/updates",
+    "distributionType": "UMD",
+    "distributionVersion": "4.0.0",
+    "capabilities": ["File Access", "Workload Management System"], 
+    "target": [
+        {
+            "platform": "centos7", 
+            "arch": "x86_64",
+            "repositoryURL": "sw/production/umd/4/centos7/x86_64/updates",
+            "gpgkey": "http://repository.egi.eu/sw/production/umd/UMD-RPM-PGP-KEY",
+            "rpms": [
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/g/gfal2-2.22.1-1.el7.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/g/gfal2-all-2.22.1-1.el7.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/g/gfal2-devel-2.22.1-1.el7.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/g/gfal2-doc-2.22.1-1.el7.noarch.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/g/gfal2-plugin-dcap-2.22.1-1.el7.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/g/gfal2-plugin-file-2.22.1-1.el7.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/g/gfal2-plugin-gridftp-2.22.1-1.el7.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/g/gfal2-plugin-http-2.22.1-1.el7.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/g/gfal2-plugin-lfc-2.22.1-1.el7.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/g/gfal2-plugin-mock-2.22.1-1.el7.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/g/gfal2-plugin-rfio-2.22.1-1.el7.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/g/gfal2-plugin-sftp-2.22.1-1.el7.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/g/gfal2-plugin-srm-2.22.1-1.el7.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/g/gfal2-plugin-xrootd-2.22.1-1.el7.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/d/davix-0.8.5-1.el7.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/d/davix-devel-0.8.5-1.el7.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/d/davix-doc-0.8.5-1.el7.noarch.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/d/davix-libs-0.8.5-1.el7.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/d/davix-tests-0.8.5-1.el7.x86_64.rpm",
+                "https://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/p/python2-gfal2-1.12.2-1.el7.x86_64.rpm",
+                "https://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/p/python2-gfal2-util-1.8.1-1.el7.noarch.rpm",
+                "https://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/p/python3-gfal2-1.12.2-1.el7.x86_64.rpm",
+                "https://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/p/python3-gfal2-util-1.8.1-1.el7.noarch.rpm",
+                "https://ftp.fi.muni.cz/pub/linux/fedora/epel/7/x86_64/Packages/g/gfal2-util-scripts-1.8.1-1.el7.noarch.rpm"
+
+            ]
+        }
+    ],
+    "softwareConfigurationLink": ""
+}
