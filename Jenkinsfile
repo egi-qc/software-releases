@@ -274,6 +274,7 @@ pipeline {
                     expression {return json_release_file}
                     expression { return download_dir }
                     equals expected: 'SUCCESS', actual: release_candidate_job_status
+                 }
             }
             steps {
                 dir('scripts') {
