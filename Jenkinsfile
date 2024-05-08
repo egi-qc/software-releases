@@ -100,7 +100,10 @@ pipeline {
         stage('Collect the list of packages') {
             when {
                 allOf {
-                    changeRequest target: 'testing/umd5'
+                    anyOf{
+                        changeRequest target: 'testing/umd5'
+                        changeRequest target: 'production/umd5'
+                    }
                     expression {return json_release_file}
                 }
             }
@@ -164,7 +167,7 @@ pipeline {
             }
         }
 
-        stage('Upload packages'){
+        stage('Upload packages to testing'){
             when {
                 expression {return download_dir}
             }
@@ -227,7 +230,10 @@ pipeline {
         //
         stage('Trigger Release Candidate validation'){
             when {
-                changeRequest target: 'production/umd5'
+                allOf {
+                    changeRequest target: 'production/umd5'
+                    expression {return json_release_file}
+                }
             }
             steps {
                 script {
@@ -237,6 +243,47 @@ pipeline {
                                                         text(name: 'Extra_repository', value: "$extra_repository")
                                                     ]
                     release_candidate_job_status = release_candidate_job.result
+                }
+            }
+        }
+    stage('Download the packages to a temporary directory') {
+            when {
+                allOf {
+                    changeRequest target: 'production/umd5'
+                    expression {return json_release_file}
+                }
+            }
+            steps {
+                dir('scripts') {
+                    withPythonEnv('python3') {
+                        script {
+                            download_dir = sh(
+                                returnStdout: true,
+                                script: "python3 download_pkgs.py ${json_release_file} 0"
+                            ).trim()
+                            println(download_dir)
+                        }
+                    }
+                }
+            }
+        }
+    stage('Upload packages to production'){
+            when {
+                 allOf {
+                    changeRequest target: 'production/umd4'
+                    expression {return json_release_file}
+                    expression { return download_dir }
+                    equals expected: 'SUCCESS', actual: release_candidate_job_status
+            }
+            steps {
+                dir('scripts') {
+                    script {
+                        pkgs_upload = sh(
+                            returnStdout: true,
+                            script: "python3 upload_pkgs.py ${json_release_file} 0" + ' ${NEXUS_CONFIG}'
+                        ).trim()
+                        println(pkgs_upload)
+                    }
                 }
             }
         }
