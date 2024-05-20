@@ -1,0 +1,45 @@
+{
+    "name" : "cvmfs",
+    "version" : "2.11.2",
+    "currentState" : "Production",
+    "technology_provider" : "CernVM",
+    "contact" : "cvmfs-devel@cern.ch",
+    "technicalContact" : "cvmfs-devel@cern.ch",
+    "description" : "CernVM File System (CernVM-FS) is a network file system based on HTTP and optimized to deliver experiment software in a fast, scalable, and reliable way. Files and file metadata are aggressively cached and downloaded on demand. Thereby the CernVM-FS decouples the life cycle management of the application software releases from the operating system. CernVM-FS is included in CernVM, however it can also be used outside CernVM",
+    "releaseDate" : "2023-11-13",
+    "majorVersion" : "2",
+    "minorVersion" : "11",
+    "revisionVersion" : "2",
+    "releaseNotes" : "https://cvmfs.readthedocs.io/en/stable/cpt-releasenotes.html#release-notes-for-cernvm-fs-2-11-2",
+    "changeLog" : "https://cvmfs.readthedocs.io/en/stable/cpt-releasenotes.html#release-notes-for-cernvm-fs-2-11-2",
+    "documentationLinks" : ["https://cvmfs.readthedocs.io/","link2"],
+    "repositoryURL" : "umd/4/centos7/x86_64/updates",
+    "distributionType": "UMD",
+    "distributionVersion": "4.18.0",
+    "capabilities": ["File Access"], 
+    "target": [
+        {
+            "platform": "centos7", 
+            "arch": "x86_64",
+            "repositoryURL": "umd/4/centos7/x86_64/updates",
+            "gpgkey": "http://repository.egi.eu/sw/production/umd/UMD-RPM-PGP-KEY",
+            "rpms": [
+                "https://ecsft.cern.ch/dist/cvmfs/cvmfs-2.11.2/cvmfs-2.11.2-1.el7.x86_64.rpm",
+                "https://ecsft.cern.ch/dist/cvmfs/cvmfs-2.11.2/cvmfs-devel-2.11.2-1.el7.x86_64.rpm",
+                "https://ecsft.cern.ch/dist/cvmfs/cvmfs-2.11.2/cvmfs-ducc-2.11.2-1.el7.x86_64.rpm",
+                "https://ecsft.cern.ch/dist/cvmfs/cvmfs-2.11.2/cvmfs-fuse3-2.11.2-1.el7.x86_64.rpm",
+                "https://ecsft.cern.ch/dist/cvmfs/cvmfs-2.11.2/cvmfs-gateway-2.11.2-1.el7.x86_64.rpm",
+                "https://ecsft.cern.ch/dist/cvmfs/cvmfs-2.11.2/cvmfs-libs-2.11.2-1.el7.x86_64.rpm",
+                "https://ecsft.cern.ch/dist/cvmfs/cvmfs-2.11.2/cvmfs-server-2.11.2-1.el7.x86_64.rpm",
+                "https://ecsft.cern.ch/dist/cvmfs/cvmfs-2.11.2/cvmfs-shrinkwrap-2.11.2-1.el7.x86_64.rpm",
+                "https://ecsft.cern.ch/dist/cvmfs/cvmfs-2.11.2/cvmfs-unittests-2.11.2-1.el7.x86_64.rpm",
+                "https://download.opensuse.org/repositories/home:/cvmfs:/contrib-egi/CentOS_7/noarch/egi-cvmfs-6-4.25.obs.el7.noarch.rpm",
+                "https://download.opensuse.org/repositories/home:/cvmfs:/contrib/CentOS_7/x86_64/cvmfs-x509-helper-2.4-1.31.obs.el7.x86_64.rpm",
+                "https://download.opensuse.org/repositories/home:/cvmfs:/contrib/CentOS_7/x86_64/cvmfs-x509-helper-debuginfo-2.4-1.31.obs.el7.x86_64.rpm"
+
+
+            ]
+        }
+    ],
+    "softwareConfigurationLink": ""
+}
