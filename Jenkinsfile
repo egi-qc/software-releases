@@ -246,7 +246,7 @@ pipeline {
                 }
             }
         }
-    stage('Download the packages to a temporary directory') {
+    stage('Production Download the packages to a temporary directory') {
             when {
                 allOf {
                     changeRequest target: 'production/umd5'
@@ -270,7 +270,7 @@ pipeline {
     stage('Upload packages to production'){
             when {
                  allOf {
-                    changeRequest target: 'production/umd4'
+                    changeRequest target: 'production/umd5'
                     expression {return json_release_file}
                     expression { return download_dir }
                     equals expected: 'SUCCESS', actual: release_candidate_job_status
