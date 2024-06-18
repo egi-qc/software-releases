@@ -142,7 +142,7 @@ pipeline {
 
         stage('Add UMD GPG key'){
             when {
-                expression { return download_dir }
+                expression {return download_dir}
             }
             steps {
                 println('Importing private GPG key')
@@ -164,9 +164,9 @@ pipeline {
             }
         }
 
-        stage('Upload packages to testing'){
+        stage('Upload packages'){
             when {
-                expression { return download_dir }
+                expression {return download_dir}
             }
             steps {
                 dir('scripts') {
@@ -193,7 +193,7 @@ pipeline {
                                               text(name: 'OS', value: "$platform"),
                                               text(name: 'Packages', value: "$pkg_names"),
                                               booleanParam(name: 'enable_verification_repo', value: true),
-                                              booleanParam(name: 'enable_testing_repo', value: true),
+                                              booleanParam(name: 'enable_testing_repo', value: false),
                                               booleanParam(name: 'enable_untested_repo', value: false),
                                               booleanParam(name: 'disable_updates_repo', value: false)
                                           ]
@@ -240,8 +240,8 @@ pipeline {
                 }
             }
         }
-
-         stage('Production download packages to a temporary directory') {
+    }
+}
             when {
                  allOf {
                     changeRequest target: 'production/umd4'
