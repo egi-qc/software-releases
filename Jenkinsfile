@@ -100,7 +100,10 @@ pipeline {
         stage('Collect the list of packages') {
             when {
                 allOf {
-                    changeRequest target: 'testing/umd5'
+                    anyOf{
+                        changeRequest target: 'testing/umd5'
+                        changeRequest target: 'production/umd5'
+                    }
                     expression {return json_release_file}
                 }
             }
@@ -164,7 +167,7 @@ pipeline {
             }
         }
 
-        stage('Upload packages'){
+        stage('Upload packages to testing'){
             when {
                 expression {return download_dir}
             }
@@ -227,7 +230,10 @@ pipeline {
         //
         stage('Trigger Release Candidate validation'){
             when {
-                changeRequest target: 'production/umd5'
+                allOf {
+                    changeRequest target: 'production/umd5'
+                    expression {return json_release_file}
+                }
             }
             steps {
                 script {

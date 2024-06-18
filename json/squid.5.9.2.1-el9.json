@@ -1,0 +1,32 @@
+{
+    "name" : "frontier-squid",
+    "version" : "5.9.2",
+    "currentState" : "Production",
+    "technology_provider" : "CernFrontier",
+    "contact" : "carl.vuosalo@cern.ch",
+    "technicalContact" : "carl.vuosalo@cern.ch",
+    "description" : "The Frontier distributed database caching system uses a RESTful http-based protocol to distribute data queries. The LHC experiments ATLAS and CMS use it to access conditions data describing their complicated detectors, and cache the results at all the worldwide sites that process their particle collision data. This twiki site contains documentation for the software of the Frontier system that is not experiment-specific. ",
+    "releaseDate" : "2024-02-22",
+    "majorVersion" : "5",
+    "minorVersion" : "9",
+    "revisionVersion" : "2",
+    "releaseNotes" : "http://frontier.cern.ch/dist/rpms-debug/frontier-squidRELEASE_NOTES",
+    "changeLog" : "http://frontier.cern.ch/dist/rpms-debug/frontier-squidRELEASE_NOTES",
+    "documentationLinks" : ["https://twiki.cern.ch/twiki/bin/view/Frontier/WebHome","link2"],
+    "repositoryURL" : "sw/production/umd/4/centos7/x86_64/updates",
+    "distributionType": "UMD",
+    "distributionVersion": "5.0.0",
+    "capabilities": ["File Access", "Workload Management System"], 
+    "target": [
+        {
+            "platform": "AlmaLinux_9", 
+            "arch": "x86_64",
+            "repositoryURL": "sw/production/umd/5/centos7/x86_64/updates",
+            "gpgkey": "https://repository.egi.eu/repository/umd/5/UMD-5-RPM-PGP-KEY",
+            "rpms": [
+                "http://frontier.cern.ch/dist/rpms/RPMS/x86_64/frontier-squid-5.9-2.1.x86_64.rpm"
+            ]
+        }
+    ],
+    "softwareConfigurationLink": ""
+}
