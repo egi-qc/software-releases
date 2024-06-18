@@ -1,8 +1,9 @@
 # -*- encoding: utf-8 -*-
 #
-# Copyright 2022 LIP
+# Copyright 2024 LIP
 #
 # Author: Mario David <mariojmdavid@gmail.com>
+# Contributor: Samuel Bernardo <samuel@lip.pt>
 #
 
 """functions utils
@@ -10,10 +11,15 @@
 
 import os
 import json
+import yaml
 import requests
 from config import Config
 from urllib.parse import urlparse
+from pathlib import Path
 
+
+def load_config(yaml_file) -> dict:
+    return yaml.safe_load(Path(yaml_file))
 
 def create_dict_pkg(json_file):
     '''Create a dictionary with package and respective URL
@@ -101,7 +107,7 @@ def download_pkg(pkg_dict, tmp_dir):
         with open(out_file, 'wb') as file:
             file.write(req_get.content)
 
-        # print(f'{pkg} downloaded')        
+        # print(f'{pkg} downloaded')
 
 
 def upload_pkg(prod_metadata, full_uri_path, repo_admin, repo_pass):

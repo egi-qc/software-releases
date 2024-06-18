@@ -142,7 +142,7 @@ pipeline {
 
         stage('Add UMD GPG key'){
             when {
-                expression {return download_dir}
+                expression { return download_dir }
             }
             steps {
                 println('Importing private GPG key')
@@ -157,16 +157,16 @@ pipeline {
                             returnStdout: true,
                             script: "./rpm_sign.sh ${download_dir} 0"
                         ).trim()
-                    	println(pkgs_signed)
+                        println(pkgs_signed)
                         sh "./rpm_sign.sh ${download_dir} 1"
                     }
                 }
             }
         }
 
-        stage('Upload packages'){
+        stage('Upload packages to testing'){
             when {
-                expression {return download_dir}
+                expression { return download_dir }
             }
             steps {
                 dir('scripts') {
@@ -193,7 +193,7 @@ pipeline {
                                               text(name: 'OS', value: "$platform"),
                                               text(name: 'Packages', value: "$pkg_names"),
                                               booleanParam(name: 'enable_verification_repo', value: true),
-                                              booleanParam(name: 'enable_testing_repo', value: false),
+                                              booleanParam(name: 'enable_testing_repo', value: true),
                                               booleanParam(name: 'enable_untested_repo', value: false),
                                               booleanParam(name: 'disable_updates_repo', value: false)
                                           ]
@@ -240,5 +240,53 @@ pipeline {
                 }
             }
         }
+
+         stage('Production download packages to a temporary directory') {
+            when {
+                 allOf {
+                    changeRequest target: 'production/umd4'
+                    expression {return json_release_file}
+                    equals expected: 'SUCCESS', actual: release_candidate_job_status
+                }
+            }
+            steps {
+                dir('scripts') {
+                    withPythonEnv('python3') {
+                        script {
+                            download_dir = sh(
+                                returnStdout: true,
+                                script: "python3 download_pkgs.py ${json_release_file} 1" + ' ${NEXUS_CONFIG}'
+                            ).trim()
+                            download_dir_content = sh(returnStdout: true, script:"ls ${download_dir}")
+                            println(download_dir)
+                            println(download_dir_content)
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Upload packages to production'){
+            when {
+                allOf {
+                    changeRequest target: 'production/umd4'
+                    expression {return json_release_file}
+                    expression { return download_dir }
+                    equals expected: 'SUCCESS', actual: release_candidate_job_status
+                }
+            }
+            steps {
+                dir('scripts') {
+                    script {
+                        pkgs_upload = sh(
+                            returnStdout: true,
+                            script: "python3 upload_pkgs.py ${json_release_file} 1" + ' ${NEXUS_CONFIG}'
+                        ).trim()
+                        println(pkgs_upload)
+                    }
+                }
+            }
+        }
+
     }
 }
