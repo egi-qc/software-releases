@@ -10,7 +10,7 @@
 
 """upload packages to nexus oss repositories
 """
-
+import os
 import sys
 import utils
 from config import Config
