@@ -1,3 +1,4 @@
 requests
 configparser
+pathlib2
 PyYAML
