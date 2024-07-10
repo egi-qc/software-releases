@@ -18,7 +18,7 @@ from config import Config
 
 if __name__ == '__main__':
     _TESTING_ = 'testing'
-    _UPDATES_ = 'updates'
+    _UPDATES_ = 'release'
     _BASE_ = 'base'
     if len(sys.argv)  not in [3, 4]:
         print('Usage:', sys.argv[0],
@@ -36,14 +36,14 @@ if __name__ == '__main__':
     (dst_type, dst_version, platform, arch) = utils.get_info_json(ev['json_file'])
 
     # full uri is repo_uri_path/rel_uripath ->
-    # https://nexusrepoegi.a.incd.pt/repository/umd/5/<OPERATING_SYSTEM>/<ARCH>/<testing|base|updates>/
+    # https://nexusrepoegi.a.incd.pt/repository/umd/5/<testing|release|contrib>/<OPERATING_SYSTEM>/<ARCH>/
     repo = _TESTING_
     if sys.argv[2] == '1':
         repo = _UPDATES_
     if sys.argv[2] == '2':
         repo = _BASE_
 
-    rel_uripath = dst_type + '/' + dst_version + '/' + platform + '/' + arch + '/' + repo
+    rel_uripath = dst_type + '/' + dst_version + '/' + platform + '/' + repo + '/' + arch
     real_uri = ev['repo_uri_path']
     full_uri_path = ev['repo_uri_path'] + '/' + rel_uripath
     print(f'Repository URI path {full_uri_path}')
