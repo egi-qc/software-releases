@@ -11,8 +11,8 @@ RUN yum makecache --timer && yum -y install \
     sudo
 
 # Copy and import UMD key
-COPY UMD-5-RPM-PGP-KEY .
-RUN rpm --import UMD-5-RPM-PGP-KEY
+COPY RPM-GPG-KEY-umd-cmd .
+RUN rpm --import RPM-GPG-KEY-umd-cmd
 
 ENV HOME /home/jenkins
 # Hack to use the same user/group ID in the container
