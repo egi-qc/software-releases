@@ -19,7 +19,7 @@
     "capabilities": ["File Access", "Workload Management System"], 
     "target": [
         {
-            "platform": "AlmaLinux_9", 
+            "platform": "al9", 
             "arch": "x86_64",
             "repositoryURL": "sw/production/umd/5/centos7/x86_64/updates",
             "gpgkey": "https://repository.egi.eu/repository/umd/5/UMD-5-RPM-PGP-KEY",
@@ -28,5 +28,6 @@
             ]
         }
     ],
-    "softwareConfigurationLink": ""
+    "softwareConfigurationLink": "",
+    "dummy": "Again Joao Pina testing purposes... to be deleted at 2025"
 }

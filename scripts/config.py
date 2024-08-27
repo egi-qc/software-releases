@@ -14,7 +14,7 @@ class Config:
     conf['repo_admin'] = 'admin'
     conf['repo_pass'] = 'mypass'
     conf['tmp_base_dir'] = '/tmp/umdcmd'
-    conf['json_dir'] = '../json'
+    conf['json_dir'] = '../json/umd5'
 
     conf['json_file'] = ''
     conf['tmp_dir'] = ''

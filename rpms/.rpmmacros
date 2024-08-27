@@ -1,5 +1,5 @@
 %_signature gpg
 %_gpg_path /home/jenkins/.gnupg
-%_gpg_name RPM sign UMD/CMD
+%_gpg_name UMD5-Releases
 %_gpgbin /usr/bin/gpg
 %__gpg_sign_cmd %{__gpg} gpg --batch --no-verbose --no-armor --pinentry-mode loopback --passphrase '' --no-secmem-warning -u "%{_gpg_name}" -sbo %{__signature_filename} --digest-algo sha256 %{__plaintext_filename}
