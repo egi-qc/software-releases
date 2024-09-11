@@ -37,7 +37,7 @@ if __name__ == '__main__':
 
         # full uri is repo_uri_path/rel_uripath ->
         # https://nexusrepoegi.a.incd.pt/repository/umd/5/<OPERATING_SYSTEM>/testing/<ARCH>
-        rel_uripath = dst_type + '/' + dst_version + '/' + platform + '/' + arch + '/' + 'testing'
+        rel_uripath = dst_type + '/' + dst_version + '/' + platform + '/' + 'testing' + '/' + arch 
         for (pkg, url) in pkg_dict.items():
             pkg_dict[pkg] = ev['repo_uri_path'] + '/' + rel_uripath + '/' + pkg
 
