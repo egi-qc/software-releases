@@ -30,4 +30,9 @@ WORKDIR $HOME
 
 COPY rpms/.rpmmacros $HOME/.rpmmacros
 
+# Install python requirements
+COPY ./requirements.txt ./
+RUN pip3 install --user -r requirements.txt && rm ./requirements.txt
+
+
 CMD ["/bin/bash"]

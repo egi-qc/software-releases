@@ -100,7 +100,10 @@ pipeline {
         stage('Collect the list of packages') {
             when {
                 allOf {
-                    changeRequest target: 'testing/umd5'
+                    anyOf{
+                        changeRequest target: 'testing/umd5'
+                        changeRequest target: 'production/umd5'
+                    }
                     expression {return json_release_file}
                 }
             }
@@ -157,14 +160,14 @@ pipeline {
                             returnStdout: true,
                             script: "./rpm_sign.sh ${download_dir} 0"
                         ).trim()
-                    	println(pkgs_signed)
+                        println(pkgs_signed)
                         sh "./rpm_sign.sh ${download_dir} 1"
                     }
                 }
             }
         }
 
-        stage('Upload packages'){
+        stage('Upload packages to testing'){
             when {
                 expression {return download_dir}
             }
@@ -193,7 +196,7 @@ pipeline {
                                               text(name: 'OS', value: "$platform"),
                                               text(name: 'Packages', value: "$pkg_names"),
                                               booleanParam(name: 'enable_verification_repo', value: true),
-                                              booleanParam(name: 'enable_testing_repo', value: false),
+                                              booleanParam(name: 'enable_testing_repo', value: true),
                                               booleanParam(name: 'enable_untested_repo', value: false),
                                               booleanParam(name: 'disable_updates_repo', value: false)
                                           ]
@@ -227,7 +230,10 @@ pipeline {
         //
         stage('Trigger Release Candidate validation'){
             when {
-                changeRequest target: 'production/umd5'
+                allOf {
+                    changeRequest target: 'production/umd5'
+                    expression {return json_release_file}
+                }
             }
             steps {
                 script {
@@ -237,6 +243,53 @@ pipeline {
                                                         text(name: 'Extra_repository', value: "$extra_repository")
                                                     ]
                     release_candidate_job_status = release_candidate_job.result
+                }
+            }
+        }
+
+        stage('Production download packages to a temporary directory') {
+            when {
+                 allOf {
+                    changeRequest target: 'production/umd5'
+                    expression {return json_release_file}
+                    equals expected: 'SUCCESS', actual: release_candidate_job_status
+                }
+            }
+            steps {
+                dir('scripts') {
+                    withPythonEnv('python3') {
+                        script {
+                            download_dir = sh(
+                                returnStdout: true,
+                                script: "python3 download_pkgs.py ${json_release_file} 1" + ' ${NEXUS_CONFIG}'
+                            ).trim()
+                            download_dir_content = sh(returnStdout: true, script:"ls ${download_dir}")
+                            println(download_dir)
+                            println(download_dir_content)
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Upload packages to production'){
+            when {
+                allOf {
+                    changeRequest target: 'production/umd5'
+                    expression {return json_release_file}
+                    expression { return download_dir }
+                    equals expected: 'SUCCESS', actual: release_candidate_job_status
+                }
+            }
+            steps {
+                dir('scripts') {
+                    script {
+                        pkgs_upload = sh(
+                            returnStdout: true,
+                            script: "python3 upload_pkgs.py ${json_release_file} 1" + ' ${NEXUS_CONFIG}'
+                        ).trim()
+                        println(pkgs_upload)
+                    }
                 }
             }
         }
