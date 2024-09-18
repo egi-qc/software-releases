@@ -19,7 +19,7 @@
     "capabilities": ["Accounting"], 
     "target": [
         {
-            "platform": "AlmaLinux_9", 
+            "platform": "al9", 
             "arch": "x86_64",
             "repositoryURL": "sw/production/umd/5/al9/release/x86_64",
             "gpgkey": "https://repository.egi.eu/repository/umd/5/UMD-5-RPM-PGP-KEY",
