@@ -26,7 +26,8 @@
             "rpms": [
                 "https://github.com/apel/apel/releases/download/2.1.0-1/apel-client-2.1.0-1.el9.noarch.rpm",
                 "https://github.com/apel/apel/releases/download/2.1.0-1/apel-lib-2.1.0-1.el9.noarch.rpm",
-                "https://github.com/apel/apel/releases/download/2.1.0-1/apel-server-2.1.0-1.el9.noarch.rpm",
+                "https://github.com/apel/ssm/releases/download/3.4.1-1/apel-ssm-3.4.1-1.el9.noarch.rpm",
+                "https://github.com/apel/ssm/releases/download/3.4.1-1/apel-ssm-service-3.4.1-1.el9.noarch.rpm",
                 "https://github.com/apel/apel/releases/download/2.1.0-1/apeldbloader-service-2.1.0-1.el9.noarch.rpm"
             ]
         }
