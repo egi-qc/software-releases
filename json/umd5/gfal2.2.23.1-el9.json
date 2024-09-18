@@ -1,0 +1,53 @@
+{
+"name" : "Gfal2",
+    "version" : "2.23.0",
+    "currentState" : "Production",
+    "technology_provider" : "CERN",
+    "contact" : "dmc-support@cern.ch",
+    "technicalContact" : "dmc-support@cern.ch",
+    "description" : "GFAL (Grid File Access Library ) is a C library providing an abstraction layer of the grid storage system complexity.",
+    "releaseDate" : "2024-09-18",
+    "majorVersion" : "2",
+    "minorVersion" : "23",
+    "revisionVersion" : "0",
+    "releaseNotes" : "https://gitlab.cern.ch/dmc/gfal2/-/releases",
+    "changeLog" : "https://gitlab.cern.ch/dmc/gfal2/-/releases",
+    "documentationLinks" : ["https://dmc-docs.web.cern.ch/dmc-docs/gfal2/gfal2.html","link2"],
+    "repositoryURL" : "sw/production/umd/4/centos7/x86_64/updates",
+    "distributionType": "UMD",
+    "distributionVersion": "5.0.0",
+    "capabilities": ["File Access", "Workload Management System"], 
+    "target": [
+        {
+            "platform": "al9", 
+            "arch": "x86_64", 
+            "repositoryURL": "sw/production/umd/5/al9/release/x86_64",
+            "gpgkey": "https://repository.egi.eu/repository/umd/5/UMD-5-RPM-PGP-KEY",
+            "rpms": [
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/g/gfal2-2.23.0-1.el9.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/g/gfal2-all-2.23.0-1.el9.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/g/gfal2-devel-2.23.0-1.el9.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/g/gfal2-doc-2.23.0-1.el9.noarch.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/g/gfal2-plugin-dcap-2.23.0-1.el9.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/g/gfal2-plugin-file-2.23.0-1.el9.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/g/gfal2-plugin-gridftp-2.23.0-1.el9.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/g/gfal2-plugin-http-2.23.0-1.el9.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/g/gfal2-plugin-mock-2.23.0-1.el9.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/g/gfal2-plugin-rfio-2.23.0-1.el9.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/g/gfal2-plugin-sftp-2.23.0-1.el9.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/g/gfal2-plugin-srm-2.23.0-1.el9.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/g/gfal2-plugin-xrootd-2.23.0-1.el9.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everythingx86_64/Packages/g/gfal2-tests-2.23.0-1.el9.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/g/gfal2-util-scripts-1.9.0-1.el9.noarch.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/d/davix-0.8.7-1.el9.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/d/davix-devel-0.8.7-1.el9.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/d/davix-doc-0.8.7-1.el9.noarch.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/d/davix-libs-0.8.7-1.el9.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/d/davix-tests-0.8.7-1.el9.x86_64.rpm",
+                "https://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/p/python3-gfal2-1.13.0-1.el9.x86_64.rpm",
+                "https://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/p/python3-gfal2-util-1.9.0-1.el9.noarch.rpm"
+                         ]
+        }
+    ],
+    "softwareConfigurationLink": ""
+}
