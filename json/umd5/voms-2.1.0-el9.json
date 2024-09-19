@@ -1,0 +1,40 @@
+{
+    "name" : "voms",
+    "version" : "2.1.0",
+    "currentState" : "Production",
+    "technology_provider" : "INFN",
+    "contact" : "",
+    "technicalContact" : "NA",
+    "description" : "first release of voms core, clients and server for almalinux9",
+    "releaseDate" : "2024-09-19",
+    "majorVersion" : "2",
+    "minorVersion" : "1",
+    "revisionVersion" : "0",
+    "releaseNotes" : "https://italiangrid.github.io/voms/release-notes/voms-core/2.1.0/",
+    "changeLog" : "https://italiangrid.github.io/voms/release-notes/voms-core/2.1.0/",
+    "documentationLinks" : ["https://italiangrid.github.io/voms/documentation.html","link2"],
+    "repositoryURL" : "sw/production/umd/5/al9/release/x86_64",
+    "distributionType": "UMD",
+    "distributionVersion": "5.0.0",
+    "capabilities": ["Credential Management"], 
+    "target": [
+        {
+            "platform": "al9", 
+            "arch": "x86_64",
+            "repositoryURL": "sw/production/umd/5/al9/release/x86_64",
+            "gpgkey": "https://repository.egi.eu/repository/umd/5/UMD-5-RPM-PGP-KEY",
+            "rpms": [
+               "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/v/voms-2.1.0-1.el9.x86_64.rpm",
+               "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/v/voms-api-java-3.3.3-1.el9.noarch.rpm",
+               "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/v/voms-api-java-javadoc-3.3.3-1.el9.noarch.rpm",
+               "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/v/voms-clients-cpp-2.1.0-1.el9.x86_64.rpm",
+               "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/v/voms-clients-java-3.3.3-1.el9.noarch.rpm",
+               "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/v/voms-devel-2.1.0-1.el9.x86_64.rpm",
+               "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/v/voms-doc-2.1.0-1.el9.noarch.rpm",
+               "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/v/voms-mysql-plugin-3.1.7-13.el9.x86_64.rpm",
+               "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/v/voms-server-2.1.0-1.el9.x86_64.rpm"
+            ]
+        }
+    ],
+    "softwareConfigurationLink": ""
+}
