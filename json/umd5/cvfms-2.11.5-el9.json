@@ -1,0 +1,46 @@
+{
+    "name" : "cvmfs",
+    "version" : "2.11.5",
+    "currentState" : "Production",
+    "technology_provider" : "CernVM",
+    "contact" : "cvmfs-devel@cern.ch",
+    "technicalContact" : "cvmfs-devel@cern.ch",
+    "description" : "CernVM File System (CernVM-FS) is a network file system based on HTTP and optimized to deliver experiment software in a fast, scalable, and reliable way. Files and file metadata are aggressively cached and downloaded on demand. Thereby the CernVM-FS decouples the life cycle management of the application software releases from the operating system. CernVM-FS is included in CernVM, however it can also be used outside CernVM",
+    "releaseDate" : "2024-09-19",
+    "majorVersion" : "2",
+    "minorVersion" : "11",
+    "revisionVersion" : "5",
+    "releaseNotes" : "https://cvmfs.readthedocs.io/en/stable/cpt-releasenotes.html",
+    "changeLog" : "https://cvmfs.readthedocs.io/en/stable/cpt-releasenotes.html",
+    "documentationLinks" : ["https://cvmfs.readthedocs.io/","link2"],
+    "repositoryURL" : "sw/production/umd/5/al9/release/x86_64",
+    "distributionType": "UMD",
+    "distributionVersion": "5.0.0",
+    "capabilities": ["File Access"], 
+    "target": [
+        {
+            "platform": "al9", 
+            "arch": "x86_64",
+            "repositoryURL": "sw/production/umd/5/al9/release/x86_64",
+            "gpgkey": "https://repository.egi.eu/repository/umd/5/UMD-5-RPM-PGP-KEY",
+            "rpms": [
+                "https://ecsft.cern.ch/dist/cvmfs/cvmfs-2.11.5/cvmfs-2.11.5-1.el9.x86_64.rpm",
+                "https://ecsft.cern.ch/dist/cvmfs/cvmfs-2.11.5/cvmfs-devel-2.11.5-1.el9.x86_64.rpm",
+                "https://ecsft.cern.ch/dist/cvmfs/cvmfs-2.11.5/cvmfs-ducc-2.11.5-1.el9.x86_64.rpm",
+                "https://ecsft.cern.ch/dist/cvmfs/cvmfs-2.11.5/cvmfs-fuse3-2.11.5-1.el9.x86_64.rpm",
+                "https://ecsft.cern.ch/dist/cvmfs/cvmfs-2.11.5/cvmfs-gateway-2.11.5-1.el9.x86_64.rpm",
+                "https://ecsft.cern.ch/dist/cvmfs/cvmfs-2.11.5/cvmfs-libs-2.11.5-1.el9.x86_64.rpm",
+                "https://ecsft.cern.ch/dist/cvmfs/cvmfs-2.11.5/cvmfs-server-2.11.5-1.el9.x86_64.rpm",
+                "https://ecsft.cern.ch/dist/cvmfs/cvmfs-2.11.5/cvmfs-shrinkwrap-2.11.5-1.el9.x86_64.rpm",
+                "https://ecsft.cern.ch/dist/cvmfs/cvmfs-2.11.5/cvmfs-unittests-2.11.5-1.el9.x86_64.rpm",
+                "https://download.opensuse.org/repositories/home:/cvmfs:/contrib-egi/AlmaLinux_9/noarch/egi-cvmfs-6-7.28.obs.el9.noarch.rpm",
+                "https://download.opensuse.org/repositories/home:/cvmfs:/contrib-egi/AlmaLinux_9/noarch/cvmfs-config-egi-2.6-1.7.obs.el9.noarch.rpm",
+                "https://download.opensuse.org/repositories/home:/cvmfs:/contrib/AlmaLinux_9/x86_64/cvmfs-x509-helper-2.4-1.31.obs.el9.x86_64.rpm",
+                "https://download.opensuse.org/repositories/home:/cvmfs:/contrib/AlmaLinux_9/x86_64/cvmfs-x509-helper-debuginfo-2.4-1.31.obs.el9.x86_64.rpm"
+
+
+            ]
+        }
+    ],
+    "softwareConfigurationLink": ""
+}
