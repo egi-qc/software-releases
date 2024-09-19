@@ -54,7 +54,7 @@ if __name__ == '__main__':
             sys.exit(1)
     # Clean up packages from the testing repo after successful copy to the production branch
     if repo == _UPDATES_:
-        rel_uripath = dst_type + '/' + dst_version + '/' + platform + '/' + arch + '/' + _TESTING_
+        rel_uripath = dst_type + '/' + dst_version + '/' + platform + '/' + _TESTING_ + '/' +  arch
         full_uri_path = real_uri + '/' + rel_uripath
         print(f'Repository URI path {full_uri_path}')
         utils.clean_pkg(prod_name, full_uri_path, cfpath=cfpath)
