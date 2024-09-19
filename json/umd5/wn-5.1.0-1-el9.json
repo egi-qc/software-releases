@@ -1,0 +1,32 @@
+{
+    "name" : "wn",
+    "version" : "5.1.0",
+    "currentState" : "Production",
+    "technology_provider" : "EGI",
+    "contact" : "NA",
+    "technicalContact" : "NA",
+    "description" : "first release of worker node for centos7 with removal of non suuported clients",
+    "releaseDate" : "2024-09-19",
+    "majorVersion" : "5",
+    "minorVersion" : "1",
+    "revisionVersion" : "0",
+    "releaseNotes" : "https://github.com/EGI-Federation/wn-metapackage/releases/tag/v5.1.0",
+    "changeLog" : "https://github.com/EGI-Federation/wn-metapackage/releases",
+    "documentationLinks" : ["https://twiki.cern.ch/twiki/bin/view/LCG/EL7WNMiddleware#Description","link2"],
+    "repositoryURL" : "sw/production/umd/5/al9/release/x86_64",
+    "distributionType": "UMD",
+    "distributionVersion": "5.0.0",
+    "capabilities": ["Credential Management"], 
+    "target": [
+        {
+            "platform": "al9", 
+            "arch": "x86_64",
+            "repositoryURL": "sw/production/umd/5/al9/release/x86_64",
+            "gpgkey": "https://repository.egi.eu/repository/umd/5/UMD-5-RPM-PGP-KEY",
+            "rpms": [
+               "https://github.com/EGI-Federation/wn-metapackage/releases/download/v5.1.0/wn-5.1.0-1.el9.x86_64.rpm"
+            ]
+        }
+    ],
+    "softwareConfigurationLink": ""
+}
