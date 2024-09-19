@@ -25,7 +25,6 @@
             "gpgkey": "https://repository.egi.eu/repository/umd/5/UMD-5-RPM-PGP-KEY",
             "rpms": [
                 "https://ecsft.cern.ch/dist/cvmfs/cvmfs-2.11.5/cvmfs-2.11.5-1.el9.x86_64.rpm",
-                "https://ecsft.cern.ch/dist/cvmfs/cvmfs-config/cvmfs-config-default-2.1-1.noarch.rpm",
                 "https://ecsft.cern.ch/dist/cvmfs/cvmfs-2.11.5/cvmfs-devel-2.11.5-1.el9.x86_64.rpm",
                 "https://ecsft.cern.ch/dist/cvmfs/cvmfs-2.11.5/cvmfs-ducc-2.11.5-1.el9.x86_64.rpm",
                 "https://ecsft.cern.ch/dist/cvmfs/cvmfs-2.11.5/cvmfs-fuse3-2.11.5-1.el9.x86_64.rpm",
