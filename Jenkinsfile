@@ -12,6 +12,7 @@ def platform = ''
 def arch = ''
 def pkg_names = ''
 def validation_job_status = ''
+def extraOSRepo = ''
 
 // RC validation
 def release_candidate_job_status = ''
@@ -87,7 +88,7 @@ pipeline {
                             returnStdout: true,
                             script: "python3 json_parser.py ${json_release_file} 2"
                         ).trim()
-                        (dst_type, dst_version, platform, arch) = release_info.split(' ')
+                        (dst_type, dst_version, platform, arch,extraOSRepo) = release_info.split(' ')
                         pkg_names = sh(
                             returnStdout: true,
                             script: "python3 json_parser.py ${json_release_file} 3"
@@ -199,7 +200,7 @@ pipeline {
                                               booleanParam(name: 'enable_testing_repo', value: true),
                                               booleanParam(name: 'enable_untested_repo', value: false),
                                               booleanParam(name: 'disable_updates_repo', value: false),
-                                              text(name: 'extra_os_repos', value: '$extraOSRepo')
+                                              text(name: 'extra_os_repos', value: "$extraOSRepo")
                                           ]
                     validation_job_status = pkg_install_job.result
                 }
