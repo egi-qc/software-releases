@@ -199,7 +199,7 @@ pipeline {
                                               booleanParam(name: 'enable_testing_repo', value: true),
                                               booleanParam(name: 'enable_untested_repo', value: false),
                                               booleanParam(name: 'disable_updates_repo', value: false),
-                                              text(name: 'extra_os_repos', value: "$extraOSRepos")
+                                              text(name: 'extra_os_repos', value: '$extraOSRepo')
                                           ]
                     validation_job_status = pkg_install_job.result
                 }
