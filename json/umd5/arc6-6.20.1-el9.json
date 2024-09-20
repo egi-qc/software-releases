@@ -16,11 +16,12 @@
     "repositoryURL" : "sw/production/umd/5/al9/release/x86_64",
     "distributionType": "UMD",
     "distributionVersion": "5.0.0",
-    "capabilities": ["Job Scheduling", "Job ExecutionFile Access"], 
+    "capabilities": ["Job Scheduling", "Job ExecutionFile Access"],
+    "extraOSRepos": ["crb"],
     "target": [
         {
-            "platform": "al9", 
-            "arch": "x86_64", 
+            "platform": "al9",
+            "arch": "x86_64",
             "repositoryURL": "sw/production/umd/5/al9/release/x86_64",
             "gpgkey": "https://repository.egi.eu/repository/umd/5/UMD-5-RPM-PGP-KEY",
             "rpms": [
@@ -56,7 +57,7 @@
                 "http://download.nordugrid.org/repos/6/rocky/9/x86_64/updates/RPMS/nordugrid-arc-plugins-xrootd-6.20.1-1.el9.x86_64.rpm",
                 "http://download.nordugrid.org/repos/6/rocky/9/x86_64/updates/RPMS/nordugrid-arc-test-utils-6.20.1-1.el9.x86_64.rpm",
                 "http://download.nordugrid.org/repos/6/rocky/9/x86_64/updates/RPMS/nordugrid-arc-wn-6.20.1-1.el9.x86_64.rpm",
-                "http://download.nordugrid.org/repos/6/rocky/9/x86_64/updates/RPMS/python3-nordugrid-arc-6.20.1-1.el9.x86_64.rpm"              
+                "http://download.nordugrid.org/repos/6/rocky/9/x86_64/updates/RPMS/python3-nordugrid-arc-6.20.1-1.el9.x86_64.rpm"
                          ]
         }
     ],
