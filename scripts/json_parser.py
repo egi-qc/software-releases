@@ -44,7 +44,7 @@ if __name__ == '__main__':
             utils.write_new_json(new_json, new_file)
             sys.exit(0)
         elif sys.argv[2] == '2':
-            print(dst_type.upper(), dst_version, platform, arch)
+            print(dst_type.upper(), dst_version, platform, arch, extraOSRepo)
             sys.exit(0)
         elif sys.argv[2] == '3':
             print('\n'.join(utils.get_pkgs_json(ev['json_file'])))
