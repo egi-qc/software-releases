@@ -1,0 +1,48 @@
+{
+"name" : "XROOT",
+    "version" : "5.7.1",
+    "currentState" : "Production",
+    "technology_provider" : "EPEL",
+    "contact" : "mattias.ellert@fysast.uu.se",
+    "technicalContact" : "mattias.ellert@fysast.uu.se",
+    "description" : "The Advanced Resource Connector (ARC) middleware integrates computing resources (usually, computing clusters managed by a batch system or standalone workstations), making them available via a secure common Grid layer.",
+    "releaseDate" : "2024-09-18",
+    "majorVersion" : "5",
+    "minorVersion" : "7",
+    "revisionVersion" : "1",
+    "releaseNotes" : "https://github.com/xrootd/xrootd/releases",
+    "changeLog" : "https://github.com/xrootd/xrootd/releases",
+    "documentationLinks" : ["https://xrootd.slac.stanford.edu/docs.html","link2"],
+    "repositoryURL" : "sw/production/umd/5/al9/release/x86_64",
+    "distributionType": "UMD",
+    "distributionVersion": "5.0.0",
+    "capabilities": ["Job Scheduling", "Job ExecutionFile Access"], 
+    "extraOSRepos": ["crb"],
+    "target": [
+        {
+            "platform": "al9", 
+            "arch": "x86_64", 
+            "repositoryURL": "sw/production/umd/5/al9/release/x86_64",
+            "gpgkey": "https://repository.egi.eu/repository/umd/5/UMD-5-RPM-PGP-KEY",
+            "rpms": [
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/x/xrootd-5.7.1-1.el9.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/x/xrootd-client-5.7.1-1.el9.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/x/xrootd-client-devel-5.7.1-1.el9.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/x/xrootd-client-libs-5.7.1-1.el9.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/x/xrootd-devel-5.7.1-1.el9.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/x/xrootd-doc-5.7.1-1.el9.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/x/xrootd-fuse-5.7.1-1.el9.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/x/xrootd-libs-5.7.1-1.el9.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/x/xrootd-private-devel-5.7.1-1.el9.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/x/xrootd-scitokens-5.7.1-1.el9.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/x/xrootd-selinux-5.7.1-1.el9.noarch.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/x/xrootd-server-5.7.1-1.el9.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/x/xrootd-server-devel-5.7.1-1.el9.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/x/xrootd-server-libs-5.7.1-1.el9.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/x/xrootd-voms-5.7.1-1.el9.x86_64.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/p/python3-xrootd-5.7.1-1.el9.x86_64.rpm"
+                                         ]
+        }
+    ],
+    "softwareConfigurationLink": ""
+}
