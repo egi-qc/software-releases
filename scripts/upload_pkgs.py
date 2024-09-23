@@ -33,7 +33,7 @@ if __name__ == '__main__':
         cfpath = sys.argv[3]
 
     ev = Config().getconf(sys.argv[1], cfpath=cfpath)
-    (dst_type, dst_version, platform, arch) = utils.get_info_json(ev['json_file'])
+    (dst_type, dst_version, platform, arch, extraOSRepo) = utils.get_info_json(ev['json_file'])
 
     # full uri is repo_uri_path/rel_uripath ->
     # https://nexusrepoegi.a.incd.pt/repository/umd/5/<testing|release|contrib>/<OPERATING_SYSTEM>/<ARCH>/
