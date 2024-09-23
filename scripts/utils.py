@@ -69,7 +69,7 @@ def get_info_json(json_file):
     arch = json_data["target"][0]["arch"]
     # print(f'Get information from {json_file}')
     # print(f'Dist Type: {dst_type} - Dist Vers: {dst_version} - Platform: {platform} - Arch: {arch}')
-    return (dst_type, dst_version, platform, arch)
+    return (dst_type, dst_version, platform, arch, extraOSRepos)
 
 
 def create_json(json_file, uri_path):
