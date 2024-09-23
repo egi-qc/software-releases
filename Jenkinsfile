@@ -12,7 +12,7 @@ def platform = ''
 def arch = ''
 def pkg_names = ''
 def validation_job_status = ''
-def String[] extraOSRepos = []
+def extraOSRepos = ''
 // RC validation
 def release_candidate_job_status = ''
 def String[] extra_repository = []
