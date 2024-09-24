@@ -25,7 +25,8 @@
             "repositoryURL": "sw/production/umd/5/al9/release/x86_64",
             "gpgkey": "https://repository.egi.eu/repository/umd/5/UMD-5-RPM-PGP-KEY",
             "rpms": [
-                "https://repo.opensciencegrid.org/osg/23-main/el9/release/x86_64/condor-23.0.14-1.el9.x86_64.rpm",
+                "https://research.cs.wisc.edu/htcondor/repo/23.0/el9/x86_64/release/condor-23.0.12-1.el9.x86_64.rpm",
+                "https://research.cs.wisc.edu/htcondor/repo/23.0/el9/x86_64/release/condor-stash-plugin-6.12.1-1.x86_64.rpm",
                 "https://repo.opensciencegrid.org/osg/23-main/el9/release/x86_64/htcondor-ce-23.0.13-1.el9.noarch.rpm",
                 "https://repo.opensciencegrid.org/osg/23-main/el9/release/x86_64/htcondor-ce-apel-23.0.13-1.el9.noarch.rpm",
                 "https://repo.opensciencegrid.org/osg/23-main/el9/release/x86_64/htcondor-ce-bdii-23.0.13-1.el9.noarch.rpm",
