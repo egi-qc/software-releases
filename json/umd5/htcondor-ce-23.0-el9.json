@@ -35,7 +35,7 @@
                 "https://research.cs.wisc.edu/htcondor/repo/23.0/el9/x86_64/release/htcondor-ce-pbs-23.0.13-1.el9.noarch.rpm",
                 "https://research.cs.wisc.edu/htcondor/repo/23.0/el9/x86_64/release/htcondor-ce-sge-23.0.13-1.el9.noarch.rpm",
                 "https://research.cs.wisc.edu/htcondor/repo/23.0/el9/x86_64/release/htcondor-ce-pbs-23.0.13-1.el9.noarch.rpm",
-                "https://research.cs.wisc.edu/htcondor/repo/23.0/el9/x86_64/release/htcondor-ce-slurm-23.0.13-1.el9.noarch.rpm",
+                "https://research.cs.wisc.edu/htcondor/repo/23.0/el9/x86_64/release/htcondor-ce-slurm-23.0.13-1.el9.noarch.rpm"
                          ]
         }
     ],
