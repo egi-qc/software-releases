@@ -27,36 +27,17 @@
             "rpms": [
                 "https://research.cs.wisc.edu/htcondor/repo/23.0/el9/x86_64/release/condor-23.0.12-1.el9.x86_64.rpm",
                 "https://research.cs.wisc.edu/htcondor/repo/23.0/el9/x86_64/release/condor-stash-plugin-6.12.1-1.x86_64.rpm",
-                "https://repo.opensciencegrid.org/osg/23-main/el9/release/x86_64/htcondor-ce-23.0.13-1.el9.noarch.rpm",
-                "https://repo.opensciencegrid.org/osg/23-main/el9/release/x86_64/htcondor-ce-apel-23.0.13-1.el9.noarch.rpm",
-                "https://repo.opensciencegrid.org/osg/23-main/el9/release/x86_64/htcondor-ce-bdii-23.0.13-1.el9.noarch.rpm",
-                "https://repo.opensciencegrid.org/osg/23-main/el9/release/x86_64/htcondor-ce-bosco-23.0.13-1.el9.noarch.rpm",
-                "https://repo.opensciencegrid.org/osg/23-main/el9/release/x86_64/htcondor-ce-client-23.0.13-1.el9.noarch.rpm",
-                "https://repo.opensciencegrid.org/osg/23-main/el9/release/x86_64/htcondor-ce-collector-23.0.13-1.el9.noarch.rpm",
-                "https://repo.opensciencegrid.org/osg/23-main/el9/release/x86_64/htcondor-ce-condor-23.0.13-1.el9.noarch.rpm",
-                "https://repo.opensciencegrid.org/osg/23-main/el9/release/x86_64/htcondor-ce-lsf-23.0.13-1.el9.noarch.rpm",
-                "https://repo.opensciencegrid.org/osg/23-main/el9/release/x86_64/htcondor-ce-sge-23.0.13-1.el9.noarch.rpm",
-                "https://repo.opensciencegrid.org/osg/23-main/el9/release/x86_64/htcondor-ce-slurm-23.0.13-1.el9.noarch.rpm",
-                "https://repo.opensciencegrid.org/osg/23-main/el9/release/x86_64/htcondor-ce-view-23.0.13-1.el9.noarch.rpm",
-                "https://repo.opensciencegrid.org/osg/23-main/el9/release/x86_64/htcondor-release-23.0-1.el9.noarch.rpm",
-                "https://repo.opensciencegrid.org/osg/23-main/el9/release/x86_64/python3-condor-23.0.14-1.el9.x86_64.rpm"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                
+                "https://research.cs.wisc.edu/htcondor/repo/23.0/el9/x86_64/release/python3-condor-23.0.12-1.el9.x86_64.rpm",
+                "https://research.cs.wisc.edu/htcondor/repo/23.0/el9/x86_64/release/htcondor-ce-client-23.0.13-1.el9.noarch.rpm",
+                "https://research.cs.wisc.edu/htcondor/repo/23.0/el9/x86_64/release/htcondor-ce-bosco-23.0.13-1.el9.noarch.rpm",
+                "https://research.cs.wisc.edu/htcondor/repo/23.0/el9/x86_64/release/htcondor-ce-bdii-23.0.13-1.el9.noarch.rpm",
+                "https://research.cs.wisc.edu/htcondor/repo/23.0/el9/x86_64/release/htcondor-ce-apel-23.0.13-1.el9.noarch.rpm",
+                "https://research.cs.wisc.edu/htcondor/repo/23.0/el9/x86_64/release/htcondor-ce-lsf-23.0.13-1.el9.noarch.rpm",
+                "https://research.cs.wisc.edu/htcondor/repo/23.0/el9/x86_64/release/htcondor-ce-pbs-23.0.13-1.el9.noarch.rpm",
+                "https://research.cs.wisc.edu/htcondor/repo/23.0/el9/x86_64/release/htcondor-ce-sge-23.0.13-1.el9.noarch.rpm",
+                "https://research.cs.wisc.edu/htcondor/repo/23.0/el9/x86_64/release/htcondor-ce-pbs-23.0.13-1.el9.noarch.rpm",
+                "https://research.cs.wisc.edu/htcondor/repo/23.0/el9/x86_64/release/htcondor-ce-slurm-23.0.13-1.el9.noarch.rpm",
+                "https://research.cs.wisc.edu/htcondor/repo/23.0/el9/x86_64/release/htcondor-ce-view-23.0.13-1.el9.noarch.rpm"
                          ]
         }
     ],
