@@ -1,0 +1,63 @@
+{
+"name" : "HTCondor-CE",
+    "version" : "23.0.13",
+    "currentState" : "Production",
+    "technology_provider" : "CHTC (UW-Madison)",
+    "contact" : "jfrey <at> cs.wisc.edu",
+    "technicalContact" : "jfrey <at> cs.wisc.edu",
+    "description" : "Suite of services for a Compute Element",
+    "releaseDate" : "2024-09-18",
+    "majorVersion" : "23",
+    "minorVersion" : "0",
+    "revisionVersion" : "13",
+    "releaseNotes" : "https://htcondor.com/htcondor-ce/v23/releases/#htcondor-ce-23-version-history",
+    "changeLog" : "https://htcondor.com/htcondor-ce/v23/releases/#htcondor-ce-23-version-history",
+    "documentationLinks" : ["https://research.cs.wisc.edu/htcondor/manual/","link2"],
+    "repositoryURL" : "sw/production/umd/5/al9/release/x86_64",
+    "distributionType": "UMD",
+    "distributionVersion": "5.0.0",
+    "capabilities": ["Job Scheduling", "Job ExecutionFile Access"],
+    "extraOSRepos": ["cbr"],
+    "target": [
+        {
+            "platform": "al9", 
+            "arch": "x86_64", 
+            "repositoryURL": "sw/production/umd/5/al9/release/x86_64",
+            "gpgkey": "https://repository.egi.eu/repository/umd/5/UMD-5-RPM-PGP-KEY",
+            "rpms": [
+                "https://repo.opensciencegrid.org/osg/23-main/el9/release/x86_64/condor-23.0.14-1.el9.x86_64.rpm",
+                "https://repo.opensciencegrid.org/osg/23-main/el9/release/x86_64/htcondor-ce-23.0.13-1.el9.noarch.rpm",
+                "https://repo.opensciencegrid.org/osg/23-main/el9/release/x86_64/htcondor-ce-apel-23.0.13-1.el9.noarch.rpm",
+                "https://repo.opensciencegrid.org/osg/23-main/el9/release/x86_64/htcondor-ce-bdii-23.0.13-1.el9.noarch.rpm",
+                "https://repo.opensciencegrid.org/osg/23-main/el9/release/x86_64/htcondor-ce-bosco-23.0.13-1.el9.noarch.rpm",
+                "https://repo.opensciencegrid.org/osg/23-main/el9/release/x86_64/htcondor-ce-client-23.0.13-1.el9.noarch.rpm",
+                "https://repo.opensciencegrid.org/osg/23-main/el9/release/x86_64/htcondor-ce-collector-23.0.13-1.el9.noarch.rpm",
+                "https://repo.opensciencegrid.org/osg/23-main/el9/release/x86_64/htcondor-ce-condor-23.0.13-1.el9.noarch.rpm",
+                "https://repo.opensciencegrid.org/osg/23-main/el9/release/x86_64/htcondor-ce-lsf-23.0.13-1.el9.noarch.rpm",
+                "https://repo.opensciencegrid.org/osg/23-main/el9/release/x86_64/htcondor-ce-sge-23.0.13-1.el9.noarch.rpm",
+                "https://repo.opensciencegrid.org/osg/23-main/el9/release/x86_64/htcondor-ce-slurm-23.0.13-1.el9.noarch.rpm",
+                "https://repo.opensciencegrid.org/osg/23-main/el9/release/x86_64/htcondor-ce-view-23.0.13-1.el9.noarch.rpm",
+                "https://repo.opensciencegrid.org/osg/23-main/el9/release/x86_64/htcondor-release-23.0-1.el9.noarch.rpm",
+                "https://repo.opensciencegrid.org/osg/23-main/el9/release/x86_64/python3-condor-23.0.14-1.el9.x86_64.rpm"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+                         ]
+        }
+    ],
+    "softwareConfigurationLink": ""
+}
