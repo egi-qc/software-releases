@@ -17,7 +17,7 @@
     "distributionType": "UMD",
     "distributionVersion": "5.0.0",
     "capabilities": ["Job Scheduling", "Job ExecutionFile Access"],
-    "extraOSRepos": ["cbr"],
+    "extraOSRepos": ["crb"],
     "target": [
         {
             "platform": "al9", 
