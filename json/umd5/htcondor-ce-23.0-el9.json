@@ -39,5 +39,6 @@
                          ]
         }
     ],
-    "softwareConfigurationLink": ""
+    "softwareConfigurationLink": "",
+     "dummy": "counter required for pull request 1"
 }
