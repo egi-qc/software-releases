@@ -1,0 +1,34 @@
+{
+    "name" : "egi-cvmfs",
+    "version" : "6.8.29",
+    "currentState" : "Production",
+    "technology_provider" : "CernVM",
+    "contact" : "cvmfs-devel@cern.ch",
+    "technicalContact" : "cvmfs-devel@cern.ch",
+    "description" : "CernVM File System (CernVM-FS) is a network file system based on HTTP and optimized to deliver experiment software in a fast, scalable, and reliable way. Files and file metadata are aggressively cached and downloaded on demand. Thereby the CernVM-FS decouples the life cycle management of the application software releases from the operating system. CernVM-FS is included in CernVM, however it can also be used outside CernVM",
+    "releaseDate" : "2024-09-26",
+    "majorVersion" : "6",
+    "minorVersion" : "8",
+    "revisionVersion" : "29",
+    "releaseNotes" : "https://github.com/cvmfs-contrib/egi-cvmfs/",
+    "changeLog" : "https://github.com/cvmfs-contrib/egi-cvmfs/releases/tag/v6-8",
+    "documentationLinks" : ["https://github.com/cvmfs-contrib/egi-cvmfs/","link2"],
+    "repositoryURL" : "sw/production/umd/5/al9/release/x86_64",
+    "distributionType": "UMD",
+    "distributionVersion": "5.0.0",
+    "capabilities": ["File Access"], 
+    "extraOSRepos": ["crb"],
+    "target": [
+        {
+            "platform": "al9", 
+            "arch": "x86_64",
+            "repositoryURL": "sw/production/umd/5/al9/release/x86_64",
+            "gpgkey": "https://repository.egi.eu/repository/umd/5/UMD-5-RPM-PGP-KEY",
+            "rpms": [
+                "https://download.opensuse.org/repositories/home:/cvmfs:/contrib-egi/AlmaLinux_9/noarch/cvmfs-config-egi-2.7-1.8.obs.el9.noarch.rpm",
+                "https://download.opensuse.org/repositories/home:/cvmfs:/contrib-egi/AlmaLinux_9/noarch/egi-cvmfs-6-8.29.obs.el9.noarch.rpm"
+                            ]
+        }
+    ],
+    "softwareConfigurationLink": ""
+}
