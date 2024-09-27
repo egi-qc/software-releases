@@ -1,0 +1,40 @@
+{
+    "name" : "bdii-config-site",
+    "version" : "1.0.8",
+    "currentState" : "Production",
+    "technology_provider" : "EGI",
+    "contact" : "operations (at) egi.eu",
+    "technicalContact" : "operations (at) egi.eu",
+    "description" : " The Berkeley Database Information Index consists of a standard LDAP database which is updated by an external process. The update process obtains LDIF from a number of sources and merges them. It then compares this to the contents of the database and creates an LDIF file of the differences. This is then used to update the database.",
+    "releaseDate" : "2024-09-27",
+    "majorVersion" : "1",
+    "minorVersion" : "0",
+    "revisionVersion" : "8",
+    "releaseNotes" : "https://github.com/EGI-Federation/bdii/releases/tag/v6.0.3",
+    "changeLog" : "https://github.com/EGI-Federation/bdii/releases",
+    "documentationLinks" : ["https://github.com/EGI-Federation/bdii-config-site","link2"],
+    "repositoryURL" : "sw/production/umd/5/al9/release/x86_64",
+    "distributionType": "UMD",
+    "distributionVersion": "5.0.0",
+    "capabilities":["Information Discovery","Information Model"], 
+    "extraOSRepos": ["crb"],
+    "target": [
+        {
+            "platform": "al9", 
+            "arch": "x86_64",
+            "repositoryURL": "sw/production/umd/5/al9/release/x86_64",
+            "gpgkey": "https://repository.egi.eu/repository/umd/5/UMD-5-RPM-PGP-KEY",
+            "rpms": [
+                "https://linuxsoft.cern.ch/wlcg/el9/x86_64/bdii-config-site-1.0.8-1.el9.noarch.rpm",
+                "https://linuxsoft.cern.ch/wlcg/el9/x86_64/bdii-6.0.3-1.el9.noarch.rpm",
+                "https://linuxsoft.cern.ch/wlcg/el9/x86_64/glite-info-provider-ldap-1.6.1-1.el9.noarch.rpm",
+                "https://linuxsoft.cern.ch/wlcg/el9/x86_64/glite-info-provider-service-1.14.2-1.el9.noarch.rpm",
+                "https://linuxsoft.cern.ch/wlcg/el9/x86_64/glite-info-site-0.4.0-2.rh9.cern.noarch.rpm",
+                "https://linuxsoft.cern.ch/wlcg/el9/x86_64/glite-info-static-0.3.1-1.el9.noarch.rpm",
+                "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/g/glue-schema-2.1.0-1.el9.noarch.rpm"
+                   ]
+        }
+    ],
+    "softwareConfigurationLink": "",
+    "dummy" : "count 1"
+}
