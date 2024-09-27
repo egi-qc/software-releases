@@ -17,6 +17,7 @@
     "distributionType": "UMD",
     "distributionVersion": "5.0.0",
     "capabilities": ["Credential Management"], 
+    "extraOSRepos": ["crb"],
     "target": [
         {
             "platform": "al9", 
