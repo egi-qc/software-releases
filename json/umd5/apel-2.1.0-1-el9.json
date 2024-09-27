@@ -1,0 +1,40 @@
+{
+    "name" : "apel",
+    "version" : "2.1.0",
+    "currentState" : "Production",
+    "technology_provider" : "APEL",
+    "contact" : "apel-admins@stfcNOSPAMPLEASE.ac.uk",
+    "technicalContact" : "apel-admins@stfcNOSPAMPLEASE.ac.uk",
+    "description" : "Secure Stomp Messenger (SSM) is designed to simply send messages using the STOMP protocol. Messages are signed and may be encrypted during transit. Persistent queues should be used to guarantee delivery.",
+    "releaseDate" : "2024-09-18",
+    "majorVersion" : "2",
+    "minorVersion" : "1",
+    "revisionVersion" : "0",
+    "releaseNotes" : "https://github.com/apel/apel/releases/tag/2.1.0-1",
+    "changeLog" : "https://github.com/apel/apel/blob/dev/CHANGELOG",
+    "documentationLinks" : ["https://twiki.cern.ch/twiki/bin/view/EMI/EMI3APELClient","link2"],
+    "repositoryURL" : "sw/production/umd/5/al9/release/x86_64",
+    "distributionType": "UMD",
+    "distributionVersion": "5.0.0",
+    "capabilities": ["Accounting"], 
+    "extraOSRepos": ["crb"],
+    "target": [
+        {
+            "platform": "al9", 
+            "arch": "x86_64",
+            "repositoryURL": "sw/production/umd/5/al9/release/x86_64",
+            "gpgkey": "https://repository.egi.eu/repository/umd/5/UMD-5-RPM-PGP-KEY",
+            "rpms": [
+                "https://github.com/apel/apel/releases/download/2.1.0-1/apel-client-2.1.0-1.el9.noarch.rpm",
+                "https://github.com/apel/apel/releases/download/2.1.0-1/apel-lib-2.1.0-1.el9.noarch.rpm",
+                "https://github.com/apel/ssm/releases/download/3.4.1-1/apel-ssm-3.4.1-1.el9.noarch.rpm",
+                "https://github.com/apel/ssm/releases/download/3.4.1-1/apel-ssm-service-3.4.1-1.el9.noarch.rpm",
+                "https://github.com/apel/apel/releases/download/2.1.0-1/apeldbloader-service-2.1.0-1.el9.noarch.rpm",
+                "https://github.com/apel/apel/releases/download/2.1.0-1/apel-server-2.1.0-1.el9.noarch.rpm",
+                "https://github.com/apel/apel/releases/download/2.1.0-1/apel-parsers-2.1.0-1.el9.noarch.rpm"
+            ]
+        }
+    ],
+    "softwareConfigurationLink": "",
+    "dummy" : "count 1"
+}
