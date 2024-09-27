@@ -1,12 +1,12 @@
 {
-    "name" : "util",
+    "name" : "UI",
     "version" : "7.0.0",
     "currentState" : "Production",
     "technology_provider" : "EGI",
     "contact" : "operations (at) egi.eu",
     "technicalContact" : "operations (at) egi.eu",
     "description" : "first release of worker node for centos7 with removal of non suuported clients",
-    "releaseDate" : "2024-09-19",
+    "releaseDate" : "2024-09-27",
     "majorVersion" : "7",
     "minorVersion" : "0",
     "revisionVersion" : "0",
@@ -17,6 +17,7 @@
     "distributionType": "UMD",
     "distributionVersion": "5.0.0",
     "capabilities": ["Credential Management"], 
+    "extraOSRepos": ["crb"],
     "target": [
         {
             "platform": "al9", 
@@ -24,7 +25,10 @@
             "repositoryURL": "sw/production/umd/5/al9/release/x86_64",
             "gpgkey": "https://repository.egi.eu/repository/umd/5/UMD-5-RPM-PGP-KEY",
             "rpms": [
-               "https://github.com/EGI-Federation/ui-metapackage/releases/download/v7.0.0/ui-7.0.0-1.el9.x86_64.rpm"
+               "https://github.com/EGI-Federation/ui-metapackage/releases/download/v7.0.0/ui-7.0.0-1.el9.x86_64.rpm",
+               "https://linuxsoft.cern.ch/wlcg/el9/x86_64/ginfo-1.10.0-1.el9.noarch.rpm",
+               "https://linuxsoft.cern.ch/wlcg/el9/x86_64/voms-clients-java-3.3.4-1.el9.noarch.rpm",
+               "https://linuxsoft.cern.ch/wlcg/el9/x86_64/lcg-infosites-3.2.0-1.el9.noarch.rpm"
             ]
         }
     ],
