@@ -1,0 +1,36 @@
+{
+    "name" : "bdii-config-top",
+    "version" : "1.1.0",
+    "currentState" : "Production",
+    "technology_provider" : "EGI",
+    "contact" : "operations (at) egi.eu",
+    "technicalContact" : "operations (at) egi.eu",
+    "description" : " The Berkeley Database Information Index consists of a standard LDAP database which is updated by an external process. The update process obtains LDIF from a number of sources and merges them. It then compares this to the contents of the database and creates an LDIF file of the differences. This is then used to update the database.",
+    "releaseDate" : "2024-09-27",
+    "majorVersion" : "1",
+    "minorVersion" : "1",
+    "revisionVersion" : "0",
+    "releaseNotes" : "https://github.com/EGI-Federation/bdii-config-top/releases/tag/v1.1.0",
+    "changeLog" : "https://github.com/EGI-Federation/bdii-config-top/releases",
+    "documentationLinks" : ["https://github.com/EGI-Federation/bdii/releases","link2"],
+    "repositoryURL" : "sw/production/umd/5/al9/release/x86_64",
+    "distributionType": "UMD",
+    "distributionVersion": "5.0.0",
+    "capabilities":["Information Discovery","Information Model"], 
+    "extraOSRepos": ["crb"],
+    "target": [
+        {
+            "platform": "al9", 
+            "arch": "x86_64",
+            "repositoryURL": "sw/production/umd/5/al9/release/x86_64",
+            "gpgkey": "https://repository.egi.eu/repository/umd/5/UMD-5-RPM-PGP-KEY",
+            "rpms": [
+                "https://linuxsoft.cern.ch/wlcg/el9/x86_64/bdii-config-top-1.1.0-1.el9.noarch.rpm",
+                "https://linuxsoft.cern.ch/wlcg/el9/x86_64/glite-info-plugin-delayed-delete-status-2.0.1-1.el9.noarch.rpm",
+                "https://linuxsoft.cern.ch/wlcg/el9/x86_64/glite-info-update-endpoints-4.0.1-1.el9.noarch.rpm"
+                   ]
+        }
+    ],
+    "softwareConfigurationLink": "",
+    "dummy" : "count 1"
+}
