@@ -10,9 +10,9 @@ The repository structure is the following:
 
 For example for Alma Linux 9 x98_64, the complete paths are:
 
-* <https://nexusrepoegi.a.incd.pt/repository/umd/5/al9/release/x86_64>
-* <https://nexusrepoegi.a.incd.pt/repository/umd/5/al9/testing/x86_64>
-* <https://nexusrepoegi.a.incd.pt/repository/umd/5/al9/contrib/x86_64>
+* <https://repository.egi.eu/repository/umd/5/al9/release/x86_64>
+* <https://repository.egi.eu/repository/umd/5/al9/testing/x86_64>
+* <https://repository.egi.eu/repository/umd/5/al9/contrib/x86_64>
 
 The process is as follows:
 
