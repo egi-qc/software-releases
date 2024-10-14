@@ -1,0 +1,54 @@
+{
+    "name" : "fts3",
+    "version" : "3.13.2",
+    "currentState" : "Production",
+    "technology_provider" : "CernFts3",
+    "contact" : "fts3-steering@cern.ch",
+    "technicalContact" : "fts3-steering@cern.ch",
+    "description" : "FTS3 is the service responsible for globally distributing the majority of the LHC data across the WLCG infrastructure. Is a low level data movement service, responsible for reliable bulk transfer of files from one site to another while allowing participating sites to control the network resource usage",
+    "releaseDate" : "2024-10-14",
+    "majorVersion" : "3",
+    "minorVersion" : "13",
+    "revisionVersion" : "2",
+    "releaseNotes" : "https://fts3-docs.web.cern.ch/fts3-docs/docs/install/upgrades/3.13.html",
+    "changeLog" : "https://fts3-docs.web.cern.ch/fts3-docs/docs/install/upgrades/3.13.html",
+    "documentationLinks" : ["https://fts3-docs.web.cern.ch/fts3-docs/","link2"],
+    "repositoryURL" : "sw/production/umd/5/al9/release/x86_64",
+    "distributionType": "UMD",
+    "distributionVersion": "5.0.0",
+    "capabilities": ["File Access","Storage Management"],
+    "extraOSRepos": ["crb"],
+    "target": [
+        {
+            "platform": "al9", 
+            "arch": "x86_64", 
+            "repositoryURL": "sw/production/umd/5/al9/release/x86_64",
+            "gpgkey": "https://repository.egi.eu/repository/umd/5/UMD-5-RPM-PGP-KEY",
+            "rpms": [
+                   "https://fts-repo.web.cern.ch/fts-repo/el9/x86_64/fts-debuginfo-3.13.2-1.el9.x86_64.rpm",
+                   "https://fts-repo.web.cern.ch/fts-repo/el9/x86_64/fts-debugsource-3.13.2-1.el9.x86_64.rpm",
+                   "https://fts-repo.web.cern.ch/fts-repo/el9/x86_64/fts-libs-3.13.2-1.el9.x86_64.rpm",
+                   "https://fts-repo.web.cern.ch/fts-repo/el9/x86_64/fts-libs-debuginfo-3.13.2-1.el9.x86_64.rpm",
+                   "https://fts-repo.web.cern.ch/fts-repo/el9/x86_64/fts-msg-3.13.2-1.el9.x86_64.rpm",
+                   "https://fts-repo.web.cern.ch/fts-repo/el9/x86_64/fts-msg-debuginfo-3.13.2-1.el9.x86_64.rpm",
+                   "https://fts-repo.web.cern.ch/fts-repo/el9/x86_64/fts-mysql-3.13.2-1.el9.x86_64.rpm",
+                   "https://fts-repo.web.cern.ch/fts-repo/el9/x86_64/fts-mysql-debuginfo-3.13.2-1.el9.x86_64.rpm",
+                   "https://fts-repo.web.cern.ch/fts-repo/el9/x86_64/fts-rest-client-3.13.2-1.el9.noarch.rpm",
+                   "https://fts-repo.web.cern.ch/fts-repo/el9/x86_64/fts-rest-server-3.13.2-1.el9.noarch.rpm",
+                   "https://fts-repo.web.cern.ch/fts-repo/el9/x86_64/fts-rest-server-selinux-3.13.2-1.el9.noarch.rpm",
+                   "https://fts-repo.web.cern.ch/fts-repo/el9/x86_64/fts-server-3.13.2-1.el9.x86_64.rpm",
+                   "https://fts-repo.web.cern.ch/fts-repo/el9/x86_64/fts-server-debuginfo-3.13.2-1.el9.x86_64.rpm",
+                   "https://fts-repo.web.cern.ch/fts-repo/el9/x86_64/fts-server-selinux-3.13.2-1.el9.x86_64.rpm",
+                   "https://fts-repo.web.cern.ch/fts-repo/el9/x86_64/fts-tests-3.13.2-1.el9.x86_64.rpm",
+                   "https://fts-repo.web.cern.ch/fts-repo/el9/x86_64/fts-tests-debuginfo-3.13.2-1.el9.x86_64.rpm",
+                   "https://fts-repo.web.cern.ch/fts-repo/fts-depend/el9/x86_64/python3-beaker-1.11.0-1.el9.cern.noarch.rpm",
+                   "https://fts-repo.web.cern.ch/fts-repo/fts-depend/el9/x86_64/python3-pyjwkest-1.4.2-1.el9.cern.noarch.rpm",
+                   "https://fts-repo.web.cern.ch/fts-repo/fts-depend/el9/x86_64/python3-oic-1.4.0-1git64c5e3b.el9.cern.noarch.rpm"
+                
+               
+                         ]
+        }
+    ],
+    "softwareConfigurationLink": "",
+     "dummy": "count 1"
+}
