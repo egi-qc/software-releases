@@ -34,15 +34,17 @@
                         "https://fts-repo.web.cern.ch/fts-repo/el9/x86_64/fts-mysql-3.13.2-1.el9.x86_64.rpm",
                         "https://fts-repo.web.cern.ch/fts-repo/el9/x86_64/fts-mysql-debuginfo-3.13.2-1.el9.x86_64.rpm",
                         "https://fts-repo.web.cern.ch/fts-repo/el9/x86_64/fts-rest-client-3.13.2-1.el9.noarch.rpm",
-                        "https://fts-repo.web.cern.ch/fts-repo/el9/x86_64/fts-rest-client-3.13.2-1.el9.src.rpm",
                         "https://fts-repo.web.cern.ch/fts-repo/el9/x86_64/fts-rest-server-3.13.2-1.el9.noarch.rpm",
-                        "https://fts-repo.web.cern.ch/fts-repo/el9/x86_64/fts-rest-server-3.13.2-1.el9.src.rpm",
                         "https://fts-repo.web.cern.ch/fts-repo/el9/x86_64/fts-rest-server-selinux-3.13.2-1.el9.noarch.rpm",
                         "https://fts-repo.web.cern.ch/fts-repo/el9/x86_64/fts-server-3.13.2-1.el9.x86_64.rpm",
                         "https://fts-repo.web.cern.ch/fts-repo/el9/x86_64/fts-server-debuginfo-3.13.2-1.el9.x86_64.rpm",
                         "https://fts-repo.web.cern.ch/fts-repo/el9/x86_64/fts-server-selinux-3.13.2-1.el9.x86_64.rpm",
                         "https://fts-repo.web.cern.ch/fts-repo/el9/x86_64/fts-tests-3.13.2-1.el9.x86_64.rpm",
-                        "https://fts-repo.web.cern.ch/fts-repo/el9/x86_64/fts-tests-debuginfo-3.13.2-1.el9.x86_64.rpm"
+                        "https://fts-repo.web.cern.ch/fts-repo/el9/x86_64/fts-tests-debuginfo-3.13.2-1.el9.x86_64.rpm",
+                        "https://fts-repo.web.cern.ch/fts-repo/fts-depend/el9/x86_64/python3-beaker-1.11.0-1.el9.cern.noarch.rpm",
+                        "https://fts-repo.web.cern.ch/fts-repo/fts-depend/el9/x86_64/python3-pyjwkest-1.4.2-1.el9.cern.noarch.rpm",
+                        "https://fts-repo.web.cern.ch/fts-repo/fts-depend/el9/x86_64/python3-oic-1.4.0-1git64c5e3b.el9.cern.noarch.rpm"
+                
                
                          ]
         }
