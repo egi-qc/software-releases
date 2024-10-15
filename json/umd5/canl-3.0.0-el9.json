@@ -1,0 +1,42 @@
+{
+    "name" : "canl",
+    "version" : "3.0.0",
+    "currentState" : "Production",
+    "technology_provider" : "CESNET",
+    "contact" : "https://github.com/CESNET/canl-c/issues",
+    "technicalContact" : "https://github.com/CESNET/canl-c/issues",
+    "description" : "Common Authentication Library (caNl) was designed to provide common security layer support in grid applications.",
+    "releaseDate" : "2024-10-14",
+    "majorVersion" : "3",
+    "minorVersion" : "0",
+    "revisionVersion" : "0",
+    "releaseNotes" : "https://github.com/CESNET/canl-c/releases",
+    "changeLog" : "https://github.com/CESNET/canl-c/blob/master/ChangeLog",
+    "documentationLinks" : ["","link2"],
+    "repositoryURL" : "sw/production/umd/5/al9/release/x86_64",
+    "distributionType": "UMD",
+    "distributionVersion": "5.0.0",
+    "capabilities": ["Credential Management"],
+    "extraOSRepos": ["crb"],
+    "target": [
+        {
+            "platform": "al9", 
+            "arch": "x86_64", 
+            "repositoryURL": "sw/production/umd/5/al9/release/x86_64",
+            "gpgkey": "https://repository.egi.eu/repository/umd/5/UMD-5-RPM-PGP-KEY",
+            "rpms": [
+               "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/c/canl-c-3.0.0-16.el9.x86_64.rpm",
+               "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/c/canl-c-devel-3.0.0-16.el9.x86_64.rpm",
+               "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/c/canl-c-doc-3.0.0-16.el9.noarch.rpm",
+               "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/c/canl-c-examples-3.0.0-16.el9.x86_64.rpm",
+               "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/c/canl-java-javadoc-2.8.3-1.el9.noarch.rpm",
+               "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/g/gridsite-3.0.0-0.25.20230214gitee81151.el9.x86_64.rpm",
+               "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/g/gridsite-clients-3.0.0-0.25.20230214gitee81151.el9.x86_64.rpm",
+               "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/g/gridsite-devel-3.0.0-0.25.20230214gitee81151.el9.x86_64.rpm",
+               "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/g/gridsite-doc-3.0.0-0.25.20230214gitee81151.el9.noarch.rpm",
+               "http://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/g/gridsite-libs-3.0.0-0.25.20230214gitee81151.el9.x86_64.rpm"
+                         ]
+        }
+    ],
+    "softwareConfigurationLink": ""
+}
