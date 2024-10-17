@@ -1,0 +1,35 @@
+{
+"name" : "HTCondor",
+    "version" : "23.0.16",
+    "currentState" : "Production",
+    "technology_provider" : "CHTC (UW-Madison)",
+    "contact" : "jfrey <at> cs.wisc.edu",
+    "technicalContact" : "jfrey <at> cs.wisc.edu",
+    "description" : "The HTCondor Software Suite (HTCSS) is a software system that creates a High-Throughput Computing (HTC) environment. This environment might be a single cluster, a set of related clusters on a campus, cloud resources, or national or international federations of computers.",
+    "releaseDate" : "2024-09-18",
+    "majorVersion" : "23",
+    "minorVersion" : "0",
+    "revisionVersion" : "16",
+    "releaseNotes" : "https://htcondor.org/htcondor/release-highlights/#long-term-support-channel",
+    "changeLog" : "",
+    "documentationLinks" : ["https://htcondor.org/htcondor/release-highlights/#long-term-support-channel","link2"],
+    "repositoryURL" : "sw/production/umd/5/al9/release/x86_64",
+    "distributionType": "UMD",
+    "distributionVersion": "5.0.0",
+    "capabilities": ["Job Scheduling", "Job ExecutionFile Access"],
+    "extraOSRepos": ["crb"],
+    "target": [
+        {
+            "platform": "al9", 
+            "arch": "x86_64", 
+            "repositoryURL": "sw/production/umd/5/al9/release/x86_64",
+            "gpgkey": "https://repository.egi.eu/repository/umd/5/UMD-5-RPM-PGP-KEY",
+            "rpms": [
+                "https://research.cs.wisc.edu/htcondor/repo/23.0/el9/x86_64/release/condor-23.0.16-1.el9.x86_64.rpm",
+                "https://research.cs.wisc.edu/htcondor/repo/23.0/el9/x86_64/release/python3-condor-23.0.16-1.el9.x86_64.rpm"
+                "https://research.cs.wisc.edu/htcondor/repo/23.0/el9/x86_64/release/condor-upgrade-checks-23.0.16-1.el9.x86_64.rpm"
+                         ]
+        }
+    ],
+    "softwareConfigurationLink": ""
+}
