@@ -26,7 +26,7 @@
             "gpgkey": "https://repository.egi.eu/repository/umd/5/UMD-5-RPM-PGP-KEY",
             "rpms": [
                 "https://research.cs.wisc.edu/htcondor/repo/23.0/el9/x86_64/release/condor-23.0.16-1.el9.x86_64.rpm",
-                "https://research.cs.wisc.edu/htcondor/repo/23.0/el9/x86_64/release/python3-condor-23.0.16-1.el9.x86_64.rpm"
+                "https://research.cs.wisc.edu/htcondor/repo/23.0/el9/x86_64/release/python3-condor-23.0.16-1.el9.x86_64.rpm",
                 "https://research.cs.wisc.edu/htcondor/repo/23.0/el9/x86_64/release/condor-upgrade-checks-23.0.16-1.el9.x86_64.rpm"
                          ]
         }
