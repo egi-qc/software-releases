@@ -1,0 +1,34 @@
+{
+    "name" : "umd-nexus",
+    "version" : "5.0.4",
+    "currentState" : "Production",
+    "technology_provider" : "EGI",
+    "contact" : "support <at> egi.eu",
+    "technicalContact" :  "support <at> egi.eu",
+    "description" : "UMD nexus repository configuration ",
+    "releaseDate" : "2025-05-20",
+    "majorVersion" : "5",
+    "minorVersion" : "0",
+    "revisionVersion" : "4",
+    "releaseNotes" : "NA",
+    "changeLog" : "Add new EGI trustanchors key",
+    "documentationLinks" : ["NA","NA"],
+    "repositoryURL" : "sw/production/umd/5/al9/release/x86_64",
+    "distributionType": "UMD",
+    
+    "capabilities":["File Access"], 
+    "extraOSRepos": ["crb"],
+    "target": [
+        {
+            "platform": "al9", 
+            "arch": "x86_64",
+            "repositoryURL": "sw/production/umd/5/al9/release/x86_64",
+            "gpgkey": "https://repository.egi.eu/repository/umd/5/UMD-5-RPM-PGP-KEY",
+            "rpms": [
+                "https://www.lip.pt/~jpina/umd-nexus-release-5.0.0-4.al9.alma.noarch.rpm"
+                   ]
+        }
+    ],
+    "softwareConfigurationLink": "",
+    "dummy" : "count 1"
+}
