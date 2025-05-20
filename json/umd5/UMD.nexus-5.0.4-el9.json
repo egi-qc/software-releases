@@ -15,8 +15,8 @@
     "documentationLinks" : ["NA","NA"],
     "repositoryURL" : "sw/production/umd/5/al9/release/x86_64",
     "distributionType": "UMD",
-    
-    "capabilities":["File Access"], 
+    "distributionVersion": "5.0.0",
+    "capabilities":["Configuration"], 
     "extraOSRepos": ["crb"],
     "target": [
         {
