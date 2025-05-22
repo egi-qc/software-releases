@@ -39,5 +39,6 @@
                          ]
         }
     ],
-    "softwareConfigurationLink": ""
-}
+    "softwareConfigurationLink": "",
+    "dummy" : "count 5"
+    }
