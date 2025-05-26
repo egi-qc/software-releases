@@ -39,7 +39,9 @@
                  "https://research.cs.wisc.edu/htcondor/repo/24.0/el9/x86_64/release/htcondor-ce-bdii-24.0.2-1.el9.noarch.rpm",
                  "https://research.cs.wisc.edu/htcondor/repo/24.0/el9/x86_64/release/htcondor-ce-apel-24.0.2-1.el9.noarch.rpm",
                  "https://research.cs.wisc.edu/htcondor/repo/23.0/el9/x86_64/release/htcondor-ce-apel-23.0.18-1.el9.noarch.rpm",
-                 "https://research.cs.wisc.edu/htcondor/repo/23.0/el9/x86_64/release/htcondor-ce-apel-23.0.13-1.el9.noarch.rpm"
+                 "https://research.cs.wisc.edu/htcondor/repo/23.0/el9/x86_64/release/htcondor-ce-apel-23.0.13-1.el9.noarch.rpm",
+                 "https://research.cs.wisc.edu/htcondor/repo/24.0/el9/x86_64/release/pelican-7.15.3-1.x86_64.rpm",
+                 "https://research.cs.wisc.edu/htcondor/repo/24.0/el9/x86_64/release/pelican-osdf-compat-7.15.3-1.x86_64.rpm"
                          ]
         }
     ],
