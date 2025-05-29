@@ -1,0 +1,34 @@
+{
+"name" : "HTCondor-CE-Apel",
+    "version" : "23.0.18",
+    "currentState" : "Production",
+    "technology_provider" : "CHTC (UW-Madison)",
+    "contact" : "jfrey <at> cs.wisc.edu",
+    "technicalContact" : "jfrey <at> cs.wisc.edu",
+    "description" : "Suite of services for a Compute Element",
+    "releaseDate" : "2025-05-29",
+    "majorVersion" : "23",
+    "minorVersion" : "0",
+    "revisionVersion" : "18",
+    "releaseNotes" : "https://htcondor.com/htcondor-ce/v23/releases/#htcondor-ce-23-version-history",
+    "changeLog" : "https://htcondor.com/htcondor-ce/v23/releases/#htcondor-ce-23-version-history",
+    "documentationLinks" : ["https://research.cs.wisc.edu/htcondor/manual/","link2"],
+    "repositoryURL" : "sw/production/umd/5/al9/release/x86_64",
+    "distributionType": "UMD",
+    "distributionVersion": "5.0.0",
+    "capabilities": ["Job Scheduling", "Job ExecutionFile Access"],
+    "extraOSRepos": ["crb"],
+    "target": [
+        {
+            "platform": "al9", 
+            "arch": "x86_64", 
+            "repositoryURL": "sw/production/umd/5/al9/release/x86_64",
+            "gpgkey": "https://repository.egi.eu/repository/umd/5/UMD-5-RPM-PGP-KEY",
+            "rpms": [
+                "https://research.cs.wisc.edu/htcondor/repo/23.0/el9/x86_64/release/htcondor-ce-apel-23.0.18-1.el9.noarch.rpm",
+                "https://research.cs.wisc.edu/htcondor/repo/23.0/el9/x86_64/release/htcondor-ce-apel-23.0.13-1.el9.noarch.rpm"           
+                         ]
+        }
+    ],
+    "softwareConfigurationLink": ""
+}
