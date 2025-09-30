@@ -1,0 +1,42 @@
+{
+    "name" : "voms-server",
+    "version" : "2.1.2",
+    "currentState" : "Production",
+    "technology_provider" : "INFN",
+    "contact" : "",
+    "technicalContact" : "NA",
+    "description" : "first release of voms core, clients and server for almalinux9",
+    "releaseDate" : "2025-07-07",
+    "majorVersion" : "2",
+    "minorVersion" : "1",
+    "revisionVersion" : "2",
+    "releaseNotes" : "https://github.com/italiangrid/voms-admin-server/releases/tag/v3.9.0",
+    "changeLog" : "https://github.com/italiangrid/voms-admin-server/releases/tag/v3.9.0",
+    "documentationLinks" : ["https://italiangrid.github.io/voms/documentation.html","link2"],
+    "repositoryURL" : "sw/production/umd/5/al9/release/x86_64",
+    "distributionType": "UMD",
+    "distributionVersion": "5.0.0",
+    "capabilities": ["Credential Management"], 
+    "target": [
+        {
+            "platform": "al9", 
+            "arch": "x86_64",
+            "repositoryURL": "sw/production/umd/5/al9/release/x86_64",
+            "gpgkey": "https://repository.egi.eu/repository/umd/5/UMD-5-RPM-PGP-KEY",
+            "rpms": [
+               "https://repo.cloud.cnaf.infn.it/repository/voms-rpm-stable/redhat9/voms-mysql-plugin-3.1.7-2.el9.x86_64.rpm",
+               "https://repo.cloud.cnaf.infn.it/repository/voms-rpm-stable/redhat9/voms-server-2.1.2-1.el9.x86_64.rpm",
+               "https://repo.cloud.cnaf.infn.it/repository/voms-rpm-stable/redhat9/voms-2.1.2-1.el9.x86_64.rpm",
+               "https://repo.cloud.cnaf.infn.it/repository/voms-rpm-stable/redhat9/voms-api-java-javadoc-3.3.5-1.el9.noarch.rpm",
+               "https://repo.cloud.cnaf.infn.it/repository/voms-rpm-stable/redhat9/voms-clients-2.1.2-1.el9.x86_64.rpm",
+               "https://repo.cloud.cnaf.infn.it/repository/voms-rpm-stable/redhat9/voms-clients-java-3.3.5-1.el9.noarch.rpm",
+               "https://repo.cloud.cnaf.infn.it/repository/voms-rpm-stable/redhat9/voms-doc-2.1.2-1.el9.noarch.rpm",
+               "https://repo.cloud.cnaf.infn.it/repository/voms-rpm-stable/redhat9/voms-server-2.1.2-1.el9.x86_64.rpm",
+               "https://repo.cloud.cnaf.infn.it/repository/voms-rpm-stable/redhat9/voms-api-java-3.3.5-1.el9.noarch.rpm",
+               "https://repo.cloud.cnaf.infn.it/repository/voms-rpm-stable/redhat9/voms-devel-2.1.2-1.el9.x86_64.rpm",
+               "https://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/c/canl-java-2.8.3-1.el9.noarch.rpm"
+            ]
+        }
+    ],
+    "softwareConfigurationLink": ""
+}
