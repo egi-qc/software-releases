@@ -16,7 +16,8 @@
     "repositoryURL" : "sw/production/umd/5/al9/release/x86_64",
     "distributionType": "UMD",
     "distributionVersion": "5.0.0",
-    "capabilities": ["Credential Management"], 
+    "capabilities": ["Credential Management"],
+    "extraOSRepos": ["crb"],
     "target": [
         {
             "platform": "al9", 
