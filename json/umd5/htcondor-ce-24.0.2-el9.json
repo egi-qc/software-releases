@@ -1,0 +1,48 @@
+{
+"name" : "HTCondor-CE",
+    "version" : "24.0.2",
+    "currentState" : "Production",
+    "technology_provider" : "CHTC (UW-Madison)",
+    "contact" : "jfrey <at> cs.wisc.edu",
+    "technicalContact" : "jfrey <at> cs.wisc.edu",
+    "description" : "Suite of services for a Compute Element",
+    "releaseDate" : "2025-11-17",
+    "majorVersion" : "24",
+    "minorVersion" : "0",
+    "revisionVersion" : "2",
+    "releaseNotes" : "https://htcondor.com/htcondor-ce/v24/releases/",
+    "changeLog" : "https://htcondor.com/htcondor-ce/v24/releases/",
+    "documentationLinks" : ["https://research.cs.wisc.edu/htcondor/manual/","link2"],
+    "repositoryURL" : "sw/production/umd/5/al9/release/x86_64",
+    "distributionType": "UMD",
+    "distributionVersion": "5.0.0",
+    "capabilities": ["Job Scheduling", "Job ExecutionFile Access"],
+    "extraOSRepos": ["crb"],
+    "target": [
+        {
+            "platform": "al9", 
+            "arch": "x86_64", 
+            "repositoryURL": "sw/production/umd/5/al9/release/x86_64",
+            "gpgkey": "https://repository.egi.eu/repository/umd/5/UMD-5-RPM-PGP-KEY",
+            "rpms": [
+                 "https://htcss-downloads.chtc.wisc.edu/repo/24.0/el9/x86_64/release/condor-24.0.9-1.el9.x86_64.rpm",
+                 "https://research.cs.wisc.edu/htcondor/repo/24.0/el9/x86_64/release/python3-condor-24.0.9-1.el9.x86_64.rpm",
+                 "https://research.cs.wisc.edu/htcondor/repo/24.0/el9/x86_64/release/condor-upgrade-checks-24.0.9-1.el9.x86_64.rpm",
+                 "https://research.cs.wisc.edu/htcondor/repo/24.0/el9/x86_64/release/htcondor-ce-condor-24.0.2-1.el9.noarch.rpm",
+                 "https://research.cs.wisc.edu/htcondor/repo/24.0/el9/x86_64/release/htcondor-ce-24.0.2-1.el9.noarch.rpm",
+                 "https://htcss-downloads.chtc.wisc.edu/repo/24.0/el9/x86_64/release/htcondor-ce-apel-24.0.2-1.el9.noarch.rpm",
+                 "https://htcss-downloads.chtc.wisc.edu/repo/24.0/el9/x86_64/release/htcondor-ce-bdii-24.0.2-1.el9.noarch.rpm",
+                 "https://htcss-downloads.chtc.wisc.edu/repo/24.0/el9/x86_64/release/htcondor-ce-bosco-24.0.2-1.el9.noarch.rpm",
+                 "https://htcss-downloads.chtc.wisc.edu/repo/24.0/el9/x86_64/release/htcondor-ce-client-24.0.2-1.el9.noarch.rpm",
+                 "https://htcss-downloads.chtc.wisc.edu/repo/24.0/el9/x86_64/release/htcondor-ce-condor-24.0.2-1.el9.noarch.rpm",
+                 "https://research.cs.wisc.edu/htcondor/repo/24.0/el9/x86_64/release/htcondor-ce-lsf-24.0.2-1.el9.noarch.rpm",
+                 "https://research.cs.wisc.edu/htcondor/repo/24.0/el9/x86_64/release/htcondor-ce-pbs-24.0.2-1.el9.noarch.rpm",
+                 "https://research.cs.wisc.edu/htcondor/repo/24.0/el9/x86_64/release/htcondor-ce-sge-24.0.2-1.el9.noarch.rpm",
+                 "https://research.cs.wisc.edu/htcondor/repo/24.0/el9/x86_64/release/htcondor-ce-slurm-24.0.2-1.el9.noarch.rpm",
+                 "https://htcss-downloads.chtc.wisc.edu/repo/24.0/el9/x86_64/release/pelican-7.20.2-1.x86_64.rpm",
+                 "https://htcss-downloads.chtc.wisc.edu/repo/24.0/el9/x86_64/release/pelican-osdf-compat-7.20.2-1.x86_64.rpm"
+                         ]
+        }
+    ],
+    "softwareConfigurationLink": ""
+}
