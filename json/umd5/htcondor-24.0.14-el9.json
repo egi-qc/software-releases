@@ -1,0 +1,37 @@
+{
+"name" : "HTCondor",
+    "version" : "24.0.14",
+    "currentState" : "Production",
+    "technology_provider" : "CHTC (UW-Madison)",
+    "contact" : "jfrey <at> cs.wisc.edu",
+    "technicalContact" : "jfrey <at> cs.wisc.edu",
+    "description" : "Suite of services for a Compute Element",
+    "releaseDate" : "2025-11-18",
+    "majorVersion" : "24",
+    "minorVersion" : "0",
+    "revisionVersion" : "14",
+    "releaseNotes" : "https://htcondor.readthedocs.io/en/latest/version-history/lts-versions-24-0.html#version-24-0-14",
+    "changeLog" : "https://htcondor.readthedocs.io/en/latest/version-history/lts-versions-24-0.html#version-24-0-14",
+    "documentationLinks" : ["https://research.cs.wisc.edu/htcondor/manual/","link2"],
+    "repositoryURL" : "sw/production/umd/5/al9/release/x86_64",
+    "distributionType": "UMD",
+    "distributionVersion": "5.0.0",
+    "capabilities": ["Job Scheduling", "Job ExecutionFile Access"],
+    "extraOSRepos": ["crb"],
+    "target": [
+        {
+            "platform": "al9", 
+            "arch": "x86_64", 
+            "repositoryURL": "sw/production/umd/5/al9/release/x86_64",
+            "gpgkey": "https://repository.egi.eu/repository/umd/5/UMD-5-RPM-PGP-KEY",
+            "rpms": [
+                 "https://htcss-downloads.chtc.wisc.edu/repo/24.0/el9/x86_64/release/condor-24.0.14-1.el9.x86_64.rpm",
+                 "https://research.cs.wisc.edu/htcondor/repo/24.0/el9/x86_64/release/python3-condor-24.0.14-1.el9.x86_64.rpm",
+                 "https://research.cs.wisc.edu/htcondor/repo/24.0/el9/x86_64/release/condor-upgrade-checks-24.0.14-1.el9.x86_64.rpm",
+                 "https://htcss-downloads.chtc.wisc.edu/repo/24.0/el9/x86_64/release/pelican-7.20.2-1.x86_64.rpm",
+                 "https://htcss-downloads.chtc.wisc.edu/repo/24.0/el9/x86_64/release/pelican-osdf-compat-7.20.2-1.x86_64.rpm"
+                         ]
+        }
+    ],
+    "softwareConfigurationLink": ""
+}
