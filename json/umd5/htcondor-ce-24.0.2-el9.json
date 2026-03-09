@@ -25,9 +25,9 @@
             "repositoryURL": "sw/production/umd/5/al9/release/x86_64",
             "gpgkey": "https://repository.egi.eu/repository/umd/5/UMD-5-RPM-PGP-KEY",
             "rpms": [
-                 "https://htcss-downloads.chtc.wisc.edu/repo/24.0/el9/x86_64/release/condor-24.0.9-1.el9.x86_64.rpm",
-                 "https://research.cs.wisc.edu/htcondor/repo/24.0/el9/x86_64/release/python3-condor-24.0.9-1.el9.x86_64.rpm",
-                 "https://research.cs.wisc.edu/htcondor/repo/24.0/el9/x86_64/release/condor-upgrade-checks-24.0.9-1.el9.x86_64.rpm",
+                 "https://htcss-downloads.chtc.wisc.edu/repo/24.0/el9/x86_64/release/condor-24.0.14-1.el9.x86_64.rpm",
+                 "https://research.cs.wisc.edu/htcondor/repo/24.0/el9/x86_64/release/python3-condor-24.0.14-1.el9.x86_64.rpm",
+                 "https://research.cs.wisc.edu/htcondor/repo/24.0/el9/x86_64/release/condor-upgrade-checks-24.0.14-1.el9.x86_64.rpm",
                  "https://research.cs.wisc.edu/htcondor/repo/24.0/el9/x86_64/release/htcondor-ce-condor-24.0.2-1.el9.noarch.rpm",
                  "https://research.cs.wisc.edu/htcondor/repo/24.0/el9/x86_64/release/htcondor-ce-24.0.2-1.el9.noarch.rpm",
                  "https://htcss-downloads.chtc.wisc.edu/repo/24.0/el9/x86_64/release/htcondor-ce-apel-24.0.2-1.el9.noarch.rpm",
