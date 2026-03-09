@@ -32,9 +32,7 @@
                 "https://ecsft.cern.ch/dist/cvmfs/cvmfs-2.13.3/cvmfs-libs-2.13.3-1.el9.x86_64.rpm",
                 "https://ecsft.cern.ch/dist/cvmfs/cvmfs-2.13.3/cvmfs-server-2.13.3-1.el9.x86_64.rpm",
                 "https://ecsft.cern.ch/dist/cvmfs/cvmfs-2.13.3/cvmfs-shrinkwrap-2.13.3-1.el9.x86_64.rpm",
-                "https://download.opensuse.org/repositories/home:/cvmfs:/contrib-egi/AlmaLinux_9/noarch/egi-cvmfs-7-7.38.obs.el9.noarch.rpm",
-                "https://download.opensuse.org/repositories/home:/cvmfs:/contrib-egi/AlmaLinux_9/noarch/cvmfs-config-egi-2.7-1.8.obs.el9.noarch.rpm",
-                "https://download.opensuse.org/repositories/home:/cvmfs:/contrib/AlmaLinux_9/x86_64/cvmfs-x509-helper-2.4-1.31.obs.el9.x86_64.rpm"
+                "https://download.opensuse.org/repositories/home:/cvmfs:/contrib-egi/AlmaLinux_9/noarch/egi-cvmfs-7-7.38.obs.el9.noarch.rpm"                         
                           ]
         }
     ],
