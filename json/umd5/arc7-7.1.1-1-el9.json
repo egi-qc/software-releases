@@ -41,7 +41,7 @@
                 "http://download.nordugrid.org/repos/7/rocky/9/x86_64/base/RPMS/nordugrid-arc-infosys-ldap-7.1.1-1.el9.noarch.rpm",
                 "http://download.nordugrid.org/repos/7/rocky/9/x86_64/base/RPMS/nordugrid-arc-monitor-7.1.1-1.el9.noarch.rpm",
                 "http://download.nordugrid.org/repos/7/rocky/9/x86_64/base/RPMS/nordugrid-arc-nagios-plugins-3.2.3-1.el9.x86_64.rpm",
-                "http://download.nordugrid.org/repos/7/rocky/9/x86_64/base/RPMS/nordugrid-arc-nagios-plugins-doc-3.2.3-1.el9.noarch.rpm",
+                "http://download.nordugrid.org/repos/7/rocky/9/x86_64/base/RPMS/nordugrid-arc-nagios-plugins-doc-3.2.3-1..el9.noarch.rpm",
                 "http://download.nordugrid.org/repos/7/rocky/9/x86_64/base/RPMS/nordugrid-arc-nagios-plugins-egi-3.2.3-1.el9.noarch.rpm",
                 "http://download.nordugrid.org/repos/7/rocky/9/x86_64/base/RPMS/nordugrid-arc-plugins-gfal-7.1.1-1.el9.x86_64.rpm",
                 "http://download.nordugrid.org/repos/7/rocky/9/x86_64/base/RPMS/nordugrid-arc-plugins-globus-7.1.1-1.el9.x86_64.rpm",
