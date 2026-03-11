@@ -32,8 +32,7 @@
                "https://repo.cloud.cnaf.infn.it/repository/voms-rpm-stable/redhat9/voms-clients-java-3.3.7-1.el9.noarch.rpm",
                "https://repo.cloud.cnaf.infn.it/repository/voms-rpm-stable/redhat9/voms-doc-2.1.3-1.el9.noarch.rpm",
                "https://repo.cloud.cnaf.infn.it/repository/voms-rpm-stable/redhat9/voms-api-java-3.3.7-1.el9.noarch.rpm",
-               "https://repo.cloud.cnaf.infn.it/repository/voms-rpm-stable/redhat9/voms-devel-2.1.3-1.el9.x86_64.rpm",
-               "https://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/c/canl-java-2.8.3-1.el9.noarch.rpm"
+               "https://repo.cloud.cnaf.infn.it/repository/voms-rpm-stable/redhat9/voms-devel-2.1.3-1.el9.x86_64.rpm"
             ]
         }
     ],
