@@ -55,10 +55,10 @@
                 "https://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/n/nordugrid-arc7-test-utils-7.1.1-2.el9.x86_64.rpm",
                 "https://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/n/nordugrid-arc7-wn-7.1.1-2.el9.x86_64.rpm",
                 "https://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/p/python3-arcrest-7.1.1-2.el9.noarch.rpm",
-                "https://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/p/python3-nordugrid-arc-7.1.1-2.el9.x86_64.rpm"
+                "https://ftp.fi.muni.cz/pub/linux/fedora/epel/9/Everything/x86_64/Packages/p/python3-nordugrid-arc7-7.1.1-2.el9.x86_64.rpm"
                                         ]
         }
     ],
       "softwareConfigurationLink": "",
-      "dummy" : "count 2"
+      "dummy" : "count 3"
 }
